@@ -1,0 +1,72 @@
+/* OverlayScrollbars custom styling */
+@layer components {
+  .os-scrollbar-handle {
+    @apply bg-primary/60 transition-colors hover:bg-primary/80;
+  }
+
+  .os-scrollbar-track {
+    @apply bg-muted/40;
+  }
+}
+
+/* Shiki syntax highlighting (server-rendered code panels) */
+@layer components {
+  .code-panel .shiki {
+    @apply m-0 bg-transparent! p-0;
+  }
+
+  .code-panel .shiki code {
+    @apply font-mono;
+  }
+
+  /* Swap to the dark theme colors stored as CSS variables by Shiki */
+  .dark .code-panel .shiki,
+  .dark .code-panel .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: transparent !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+@layer utilities {
+  /* Rainbow gradient border for the hero announcement pill */
+  .rainbow-border {
+    position: relative;
+  }
+
+  .rainbow-border::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      oklch(0.7 0.18 25) 0deg,
+      oklch(0.75 0.16 90) 90deg,
+      oklch(0.72 0.18 160) 180deg,
+      oklch(0.68 0.2 260) 270deg,
+      oklch(0.7 0.18 25) 360deg
+    );
+  }
+
+  /* Subtle line grid behind step card illustrations */
+  .step-art-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklch, var(--border) 50%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklch, var(--border) 50%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
+  }
+}

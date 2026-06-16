@@ -1,0 +1,80 @@
+{
+  "name": "dashfy-website",
+  "private": true,
+  "type": "module",
+  "description": "Dashfy website",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dashfy/website.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Breno Polanski",
+    "email": "breno.polanski@gmail.com",
+    "url": "https://github.com/brenopolanski"
+  },
+  "portless": {
+    "name": "website",
+    "script": "dev:next"
+  },
+  "scripts": {
+    "build": "next build",
+    "check:fix": "pnpm format && pnpm lint:fix && pnpm typecheck",
+    "clean": "/bin/bash scripts/clean.sh",
+    "dev": "portless",
+    "dev:next": "next dev --turbopack",
+    "format": "pnpm prettier --write",
+    "format:check": "pnpm prettier --check",
+    "generate:llms": "node scripts/generate-llms-txt.ts",
+    "lint": "eslint .",
+    "lint-staged": "lint-staged",
+    "lint:fix": "eslint . --fix",
+    "prebuild": "pnpm generate:llms",
+    "prepare": "husky",
+    "prettier": "prettier \"**/*.{js,mjs,ts,tsx,css,json,md}\"",
+    "start": "portless --script start:next",
+    "start:next": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@bprogress/next": "^3.2.12",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
+    "next": "16.1.7",
+    "next-themes": "^0.4.6",
+    "overlayscrollbars": "^2.14.0",
+    "overlayscrollbars-react": "^0.5.6",
+    "radix-ui": "^1.4.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "server-only": "^0.0.1",
+    "shadcn": "^4.7.0",
+    "shiki": "^4.2.0",
+    "tailwind-merge": "^3.6.0",
+    "thesvg": "^3.0.10",
+    "tw-animate-css": "^1.4.0",
+    "vaul": "^1.1.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.1",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "16.1.7",
+    "eslint-plugin-simple-import-sort": "^13.0.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "portless": "^0.13.0",
+    "postcss": "^8",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,173 @@
+@layer utilities {
+  /* Indeterminate progress bar for the splash screen */
+  @keyframes loading-bar {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loading-bar 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Hero entrance */
+  @keyframes hero-text-slide-up-fade {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-preview-scale-in-fade {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-hero-text-slide-up-fade {
+    animation: hero-text-slide-up-fade 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-hero-preview-scale-in-fade {
+    animation: hero-preview-scale-in-fade 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Hero headline rotating word */
+  @keyframes word-in {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes word-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+  .animate-word-in {
+    animation: word-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-word-out {
+    animation: word-out 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Triple-copy scroll for the hero screenshots marquee */
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 50s linear infinite;
+  }
+
+  /* Horizontal marquee tracks for the extensions section */
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-marquee-left {
+    animation: marquee-left 50s linear infinite;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 50s linear infinite;
+  }
+
+  /* Step transitions for the code example carousel */
+  @keyframes fade-in-blur {
+    from {
+      opacity: 0;
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-blur {
+    animation: fade-in-blur 0.35s ease-out both;
+  }
+
+  .animate-fade-in-scale {
+    animation: fade-in-scale 0.4s ease-out both;
+  }
+
+  @keyframes step-progress {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-loading-bar,
+    .animate-hero-text-slide-up-fade,
+    .animate-hero-preview-scale-in-fade,
+    .animate-word-in,
+    .animate-word-out,
+    .animate-scroll,
+    .animate-marquee-left,
+    .animate-marquee-right,
+    .animate-fade-in-blur,
+    .animate-fade-in-scale {
+      animation: none;
+    }
+  }
+}
