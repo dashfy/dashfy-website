@@ -1,5 +1,7 @@
 import '@/styles/globals.css'
 
+import { Analytics } from '@vercel/analytics/next'
+
 import { JsonLd } from '@/components/common/JsonLd'
 import { Providers } from '@/components/providers/Providers'
 import { SplashScreenWrapper } from '@/components/splashscreen/SplashScreenWrapper'
@@ -31,6 +33,7 @@ export default function RootLayout({
           <SplashScreenWrapper>{children}</SplashScreenWrapper>
         </Providers>
         <JsonLd data={getSiteJsonLd()} />
+        <Analytics />
       </body>
     </html>
   )
