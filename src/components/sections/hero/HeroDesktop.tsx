@@ -6,6 +6,7 @@ import { ExternalLink } from '@/components/common/ExternalLink'
 import { ChevronRightIcon } from '@/components/common/Icons'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 
 import { DashboardPreview } from './DashboardPreview'
 import { GetStartedDialog } from './GetStartedDialog'
@@ -67,6 +68,8 @@ export const HeroDesktop = () => {
             <div className="inline-flex items-center">
               <ExternalLink
                 className="rainbow-border mb-10 inline-flex items-center justify-center rounded-full p-px text-sm leading-none"
+                data-analytics-event={ANALYTICS_EVENTS.ctaGithubClick}
+                data-analytics-location="hero"
                 href={siteConfig.links.github}
               >
                 <span className="inline-flex items-center gap-1 rounded-full bg-background px-3 py-2 whitespace-nowrap">
@@ -94,7 +97,13 @@ export const HeroDesktop = () => {
                 variant="outline"
                 asChild
               >
-                <ExternalLink href={siteConfig.links.docs}>Documentation</ExternalLink>
+                <ExternalLink
+                  data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
+                  data-analytics-location="hero"
+                  href={siteConfig.links.docs}
+                >
+                  Documentation
+                </ExternalLink>
               </Button>
             </div>
           </div>

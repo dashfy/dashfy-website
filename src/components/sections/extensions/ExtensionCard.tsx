@@ -4,6 +4,7 @@ import { ExtensionLogo } from '@/components/sections/extensions/ExtensionLogo'
 import { Badge } from '@/components/ui/badge'
 import type { Extension } from '@/config/extensions'
 import { getExtensionGitHubUrl } from '@/config/extensions'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 
 interface CardShellProps {
   children: React.ReactNode
@@ -44,7 +45,12 @@ export const ExtensionCard = ({ id, label, logo, available }: Extension) => {
 
   if (available) {
     return (
-      <ExternalLink className="block h-full" href={getExtensionGitHubUrl(id)}>
+      <ExternalLink
+        className="block h-full"
+        data-analytics-event={ANALYTICS_EVENTS.extensionView}
+        data-analytics-id={id}
+        href={getExtensionGitHubUrl(id)}
+      >
         <CardShell>{content}</CardShell>
       </ExternalLink>
     )

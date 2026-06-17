@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 
 import { Analytics } from '@vercel/analytics/next'
 
+import { AnalyticsClickTracker } from '@/components/analytics/AnalyticsClickTracker'
 import { JsonLd } from '@/components/common/JsonLd'
 import { Providers } from '@/components/providers/Providers'
 import { SplashScreenWrapper } from '@/components/splashscreen/SplashScreenWrapper'
@@ -34,6 +35,7 @@ export default function RootLayout({
         </Providers>
         <JsonLd data={getSiteJsonLd()} />
         <Analytics />
+        <AnalyticsClickTracker />
       </body>
     </html>
   )

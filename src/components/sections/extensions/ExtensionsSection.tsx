@@ -5,6 +5,7 @@ import { ExtensionLogo } from '@/components/sections/extensions/ExtensionLogo'
 import type { Extension } from '@/config/extensions'
 import { EXTENSIONS_ROW_ONE, EXTENSIONS_ROW_TWO } from '@/config/extensions'
 import { paths } from '@/config/paths'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 
 const FADE_LEFT =
   'linear-gradient(to right, var(--background) 0%, var(--background) 25%, color-mix(in oklch, var(--background) 40%, transparent) 70%, transparent 100%)'
@@ -79,6 +80,8 @@ export const ExtensionsSection = () => {
         <div className="mt-10 text-center">
           <Link
             className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
+            data-analytics-event={ANALYTICS_EVENTS.viewAllExtensions}
+            data-analytics-location="extensions_section"
             href={paths.extensions}
           >
             View all extensions

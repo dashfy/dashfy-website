@@ -16,6 +16,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { siteConfig } from '@/config/site'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn, generateReactKey } from '@/lib/utils'
 
 const PACKAGE_MANAGERS = ['pnpm', 'npm', 'yarn', 'bun'] as const
@@ -110,7 +111,12 @@ export const GetStartedDialog = () => {
   return (
     <ResponsiveDialog>
       <ResponsiveDialogTrigger asChild>
-        <Button className="h-12 rounded-xl px-8 text-base font-semibold" size="lg">
+        <Button
+          className="h-12 rounded-xl px-8 text-base font-semibold"
+          data-analytics-event={ANALYTICS_EVENTS.getStartedOpen}
+          data-analytics-location="hero"
+          size="lg"
+        >
           Get started
         </Button>
       </ResponsiveDialogTrigger>
@@ -157,7 +163,13 @@ export const GetStartedDialog = () => {
             <Button variant="outline">Close</Button>
           </ResponsiveDialogClose>
           <Button asChild>
-            <ExternalLink href={siteConfig.links.docs}>Go to docs</ExternalLink>
+            <ExternalLink
+              data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
+              data-analytics-location="get_started_dialog"
+              href={siteConfig.links.docs}
+            >
+              Go to docs
+            </ExternalLink>
           </Button>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>

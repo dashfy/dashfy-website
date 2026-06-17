@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { BRAND_ZIP_HREF, ICON_ASSETS, LOGO_ASSETS, SCREENSHOTS } from '@/config/brand'
 import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { getWebPageJsonLd } from '@/lib/jsonld'
 import { generateReactKey } from '@/lib/utils'
 
@@ -47,7 +48,12 @@ export default function BrandPage() {
             </p>
 
             <Button asChild className="mt-8 h-12 rounded-xl px-8 text-base font-semibold" size="lg">
-              <a download href={BRAND_ZIP_HREF}>
+              <a
+                data-analytics-asset="all"
+                data-analytics-event={ANALYTICS_EVENTS.brandDownload}
+                download
+                href={BRAND_ZIP_HREF}
+              >
                 Download all assets
               </a>
             </Button>
@@ -114,6 +120,8 @@ export default function BrandPage() {
               Please{' '}
               <a
                 className="text-foreground underline-offset-4 hover:underline"
+                data-analytics-event={ANALYTICS_EVENTS.copyEmail}
+                data-analytics-location="brand"
                 href={`mailto:${siteConfig.email}`}
               >
                 contact us

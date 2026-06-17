@@ -2,6 +2,7 @@ import { ExternalLink } from '@/components/common/ExternalLink'
 import { ArrowUpRightIcon, BookOpenIcon, GitHubIcon } from '@/components/common/Icons'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 
 export const CtaSection = () => {
   return (
@@ -17,19 +18,31 @@ export const CtaSection = () => {
 
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <Button size="lg" asChild>
-            <ExternalLink href={siteConfig.links.demo}>
+            <ExternalLink
+              data-analytics-event={ANALYTICS_EVENTS.ctaDemoClick}
+              data-analytics-location="cta_section"
+              href={siteConfig.links.demo}
+            >
               View live demo
               <ArrowUpRightIcon />
             </ExternalLink>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <ExternalLink href={siteConfig.links.docs}>
+            <ExternalLink
+              data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
+              data-analytics-location="cta_section"
+              href={siteConfig.links.docs}
+            >
               <BookOpenIcon />
               Read the docs
             </ExternalLink>
           </Button>
           <Button size="lg" variant="ghost" asChild>
-            <ExternalLink href={siteConfig.links.github}>
+            <ExternalLink
+              data-analytics-event={ANALYTICS_EVENTS.ctaGithubClick}
+              data-analytics-location="cta_section"
+              href={siteConfig.links.github}
+            >
               <GitHubIcon />
               GitHub
             </ExternalLink>

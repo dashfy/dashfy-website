@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import type { BrandAsset, BrandDownload, BrandScreenshot } from '@/config/brand'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn, generateReactKey } from '@/lib/utils'
 
 const TONE_STYLES: Record<BrandAsset['tone'], string> = {
@@ -50,6 +51,9 @@ const DownloadLinks = ({ title, tone, downloads }: DownloadLinksProps) => (
           'inline-flex h-6 items-center justify-center rounded-md border px-2 text-xs font-medium backdrop-blur-sm transition-colors outline-none focus-visible:ring-2',
           DOWNLOAD_TONE_STYLES[tone],
         )}
+        data-analytics-asset={title}
+        data-analytics-event={ANALYTICS_EVENTS.brandDownload}
+        data-analytics-format={download.label}
         download
         href={download.href}
         target="_blank"
