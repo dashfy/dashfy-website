@@ -34,7 +34,7 @@ This is the website repository and is separate from the Dashfy framework, which 
 - [Next.js 16](https://nextjs.org) (App Router, Turbopack dev server)
 - [React 19](https://react.dev) and [TypeScript](https://www.typescriptlang.org)
 - [Tailwind CSS 4](https://tailwindcss.com) with [shadcn/ui](https://ui.shadcn.com) (Radix Nova)
-- [Vercel Analytics](https://vercel.com/analytics), [Shiki](https://shiki.style) for code highlighting, [OverlayScrollbars](https://kingsora.github.io/OverlayScrollbars), and [next-themes](https://github.com/pacocoursey/next-themes)
+- [Vercel Analytics](https://vercel.com/docs/analytics), [Shiki](https://shiki.style) for code highlighting, [OverlayScrollbars](https://kingsora.github.io/OverlayScrollbars), and [next-themes](https://github.com/pacocoursey/next-themes)
 
 ## Project structure
 
@@ -126,21 +126,21 @@ Contributions are welcome. For issues and pull requests related to the website, 
 
 ## Community
 
-Join the community on [Dashfy's Discord server](https://discord.gg/dashfy) to discuss the project, ask questions, or get help.
+Join the community on [Dashfy's Discord server](https://dashfy.dev/discord) to discuss the project, ask questions, or get help.
 
-Follow [@dashfy](https://x.com/dashfy) on X (Twitter) for updates and announcements.
+Join the conversation on X (Twitter) and follow [@dashfydev](https://x.com/dashfydev) for updates and announcements.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details. Note that the Dashfy framework is licensed separately under AGPL-3.0.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ---
 
 <p align="center">
   <picture>
-    <source srcset="./public/brand/dashfy-wordmark-white.svg" media="(prefers-color-scheme: dark)">
-    <source srcset="./public/brand/dashfy-wordmark-black.svg" media="(prefers-color-scheme: light)">
-    <img src="./public/brand/dashfy-wordmark-black.svg" alt="Dashfy wordmark" width="150">
+    <source srcset="./public/brand/dashfy-wordmark-black.png" media="(prefers-color-scheme: light)">
+    <source srcset="./public/brand/dashfy-wordmark-white.png" media="(prefers-color-scheme: dark)">
+    <img src="./public/brand/dashfy-wordmark-black.png" alt="Header banner">
   </picture>
 </p>
 
