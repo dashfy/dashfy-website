@@ -6,6 +6,9 @@ import { cn } from '@/lib/utils'
 
 import { SplashScreen } from './SplashScreen'
 
+const DEFAULT_DURATION_MS = 2_000
+const DEFAULT_FADE_MS = 400
+
 type SplashPhase = 'visible' | 'exiting' | 'hidden'
 
 interface SplashScreenWrapperProps {
@@ -15,8 +18,8 @@ interface SplashScreenWrapperProps {
 }
 
 export const SplashScreenWrapper = ({
-  durationMs = 2_000,
-  fadeMs = 400,
+  durationMs = DEFAULT_DURATION_MS,
+  fadeMs = DEFAULT_FADE_MS,
   children,
 }: SplashScreenWrapperProps) => {
   const [phase, setPhase] = useState<SplashPhase>('visible')

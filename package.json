@@ -2,10 +2,10 @@
   "name": "dashfy-website",
   "private": true,
   "type": "module",
-  "description": "Dashfy website",
+  "description": "Dashfy Website",
   "repository": {
     "type": "git",
-    "url": "git@github.com:dashfy/website.git"
+    "url": "git@github.com:dashfy/dashfy-website.git"
   },
   "license": "MIT",
   "author": {
