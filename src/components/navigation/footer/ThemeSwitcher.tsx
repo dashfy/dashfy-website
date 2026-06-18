@@ -1,26 +1,20 @@
 'use client'
 
-import { Monitor, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useSyncExternalStore } from 'react'
 
+import { MonitorIcon, MoonIcon, SunIcon } from '@/components/common/Icons'
+import { useMounted } from '@/hooks/useMounted'
 import { cn, generateReactKey } from '@/lib/utils'
 
 const THEME_OPTIONS = [
-  { value: 'system', label: 'System', Icon: Monitor },
-  { value: 'light', label: 'Light', Icon: Sun },
-  { value: 'dark', label: 'Dark', Icon: Moon },
+  { value: 'system', label: 'System', Icon: MonitorIcon },
+  { value: 'light', label: 'Light', Icon: SunIcon },
+  { value: 'dark', label: 'Dark', Icon: MoonIcon },
 ] as const
-
-const emptySubscribe = () => () => {}
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme()
-  const mounted = useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false,
-  )
+  const mounted = useMounted()
 
   return (
     <div className="flex items-center gap-1 rounded-full p-1">
@@ -35,9 +29,8 @@ export const ThemeSwitcher = () => {
               isActive ? 'bg-muted/50' : 'text-muted-foreground hover:text-foreground',
             )}
             onClick={() => setTheme(option.value)}
-            type="button"
           >
-            <option.Icon aria-hidden="true" className="h-4 w-4" />
+            <option.Icon className="h-4 w-4" aria-hidden />
             <span className="sr-only">{option.label}</span>
           </button>
         )

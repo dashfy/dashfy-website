@@ -5,7 +5,7 @@ import { Dialog } from 'radix-ui'
 import { useState } from 'react'
 
 import { XIcon, ZoomInIcon } from '@/components/common/Icons'
-import { cn } from '@/lib/utils'
+import { cn, generateReactKey } from '@/lib/utils'
 
 interface ScreenshotItem {
   label: string
@@ -41,12 +41,17 @@ interface ScreenshotCardProps extends ScreenshotItem {
   onClick: () => void
 }
 
-const ScreenshotCard = ({ label, lightSrc, darkSrc, eager, onClick }: ScreenshotCardProps) => {
+const ScreenshotCard = ({
+  label,
+  lightSrc,
+  darkSrc,
+  eager = false,
+  onClick,
+}: ScreenshotCardProps) => {
   return (
     <button
       aria-label={`Open ${label} screenshot`}
       className="group/card w-[280px] shrink-0 cursor-pointer focus-visible:outline-hidden sm:w-[360px] md:w-[440px] lg:w-[520px]"
-      type="button"
       onClick={onClick}
     >
       <div className="relative aspect-16/10 overflow-hidden rounded border border-border bg-card shadow-xl transition-transform duration-300 ease-out group-hover/card:scale-[1.015] group-focus-visible/card:ring-2 group-focus-visible/card:ring-ring motion-reduce:transition-none motion-reduce:group-hover/card:scale-100">
@@ -54,31 +59,31 @@ const ScreenshotCard = ({ label, lightSrc, darkSrc, eager, onClick }: Screenshot
           alt={label}
           className="object-cover transition-transform duration-500 ease-out select-none group-hover/card:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover/card:scale-100 dark:hidden"
           draggable={false}
-          fill
           loading={eager ? 'eager' : 'lazy'}
           quality={100}
           sizes="(max-width: 640px) 280px, (max-width: 768px) 360px, (max-width: 1024px) 440px, 520px"
           src={lightSrc}
+          fill
         />
         <Image
           alt={label}
           className="hidden object-cover transition-transform duration-500 ease-out select-none group-hover/card:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover/card:scale-100 dark:block"
           draggable={false}
-          fill
           loading={eager ? 'eager' : 'lazy'}
           quality={100}
           sizes="(max-width: 640px) 280px, (max-width: 768px) 360px, (max-width: 1024px) 440px, 520px"
           src={darkSrc}
+          fill
         />
 
         <span
-          aria-hidden
           className="absolute inset-0 bg-background/30 opacity-0 transition-opacity duration-200 group-hover/card:opacity-100 motion-reduce:transition-none"
+          aria-hidden
         />
 
         <span
-          aria-hidden
           className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-200 group-hover/card:opacity-100 motion-reduce:transition-none"
+          aria-hidden
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/90 px-3 py-1.5 text-sm font-medium text-foreground shadow-lg backdrop-blur">
             <ZoomInIcon className="size-4" />
@@ -101,12 +106,12 @@ export const ScreenshotsMarquee = () => {
   return (
     <div className="group/screenshots-marquee relative w-full overflow-hidden py-8 md:py-12">
       <div
-        aria-hidden
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 sm:w-40"
+        aria-hidden
       />
       <div
-        aria-hidden
         className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-40"
+        aria-hidden
       />
 
       <div
@@ -118,7 +123,7 @@ export const ScreenshotsMarquee = () => {
       >
         {track.map((item, index) => (
           <ScreenshotCard
-            key={`${item.label}-${index}`}
+            key={generateReactKey('screenshot', item.label, index)}
             darkSrc={item.darkSrc}
             eager={index < SCREENSHOTS.length}
             label={item.label}
@@ -152,21 +157,21 @@ export const ScreenshotsMarquee = () => {
                   alt={activeScreenshot.label}
                   className="h-auto w-full rounded border border-border bg-background shadow-2xl dark:hidden"
                   height={1080}
-                  priority
                   quality={100}
                   sizes="(max-width: 768px) 92vw, (max-width: 1280px) 85vw, 1280px"
                   src={activeScreenshot.lightSrc}
                   width={1920}
+                  priority
                 />
                 <Image
                   alt={activeScreenshot.label}
                   className="hidden h-auto w-full rounded border border-border bg-background shadow-2xl dark:block"
                   height={1080}
-                  priority
                   quality={100}
                   sizes="(max-width: 768px) 92vw, (max-width: 1280px) 85vw, 1280px"
                   src={activeScreenshot.darkSrc}
                   width={1920}
+                  priority
                 />
                 <Dialog.Title className="sr-only">{activeScreenshot.label}</Dialog.Title>
                 <Dialog.Description className="sr-only">

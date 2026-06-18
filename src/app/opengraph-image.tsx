@@ -5,9 +5,11 @@ export const alt = siteConfig.title
 export const size = OG_SIZE
 export const contentType = OG_CONTENT_TYPE
 
-export default async function Image() {
+const Image = async () => {
   return renderOgImage({
     title: siteConfig.tagline,
     subtitle: siteConfig.description,
   })
 }
+
+export default Image

@@ -7,6 +7,7 @@ import {
   TvIcon,
 } from '@/components/common/Icons'
 import { SectionHeading } from '@/components/common/SectionHeading'
+import { siteConfig } from '@/config/site'
 import { generateReactKey } from '@/lib/utils'
 
 const USE_CASES = [
@@ -36,14 +37,12 @@ const USE_CASES = [
   {
     icon: MonitorIcon,
     title: 'Real-time systems',
-    description:
-      'WebSockets and subscriptions make Dashfy a fit for live dashboards and operational displays.',
+    description: `WebSockets and subscriptions make ${siteConfig.name} a fit for live dashboards and operational displays.`,
   },
   {
     icon: TvIcon,
     title: 'Wall displays & kiosks',
-    description:
-      'Fullscreen mode, rotation, and continuous display make Dashfy ideal for TV monitoring screens.',
+    description: `Fullscreen mode, rotation, and continuous display make ${siteConfig.name} ideal for TV monitoring screens.`,
   },
 ] as const
 
@@ -55,7 +54,7 @@ export const UseCasesSection = () => {
           description={
             <>
               Whether you&apos;re monitoring services, building internal tools, or running TV
-              dashboards, Dashfy keeps your dashboards declarative and real time.
+              dashboards, {siteConfig.name} keeps your dashboards declarative and real time.
             </>
           }
           label="Use cases"

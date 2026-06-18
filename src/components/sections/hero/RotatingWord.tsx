@@ -36,12 +36,14 @@ export const RotatingWord = () => {
       setState((state) => ({ index: (state.index + 1) % WORDS.length, prev: state.index }))
     }, ROTATE_INTERVAL_MS)
 
-    return () => window.clearInterval(intervalId)
+    return () => {
+      window.clearInterval(intervalId)
+    }
   }, [])
 
   return (
     <>
-      <span aria-hidden className="relative inline-block overflow-hidden align-bottom">
+      <span className="relative inline-block overflow-hidden align-bottom" aria-hidden>
         <span className="invisible">{WORDS[state.index].word}</span>
         {WORDS.map((item, index) => (
           <span
@@ -60,7 +62,7 @@ export const RotatingWord = () => {
           </span>
         ))}
       </span>
-      <span className="sr-only">developers</span>
+      <span className="sr-only">{WORDS[state.index].word}</span>
     </>
   )
 }

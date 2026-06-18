@@ -12,8 +12,8 @@ export const CtaSection = () => {
           Start building dashboards as code.
         </h2>
         <p className="max-w-xl text-balance text-muted-foreground">
-          Try the live demo, read the docs, or jump straight into the source. Dashfy is open source
-          and ready to drop into your stack.
+          Try the live demo, read the docs, or jump straight into the source. {siteConfig.name} is
+          open source and ready to drop into your stack.
         </p>
 
         <div className="flex flex-col items-center gap-3 sm:flex-row">

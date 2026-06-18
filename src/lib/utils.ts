@@ -2,15 +2,15 @@ import type { ClassValue } from 'clsx'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
-export function cn(...inputs: ClassValue[]) {
+export const cn = (...inputs: ClassValue[]): string => {
   return twMerge(clsx(inputs))
 }
 
-export function generateReactKey(
+export const generateReactKey = (
   prefix: string,
   identifier: string | number,
   index?: number,
-): string {
+): string => {
   const base = `${prefix}_${identifier}`
   return typeof index === 'number' ? `${base}_${index}` : base
 }

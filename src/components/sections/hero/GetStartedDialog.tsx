@@ -45,7 +45,7 @@ const INSTALL_TABS: readonly InstallTab[] = [
   {
     value: 'skill',
     label: 'Skill',
-    description: 'Add the Dashfy skill to your AI agent.',
+    description: `Add the ${siteConfig.name} skill to your AI agent.`,
     commands: {
       pnpm: 'pnpm dlx dashfy@latest add skill',
       npm: 'npx dashfy@latest add skill',
@@ -122,7 +122,7 @@ export const GetStartedDialog = () => {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className="md:max-w-md">
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Get started with Dashfy</ResponsiveDialogTitle>
+          <ResponsiveDialogTitle>Get started with {siteConfig.name}</ResponsiveDialogTitle>
           <ResponsiveDialogDescription>Spin up a dashboard in seconds.</ResponsiveDialogDescription>
         </ResponsiveDialogHeader>
         <ResponsiveDialogBody>

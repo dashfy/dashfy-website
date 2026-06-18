@@ -20,7 +20,6 @@ export const CopyButton = ({ value }: CopyButtonProps) => {
       aria-label={copied ? 'Copied command' : 'Copy command'}
       className="shrink-0 text-muted-foreground transition-colors hover:text-foreground"
       onClick={handleCopy}
-      type="button"
     >
       {copied ? <CheckIcon className="size-3.5" /> : <CopyIcon className="size-3.5" />}
     </button>

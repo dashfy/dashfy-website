@@ -17,6 +17,28 @@ const eslintConfig = defineConfig([
     rules: {
       curly: 'error',
       'object-shorthand': ['error', 'always'],
+      'prefer-arrow-callback': 'error',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'react/function-component-definition': [
+        'error',
+        {
+          namedComponents: 'arrow-function',
+          unnamedComponents: 'arrow-function',
+        },
+      ],
+      'react/jsx-curly-brace-presence': 'error',
+      'react/jsx-sort-props': [
+        'error',
+        {
+          callbacksLast: true,
+          ignoreCase: true,
+          noSortAlphabetically: false,
+          reservedFirst: true,
+          shorthandLast: true,
+        },
+      ],
+      'react/no-unknown-property': ['error', { ignore: ['global', 'jsx'] }],
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': 'error',
       'unused-imports/no-unused-imports': 'error',

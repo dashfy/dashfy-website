@@ -28,7 +28,6 @@ export const ContactLink = ({
       }
       className={className}
       onClick={handleCopy}
-      type="button"
     >
       {copied ? copiedLabel : label}
     </button>

@@ -14,6 +14,8 @@ import {
 } from '@/components/common/Icons'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Badge } from '@/components/ui/badge'
+import { siteConfig } from '@/config/site'
+import { generateReactKey } from '@/lib/utils'
 
 const FEATURES = [
   {
@@ -86,8 +88,7 @@ const FEATURES = [
   {
     icon: SparklesIcon,
     title: 'Agent compiler',
-    description:
-      'Describe your dashboard in natural language and let the AI agent compile it into a typed Dashfy configuration.',
+    description: `Describe your dashboard in natural language and let the AI agent compile it into a typed ${siteConfig.name} configuration.`,
     comingSoon: true,
   },
 ] as const
@@ -97,7 +98,7 @@ export const FeaturesSection = () => {
     <section className="border-b border-border bg-background" id="features">
       <div className="mx-auto w-full max-w-6xl px-6 py-20 md:py-28">
         <SectionHeading
-          description="Dashfy ships with the building blocks for production-grade dashboards: declarative config, real-time updates, themes, extensions, and a composable React UI."
+          description={`${siteConfig.name} ships with the building blocks for production-grade dashboards: declarative config, real-time updates, themes, extensions, and a composable React UI.`}
           label="Features"
           title="Everything you need to ship developer dashboards."
         />
@@ -109,12 +110,12 @@ export const FeaturesSection = () => {
 
             return (
               <article
-                key={title}
+                key={generateReactKey('feature', title)}
                 className="group/feature relative flex flex-col border-r border-b border-border bg-background p-8 transition-colors duration-200 hover:bg-muted/30"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <Icon aria-hidden className="size-5 text-muted-foreground" strokeWidth={1.5} />
-                  {comingSoon ? <Badge variant="secondary">Soon</Badge> : null}
+                  <Icon className="size-5 text-muted-foreground" strokeWidth={1.5} aria-hidden />
+                  {comingSoon && <Badge variant="secondary">Soon</Badge>}
                 </div>
 
                 <h3 className="mt-6 text-base font-semibold tracking-tight text-foreground">

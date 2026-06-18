@@ -3,7 +3,7 @@
 import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes'
 import { useEffect } from 'react'
 
-function isTypingTarget(target: EventTarget | null) {
+const isTypingTarget = (target: EventTarget | null) => {
   if (!(target instanceof HTMLElement)) {
     return false
   }

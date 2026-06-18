@@ -19,19 +19,19 @@ import { cn, generateReactKey } from '@/lib/utils'
 import { NAV_LINKS } from './links'
 
 interface MainNavProps {
-  open: boolean
+  open?: boolean
   onToggle: () => void
   onClose: () => void
 }
 
-export const MainNav = ({ open, onToggle, onClose }: MainNavProps) => {
+export const MainNav = ({ open = false, onToggle, onClose }: MainNavProps) => {
   return (
     <>
       <NavigationMenu className="hidden max-w-none flex-1 justify-center md:flex" viewport={false}>
         <NavigationMenuList>
           {NAV_LINKS.map((link, index) => (
             <NavigationMenuItem key={generateReactKey('nav-link', link.href, index)}>
-              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), 'h-8')}>
+              <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), 'h-8')} asChild>
                 <Link
                   href={link.href}
                   {...(link.external
@@ -68,8 +68,8 @@ export const MainNav = ({ open, onToggle, onClose }: MainNavProps) => {
 
       {open && (
         <div
-          id="mobile-nav"
           className="fixed inset-x-0 top-14 bottom-0 z-40 flex animate-in flex-col overflow-y-auto bg-background duration-300 fade-in slide-in-from-top-2 md:hidden"
+          id="mobile-nav"
         >
           <nav aria-label="Mobile navigation" className="flex flex-1 flex-col px-6 py-6">
             {NAV_LINKS.map((link, index) => {
@@ -82,8 +82,8 @@ export const MainNav = ({ open, onToggle, onClose }: MainNavProps) => {
                   key={generateReactKey('nav-link', link.href)}
                   className={className}
                   href={link.href}
-                  onClick={onClose}
                   style={style}
+                  onClick={onClose}
                 >
                   {link.label}
                   <ArrowUpRightIcon className="size-5 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -93,8 +93,8 @@ export const MainNav = ({ open, onToggle, onClose }: MainNavProps) => {
                   key={generateReactKey('nav-link', link.href)}
                   className={className}
                   href={link.href}
-                  onClick={onClose}
                   style={style}
+                  onClick={onClose}
                 >
                   {link.label}
                   <ChevronRightIcon className="size-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
@@ -104,7 +104,7 @@ export const MainNav = ({ open, onToggle, onClose }: MainNavProps) => {
           </nav>
 
           <div className="mt-auto flex flex-col gap-5 border-t border-border px-6 py-8">
-            <Button asChild className="w-full" size="lg">
+            <Button className="w-full" size="lg" asChild>
               <ExternalLink href={siteConfig.links.demo} onClick={onClose}>
                 Live demo
                 <ArrowUpRightIcon />
@@ -120,7 +120,7 @@ export const MainNav = ({ open, onToggle, onClose }: MainNavProps) => {
                   onClick={onClose}
                 >
                   <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="size-5" />
+                  <item.icon className="size-5" aria-hidden />
                 </ExternalLink>
               ))}
             </div>

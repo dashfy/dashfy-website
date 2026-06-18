@@ -1,10 +1,10 @@
 'use client'
 
-import { ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import { ExternalLink } from '@/components/common/ExternalLink'
+import { ChevronUpIcon } from '@/components/common/Icons'
 import { siteConfig } from '@/config/site'
 import { cn, generateReactKey } from '@/lib/utils'
 
@@ -68,6 +68,8 @@ export const CompactStickyFooter = ({ disableHideOnScroll = false }: CompactStic
           aria-expanded={isExpanded}
           aria-label={isExpanded ? 'Collapse footer' : 'Expand footer'}
           className="flex h-12 w-full cursor-pointer items-center justify-between"
+          role="button"
+          tabIndex={0}
           onClick={() => setIsExpanded((prev) => !prev)}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
@@ -75,8 +77,6 @@ export const CompactStickyFooter = ({ disableHideOnScroll = false }: CompactStic
               setIsExpanded((prev) => !prev)
             }
           }}
-          role="button"
-          tabIndex={0}
         >
           <div className="flex items-center gap-4">
             <p className="hidden text-xs text-muted-foreground sm:block">
@@ -96,7 +96,7 @@ export const CompactStickyFooter = ({ disableHideOnScroll = false }: CompactStic
                   referrerPolicy="no-referrer"
                 >
                   <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="h-4 w-4" />
+                  <item.icon className="h-4 w-4" aria-hidden />
                 </ExternalLink>
               ))}
             </div>
@@ -112,7 +112,7 @@ export const CompactStickyFooter = ({ disableHideOnScroll = false }: CompactStic
 
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <span className="hidden sm:inline">{isExpanded ? 'Less' : 'More'}</span>
-              <ChevronUp
+              <ChevronUpIcon
                 className={cn(
                   'h-4 w-4 transition-transform duration-200',
                   isExpanded && 'rotate-180',

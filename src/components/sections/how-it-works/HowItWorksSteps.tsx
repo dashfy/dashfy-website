@@ -14,16 +14,16 @@ interface HowItWorksStepsProps extends React.SVGProps<SVGSVGElement> {
 export const HowItWorksSteps = ({ step, className, ...props }: HowItWorksStepsProps) => {
   return (
     <svg
-      aria-hidden
       className={cn('text-foreground', className)}
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 320 220"
+      aria-hidden
       {...props}
     >
-      {step === '01' ? <DefineAsCodeArt /> : null}
-      {step === '02' ? <ConnectApisArt /> : null}
-      {step === '03' ? <RunServerArt /> : null}
-      {step === '04' ? <RealtimeArt /> : null}
+      {step === '01' && <DefineAsCodeArt />}
+      {step === '02' && <ConnectApisArt />}
+      {step === '03' && <RunServerArt />}
+      {step === '04' && <RealtimeArt />}
     </svg>
   )
 }

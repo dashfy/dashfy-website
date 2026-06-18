@@ -1,4 +1,6 @@
 import { SectionHeading } from '@/components/common/SectionHeading'
+import { siteConfig } from '@/config/site'
+import { generateReactKey } from '@/lib/utils'
 
 import { HowItWorksSteps } from './HowItWorksSteps'
 
@@ -17,7 +19,7 @@ const STEPS = [
   },
   {
     step: '03',
-    title: 'Run the Dashfy server',
+    title: `Run the ${siteConfig.name} server`,
     description:
       'The server loads configuration, manages API clients, and exposes data to clients through a real-time WebSocket runtime.',
   },
@@ -36,7 +38,7 @@ export const HowItWorksSection = () => {
         <SectionHeading
           description={
             <>
-              Dashfy uses a server&ndash;client architecture. The server loads dashboard
+              {siteConfig.name} uses a server&ndash;client architecture. The server loads dashboard
               configuration, connects to APIs, and pushes updates over WebSockets to a composable
               React client.
             </>
@@ -48,11 +50,11 @@ export const HowItWorksSection = () => {
         <div className="mt-16 grid grid-cols-1 border-t border-l border-border md:grid-cols-2">
           {STEPS.map(({ step, title, description }) => (
             <article
-              key={step}
+              key={generateReactKey('step', step)}
               className="group/step relative flex flex-col border-r border-b border-border bg-background transition-colors duration-200 hover:bg-muted/30"
             >
               <div className="relative aspect-16/10 overflow-hidden border-b border-border bg-background">
-                <div aria-hidden className="step-art-grid absolute inset-0" />
+                <div className="step-art-grid absolute inset-0" aria-hidden />
                 <HowItWorksSteps className="absolute inset-0 h-full w-full p-3" step={step} />
               </div>
               <div className="flex flex-1 flex-col p-8">

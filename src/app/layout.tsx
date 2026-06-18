@@ -14,11 +14,11 @@ import { cn } from '@/lib/utils'
 
 export { metadata } from './metadata'
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode
-}>) {
+}>) => {
   return (
     <html
       className={cn('font-sans text-base antialiased', fontVariables)}
@@ -26,7 +26,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <meta name="apple-mobile-web-app-title" content={siteConfig.title} />
+        <meta content={siteConfig.title} name="apple-mobile-web-app-title" />
         <link href={paths.llmsTxt} rel="llms-txt" />
       </head>
       <body>
@@ -40,3 +40,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+export default RootLayout

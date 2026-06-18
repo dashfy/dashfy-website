@@ -39,9 +39,7 @@ export const HeaderClient = ({ children }: HeaderClientProps) => {
 
       <MainNav open={open} onClose={close} onToggle={toggle} />
 
-      <div aria-label="Site navigation" className="flex shrink-0 items-center gap-2">
-        {children}
-      </div>
+      <div className="flex shrink-0 items-center gap-2">{children}</div>
     </header>
   )
 }

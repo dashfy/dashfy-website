@@ -31,7 +31,9 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
       setActiveIndex((current) => (current + 1) % SCREENSHOT_VARIANTS.length)
     }, SLIDE_INTERVAL_MS)
 
-    return () => window.clearInterval(intervalId)
+    return () => {
+      window.clearInterval(intervalId)
+    }
   }, [isPaused])
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -63,12 +65,11 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
     >
       <div className="flex h-12 items-center gap-2 border-b border-border bg-muted/50 px-4 py-2">
         <div className="flex gap-1.5">
-          <span aria-hidden className="size-3 rounded-full bg-red-500" />
-          <span aria-hidden className="size-3 rounded-full bg-yellow-500" />
-          <span aria-hidden className="size-3 rounded-full bg-green-500" />
+          <span className="size-3 rounded-full bg-red-500" aria-hidden />
+          <span className="size-3 rounded-full bg-yellow-500" aria-hidden />
+          <span className="size-3 rounded-full bg-green-500" aria-hidden />
         </div>
         <ExternalLink
-          aria-label="Live demo"
           className="mx-4 flex flex-1 items-center gap-2 rounded-md border border-border bg-background/20 px-3 py-1 text-sm text-muted-foreground transition-colors hover:bg-background/40 hover:text-foreground"
           href={siteConfig.links.demo}
           onClick={handleClick}
@@ -85,7 +86,7 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
           {SCREENSHOT_VARIANTS.map((variant, index) => (
             <div key={generateReactKey('screenshot', variant)} className="relative w-full shrink-0">
               <Image
-                alt={`Dashfy dashboard preview ${variant} (light mode)`}
+                alt={`${siteConfig.name} dashboard preview ${variant} (light mode)`}
                 className={cn(
                   'block h-auto w-full transition-opacity duration-300 dark:hidden',
                   !dismissed && 'group-focus-within:opacity-40 group-hover:opacity-40',
@@ -98,7 +99,7 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
                 width={1920}
               />
               <Image
-                alt={`Dashfy dashboard preview ${variant} (dark mode)`}
+                alt={`${siteConfig.name} dashboard preview ${variant} (dark mode)`}
                 className={cn(
                   'hidden h-auto w-full transition-opacity duration-300 dark:block',
                   !dismissed && 'group-focus-within:opacity-40 group-hover:opacity-40',
@@ -122,8 +123,8 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
         >
           <div className="relative">
             <span
-              aria-hidden
               className="absolute inset-0 animate-ping rounded-full bg-primary/40"
+              aria-hidden
             />
             <ExternalLink
               aria-label="Live demo"
@@ -131,7 +132,7 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
               href={siteConfig.links.demo}
               onClick={handleClick}
             >
-              <PlayIcon aria-hidden className="ml-1 size-7 fill-current sm:size-8" />
+              <PlayIcon className="ml-1 size-7 fill-current sm:size-8" aria-hidden />
             </ExternalLink>
           </div>
         </div>

@@ -12,7 +12,7 @@ import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
 import { getWebPageJsonLd } from '@/lib/jsonld'
 
-export default function Page() {
+const Page = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
@@ -36,3 +36,5 @@ export default function Page() {
     </div>
   )
 }
+
+export default Page

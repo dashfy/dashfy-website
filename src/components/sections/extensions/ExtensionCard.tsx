@@ -11,7 +11,7 @@ interface CardShellProps {
   dimmed?: boolean
 }
 
-const CardShell = ({ children, dimmed }: CardShellProps) => (
+const CardShell = ({ children, dimmed = false }: CardShellProps) => (
   <div
     className={`group relative flex h-full flex-col gap-4 rounded-xl border border-border bg-card p-5 transition-colors ${
       dimmed ? 'opacity-60' : 'hover:border-foreground/20 hover:bg-accent/40'
@@ -57,7 +57,7 @@ export const ExtensionCard = ({ id, label, logo, available }: Extension) => {
   }
 
   return (
-    <div aria-disabled className="h-full cursor-default">
+    <div className="h-full cursor-default">
       <CardShell dimmed>{content}</CardShell>
     </div>
   )

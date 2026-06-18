@@ -5,7 +5,9 @@ import { ExtensionLogo } from '@/components/sections/extensions/ExtensionLogo'
 import type { Extension } from '@/config/extensions'
 import { EXTENSIONS_ROW_ONE, EXTENSIONS_ROW_TWO } from '@/config/extensions'
 import { paths } from '@/config/paths'
+import { siteConfig } from '@/config/site'
 import { ANALYTICS_EVENTS } from '@/lib/analytics'
+import { generateReactKey } from '@/lib/utils'
 
 const FADE_LEFT =
   'linear-gradient(to right, var(--background) 0%, var(--background) 25%, color-mix(in oklch, var(--background) 40%, transparent) 70%, transparent 100%)'
@@ -15,11 +17,11 @@ const FADE_RIGHT =
 const ExtensionPill = ({ label, logo }: Extension) => {
   return (
     <span className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 whitespace-nowrap transition-colors hover:border-foreground/20">
-      {logo ? (
+      {logo && (
         <span className="flex size-4 shrink-0 items-center justify-center">
           <ExtensionLogo className="h-full w-full" logo={logo} />
         </span>
-      ) : null}
+      )}
       <span className="text-sm text-foreground">{label}</span>
     </span>
   )
@@ -37,12 +39,12 @@ const MarqueeRow = ({ items, direction }: MarqueeRowProps) => {
     <div className={`flex ${animation} will-change-transform group-hover/extensions:paused`}>
       <div className="flex shrink-0 gap-2 pr-2">
         {items.map((item) => (
-          <ExtensionPill key={item.id} {...item} />
+          <ExtensionPill key={generateReactKey('extension', item.id)} {...item} />
         ))}
       </div>
-      <div aria-hidden className="flex shrink-0 gap-2 pr-2">
+      <div className="flex shrink-0 gap-2 pr-2" aria-hidden>
         {items.map((item) => (
-          <ExtensionPill key={`${item.id}-dup`} {...item} />
+          <ExtensionPill key={generateReactKey('extension', item.id)} {...item} />
         ))}
       </div>
     </div>
@@ -55,7 +57,7 @@ export const ExtensionsSection = () => {
       <div className="mx-auto w-full max-w-[1400px] px-6 py-12 sm:py-16 lg:py-24">
         <SectionHeading
           className="mb-10"
-          description="Official Dashfy extensions and common APIs — from GitHub and system metrics to REST endpoints, databases, and the services your team already runs on."
+          description={`Official ${siteConfig.name} extensions and common APIs — from GitHub and system metrics to REST endpoints, databases, and the services your team already runs on.`}
           descriptionClassName="hidden sm:block"
           label="Extensions"
           title="Works with the tools you already use."

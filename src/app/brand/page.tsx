@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const SECTION_TITLE = 'text-2xl font-medium tracking-tight text-foreground'
 const SECTION_BODY = 'text-sm text-muted-foreground'
 
-export default function BrandPage() {
+const BrandPage = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
@@ -35,9 +35,9 @@ export default function BrandPage() {
               alt={`${siteConfig.name} icon`}
               className="h-24 w-24 rounded-2xl"
               height={96}
-              priority
               src="/brand/dashfy-social-logo.png"
               width={96}
+              priority
             />
 
             <h1 className="mt-6 text-5xl font-semibold tracking-tight text-balance md:text-6xl">
@@ -47,12 +47,12 @@ export default function BrandPage() {
               Guidelines and assets for presenting the {siteConfig.name} brand consistently.
             </p>
 
-            <Button asChild className="mt-8 h-12 rounded-xl px-8 text-base font-semibold" size="lg">
+            <Button className="mt-8 h-12 rounded-xl px-8 text-base font-semibold" size="lg" asChild>
               <a
                 data-analytics-asset="all"
                 data-analytics-event={ANALYTICS_EVENTS.brandDownload}
-                download
                 href={BRAND_ZIP_HREF}
+                download
               >
                 Download all assets
               </a>
@@ -143,3 +143,5 @@ export default function BrandPage() {
     </div>
   )
 }
+
+export default BrandPage

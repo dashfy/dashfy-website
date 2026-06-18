@@ -13,8 +13,7 @@ import { getWebPageJsonLd } from '@/lib/jsonld'
 import { generateReactKey } from '@/lib/utils'
 
 const title = 'Extensions'
-const description =
-  'Browse Dashfy extensions — official integrations for GitHub, system metrics, market data, and more, with new connectors on the way.'
+const description = `Browse ${siteConfig.name} extensions — official integrations for GitHub, system metrics, market data, and more, with new connectors on the way.`
 
 export const metadata: Metadata = {
   title,
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
 const availableExtensions = EXTENSIONS.filter((extension) => extension.available)
 const soonExtensions = EXTENSIONS.filter((extension) => !extension.available)
 
-export default function ExtensionsPage() {
+const ExtensionsPage = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
@@ -34,9 +33,9 @@ export default function ExtensionsPage() {
             <SectionHeading
               align="left"
               as="h1"
-              description="Official Dashfy extensions and common integrations — from GitHub and system metrics to REST endpoints, databases, and the services your team already runs on. More connectors are landing soon."
+              description={`Official ${siteConfig.name} extensions and common integrations — from GitHub and system metrics to REST endpoints, databases, and the services your team already runs on. More connectors are landing soon.`}
               label="Extensions"
-              title="Connect Dashfy to your stack."
+              title={`Connect ${siteConfig.name} to your stack.`}
             />
           </div>
         </section>
@@ -76,3 +75,5 @@ export default function ExtensionsPage() {
     </div>
   )
 }
+
+export default ExtensionsPage

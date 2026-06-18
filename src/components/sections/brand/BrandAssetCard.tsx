@@ -54,9 +54,8 @@ const DownloadLinks = ({ title, tone, downloads }: DownloadLinksProps) => (
         data-analytics-asset={title}
         data-analytics-event={ANALYTICS_EVENTS.brandDownload}
         data-analytics-format={download.label}
-        download
         href={download.href}
-        target="_blank"
+        download
       >
         {download.label}
       </a>

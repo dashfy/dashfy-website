@@ -1,3 +1,5 @@
+import { siteConfig } from './site'
+
 export type BrandAssetTone = 'light' | 'dark'
 
 export interface BrandDownload {
@@ -23,7 +25,7 @@ export const BRAND_ZIP_HREF = '/brand/dashfy-brand-assets.zip'
 
 export const LOGO_ASSETS: readonly BrandAsset[] = [
   {
-    title: 'Dashfy Wordmark White',
+    title: `${siteConfig.name} Wordmark White`,
     src: '/brand/dashfy-wordmark-white.svg',
     tone: 'dark',
     downloads: [
@@ -32,7 +34,7 @@ export const LOGO_ASSETS: readonly BrandAsset[] = [
     ],
   },
   {
-    title: 'Dashfy Wordmark Black',
+    title: `${siteConfig.name} Wordmark Black`,
     src: '/brand/dashfy-wordmark-black.svg',
     tone: 'light',
     downloads: [
@@ -44,7 +46,7 @@ export const LOGO_ASSETS: readonly BrandAsset[] = [
 
 export const ICON_ASSETS: readonly BrandAsset[] = [
   {
-    title: 'Dashfy Icon White',
+    title: `${siteConfig.name} Icon White`,
     src: '/brand/dashfy-icon-white.svg',
     tone: 'dark',
     downloads: [
@@ -53,7 +55,7 @@ export const ICON_ASSETS: readonly BrandAsset[] = [
     ],
   },
   {
-    title: 'Dashfy Icon Black',
+    title: `${siteConfig.name} Icon Black`,
     src: '/brand/dashfy-icon-black.svg',
     tone: 'light',
     downloads: [
@@ -62,7 +64,7 @@ export const ICON_ASSETS: readonly BrandAsset[] = [
     ],
   },
   {
-    title: 'Dashfy Social Logo',
+    title: `${siteConfig.name} Social Logo`,
     src: '/brand/dashfy-social-logo.svg',
     tone: 'light',
     downloads: [
@@ -74,7 +76,7 @@ export const ICON_ASSETS: readonly BrandAsset[] = [
 
 export const SCREENSHOTS: readonly BrandScreenshot[] = [
   {
-    title: 'Dashfy Screenshot 1',
+    title: `${siteConfig.name} Screenshot 1`,
     light: '/brand/dashfy-screenshot_01-light.png',
     dark: '/brand/dashfy-screenshot_01-dark.png',
     downloads: [
@@ -83,7 +85,7 @@ export const SCREENSHOTS: readonly BrandScreenshot[] = [
     ],
   },
   {
-    title: 'Dashfy Screenshot 2',
+    title: `${siteConfig.name} Screenshot 2`,
     light: '/brand/dashfy-screenshot_02-light.png',
     dark: '/brand/dashfy-screenshot_02-dark.png',
     downloads: [
@@ -92,7 +94,7 @@ export const SCREENSHOTS: readonly BrandScreenshot[] = [
     ],
   },
   {
-    title: 'Dashfy Screenshot 3',
+    title: `${siteConfig.name} Screenshot 3`,
     light: '/brand/dashfy-screenshot_03-light.png',
     dark: '/brand/dashfy-screenshot_03-dark.png',
     downloads: [
@@ -101,7 +103,7 @@ export const SCREENSHOTS: readonly BrandScreenshot[] = [
     ],
   },
   {
-    title: 'Dashfy Screenshot 4',
+    title: `${siteConfig.name} Screenshot 4`,
     light: '/brand/dashfy-screenshot_04-light.png',
     dark: '/brand/dashfy-screenshot_04-dark.png',
     downloads: [

@@ -83,13 +83,15 @@ export const ConnectApisArt = () => (
       </text>
       <text style={{ fill: 'currentColor' }} x="60" y="127">
         {'} from '}
-        <tspan style={{ fill: 'currentColor', opacity: 0.7 }}>{"'@dashfy/ext-github'"}</tspan>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <tspan style={{ fill: 'currentColor', opacity: 0.7 }}>'@dashfy/ext-github'</tspan>
       </text>
       <text fontWeight="600" style={{ fill: 'currentColor' }} x="60" y="163">
         WidgetRegistry.addExtension(
       </text>
       <text style={{ fill: 'currentColor' }} x="73" y="181">
-        <tspan style={{ fill: 'currentColor', opacity: 0.7 }}>{"'github'"}</tspan>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <tspan style={{ fill: 'currentColor', opacity: 0.7 }}>'github'</tspan>
         {', { RepoBadge })'}
       </text>
     </g>

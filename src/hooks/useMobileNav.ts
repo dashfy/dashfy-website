@@ -16,7 +16,9 @@ export const useMobileNav = () => {
 
     window.addEventListener('keydown', onKey)
 
-    return () => window.removeEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+    }
   }, [open])
 
   useEffect(() => {

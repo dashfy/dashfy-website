@@ -42,8 +42,8 @@ const CodePanel = ({ filename, language, code, codeHtml }: CodePanelProps) => {
       <Scrollable className="flex min-h-0 flex-1">
         <div className="flex min-h-full w-max">
           <div
-            aria-hidden
             className="shrink-0 border-r border-border bg-muted/30 px-3 py-4 text-right font-mono text-xs leading-relaxed text-muted-foreground/60 select-none"
+            aria-hidden
           >
             {lines.map((_, index) => (
               <div key={generateReactKey('line', index)}>{index + 1}</div>
@@ -91,11 +91,11 @@ const StepBlock = ({ step }: StepBlockProps) => {
 interface StepTimelineProps {
   steps: readonly Step[]
   activeStep: number
-  isPaused: boolean
+  isPaused?: boolean
   onSelect: (index: number) => void
 }
 
-const StepTimeline = ({ steps, activeStep, isPaused, onSelect }: StepTimelineProps) => {
+const StepTimeline = ({ steps, activeStep, isPaused = false, onSelect }: StepTimelineProps) => {
   return (
     <div className="flex flex-col">
       <div className="mb-6 flex items-center">
@@ -116,7 +116,6 @@ const StepTimeline = ({ steps, activeStep, isPaused, onSelect }: StepTimelinePro
                   aria-label={`Go to step: ${step.title}`}
                   className="relative z-10 mt-2 cursor-pointer"
                   onClick={() => onSelect(index)}
-                  type="button"
                 >
                   <span
                     className={`block size-2 transition-all duration-200 ease-out ${
@@ -124,23 +123,23 @@ const StepTimeline = ({ steps, activeStep, isPaused, onSelect }: StepTimelinePro
                     }`}
                   />
                 </button>
-                {!isLast ? (
+                {!isLast && (
                   <span
-                    aria-hidden
                     className="absolute top-5 bottom-0 w-px overflow-hidden border-l border-border"
+                    aria-hidden
                   >
-                    {isActive ? (
+                    {isActive && (
                       <span
-                        aria-hidden
                         className="absolute -inset-x-px top-0 block w-px bg-primary"
                         style={{
                           animation: `step-progress ${ROTATE_INTERVAL_MS}ms linear forwards`,
                           animationPlayState: isPaused ? 'paused' : 'running',
                         }}
+                        aria-hidden
                       />
-                    ) : null}
+                    )}
                   </span>
-                ) : null}
+                )}
               </div>
 
               <button
@@ -148,7 +147,6 @@ const StepTimeline = ({ steps, activeStep, isPaused, onSelect }: StepTimelinePro
                   isActive ? 'opacity-100' : 'cursor-pointer opacity-60 hover:opacity-80'
                 } ${isLast ? 'pb-0' : ''}`}
                 onClick={() => onSelect(index)}
-                type="button"
               >
                 {isActive ? (
                   <div className="animate-fade-in-blur overflow-hidden">
@@ -176,7 +174,7 @@ const StepTimeline = ({ steps, activeStep, isPaused, onSelect }: StepTimelinePro
 const StepPreview = ({ step }: { step: Step }) => {
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden border border-border bg-background p-6 lg:p-8">
-      <div aria-hidden className="step-art-grid absolute inset-0" />
+      <div className="step-art-grid absolute inset-0" aria-hidden />
       <div className="animate-fade-in-scale relative h-full w-full">
         <CodePanel
           code={step.code}
@@ -206,7 +204,9 @@ export const ConfigCarousel = ({ steps }: ConfigCarouselProps) => {
       setActiveStep((current) => (current + 1) % steps.length)
     }, ROTATE_INTERVAL_MS)
 
-    return () => window.clearInterval(intervalId)
+    return () => {
+      window.clearInterval(intervalId)
+    }
   }, [isPaused, activeStep, steps.length])
 
   const handleSelect = useCallback((index: number) => {
@@ -242,8 +242,8 @@ export const ConfigCarousel = ({ steps }: ConfigCarouselProps) => {
           <StepTimeline
             activeStep={activeStep}
             isPaused={isPaused}
-            onSelect={handleSelect}
             steps={steps}
+            onSelect={handleSelect}
           />
           <StepPreview
             key={generateReactKey('step', steps[activeStep].id)}
