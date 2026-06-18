@@ -27,7 +27,7 @@
 
 This repository contains the source for the official Dashfy marketing site, live at [dashfy.dev](https://dashfy.dev). It is built with Next.js and shadcn/ui, and presents the product, its extensions, and the brand kit.
 
-This is the website repository (`git@github.com:dashfy/website.git`) and is separate from the Dashfy framework, which lives in the monorepo at [github.com/dashfy/dashfy](https://github.com/dashfy/dashfy).
+This is the website repository (`git@github.com:dashfy/dashfy-website.git`) and is separate from the Dashfy framework, which lives in the monorepo at [github.com/dashfy/dashfy](https://github.com/dashfy/dashfy).
 
 ## Tech stack
 
@@ -60,8 +60,8 @@ public/brand/     # Brand assets served statically
 2. Clone this repository:
 
 ```bash
-git clone git@github.com:dashfy/website.git
-cd website
+git clone git@github.com:dashfy/dashfy-website.git
+cd dashfy-website
 ```
 
 3. Install dependencies:
@@ -122,7 +122,7 @@ import { Button } from '@/components/ui/button'
 
 ## Contributing
 
-Contributions are welcome. For issues and pull requests related to the website, use the [dashfy/website](https://github.com/dashfy/website) repository. Framework contributions belong in [dashfy/dashfy](https://github.com/dashfy/dashfy).
+Contributions are welcome. For issues and pull requests related to the website, use the [dashfy/dashfy-website](https://github.com/dashfy/dashfy-website) repository. Framework contributions belong in [dashfy/dashfy](https://github.com/dashfy/dashfy).
 
 ## Community
 
