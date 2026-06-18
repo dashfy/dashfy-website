@@ -49,6 +49,8 @@ public/brand/     # Brand assets served statically
 
 ## Getting Started
 
+We recommend running the website locally for development. Follow these steps:
+
 1. Requirements:
 
 - [Node.js](https://nodejs.org)
@@ -114,7 +116,7 @@ import { Button } from '@/components/ui/button'
 
 ## Related Repositories
 
-- [dashfy/dashfy](https://github.com/dashfy/dashfy) — the Dashfy framework monorepo, packages, and demo app
+- [dashfy/dashfy](https://github.com/dashfy/dashfy) — the Dashfy framework monorepo, packages, and demo examples
 - [docs.dashfy.dev](https://docs.dashfy.dev) — product documentation
 
 ## Contributing
