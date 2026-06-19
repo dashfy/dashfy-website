@@ -74,7 +74,7 @@ export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<H
           href={siteConfig.links.demo}
           onClick={handleClick}
         >
-          <span className="flex-1">{siteConfig.url + siteConfig.links.demo}</span>
+          <span className="flex-1">{siteConfig.links.demo}</span>
         </ExternalLink>
       </div>
 

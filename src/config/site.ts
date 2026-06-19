@@ -10,12 +10,12 @@ export const siteConfig = {
   url: 'https://dashfy.dev',
   email: 'contact@dashfy.dev',
   links: {
-    demo: '/demo',
+    demo: 'https://demo.dashfy.dev',
     discord: '/discord',
-    docs: '/docs',
-    github: '/github',
+    docs: 'https://docs.dashfy.dev',
+    github: 'https://github.com/dashfy',
     roadmap: '/roadmap',
     sponsor: '/sponsor',
-    x: '/x',
+    x: 'https://x.com/dashfydev',
   },
 } as const

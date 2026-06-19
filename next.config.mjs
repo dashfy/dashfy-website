@@ -6,23 +6,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/demo',
-        destination: 'https://demo.dashfy.dev',
-        permanent: false,
-      },
-      {
         source: '/discord',
-        destination: 'https://discord.gg/dashfy',
-        permanent: false,
-      },
-      {
-        source: '/docs',
-        destination: 'https://docs.dashfy.dev',
-        permanent: false,
-      },
-      {
-        source: '/github',
-        destination: 'https://github.com/dashfy/dashfy',
+        destination: 'https://discord.gg/8g4ytjebGS',
         permanent: false,
       },
       {
@@ -33,11 +18,6 @@ const nextConfig = {
       {
         source: '/sponsor',
         destination: 'https://github.com/sponsors/brenopolanski',
-        permanent: false,
-      },
-      {
-        source: '/(twitter|x)',
-        destination: 'https://x.com/dashfy',
         permanent: false,
       },
     ]

@@ -9,11 +9,11 @@
 <p align="center">
   <a href="https://dashfy.dev">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://dashfy.dev/demo">Demo</a>
+  <a href="https://demo.dashfy.dev">Demo</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dashfy.dev/extensions">Extensions</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://dashfy.dev/docs">Docs</a>
+  <a href="https://docs.dashfy.dev">Docs</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dashfy.dev/discord">Discord</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -117,7 +117,7 @@ import { Button } from '@/components/ui/button'
 ## Related Repositories
 
 - [dashfy/dashfy](https://github.com/dashfy/dashfy) — the Dashfy framework monorepo, packages, and demo examples
-- [docs.dashfy.dev](https://dashfy.dev/docs) — product documentation
+- [docs.dashfy.dev](https://docs.dashfy.dev) — product documentation
 
 ## Contributing
 
@@ -127,7 +127,7 @@ Contributions are welcome. For issues and pull requests related to the website, 
 
 Join the community on [Dashfy's Discord server](https://dashfy.dev/discord) to discuss the project, ask questions, or get help.
 
-Join the conversation on X (Twitter) and follow [@dashfydev](https://dashfy.dev/x) for updates and announcements.
+Join the conversation on X (Twitter) and follow [@dashfydev](https://x.com/dashfydev) for updates and announcements.
 
 ## License
 
