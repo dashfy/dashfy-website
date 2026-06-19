@@ -9,15 +9,15 @@
 <p align="center">
   <a href="https://dashfy.dev">Website</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://demo.dashfy.dev">Demo</a>
+  <a href="https://dashfy.dev/demo">Demo</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dashfy.dev/extensions">Extensions</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://docs.dashfy.dev">Docs</a>
+  <a href="https://dashfy.dev/docs">Docs</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://discord.gg/dashfy">Discord</a>
+  <a href="https://dashfy.dev/discord">Discord</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/sponsors/brenopolanski">Sponsor</a>
+  <a href="https://dashfy.dev/sponsor">Sponsor</a>
 </p>
 
 ## Introduction
@@ -29,7 +29,7 @@ This is the website repository and is separate from the Dashfy framework, which 
 ## Tech Stack
 
 - [Next.js 16](https://nextjs.org) (App Router, Turbopack dev server)
-- [React 19](https://react.dev) and [TypeScript](https://www.typescriptlang.org)
+- [React 19](https://react.dev) and [TypeScript](https://typescriptlang.org)
 - [Tailwind CSS 4](https://tailwindcss.com) with [shadcn/ui](https://ui.shadcn.com) (Radix Nova)
 - [Vercel Analytics](https://vercel.com/docs/analytics), [Shiki](https://shiki.style) for code highlighting, [OverlayScrollbars](https://kingsora.github.io/OverlayScrollbars), and [next-themes](https://github.com/pacocoursey/next-themes)
 
@@ -117,7 +117,7 @@ import { Button } from '@/components/ui/button'
 ## Related Repositories
 
 - [dashfy/dashfy](https://github.com/dashfy/dashfy) — the Dashfy framework monorepo, packages, and demo examples
-- [docs.dashfy.dev](https://docs.dashfy.dev) — product documentation
+- [docs.dashfy.dev](https://dashfy.dev/docs) — product documentation
 
 ## Contributing
 
@@ -127,7 +127,7 @@ Contributions are welcome. For issues and pull requests related to the website, 
 
 Join the community on [Dashfy's Discord server](https://dashfy.dev/discord) to discuss the project, ask questions, or get help.
 
-Join the conversation on X (Twitter) and follow [@dashfydev](https://x.com/dashfydev) for updates and announcements.
+Join the conversation on X (Twitter) and follow [@dashfydev](https://dashfy.dev/x) for updates and announcements.
 
 ## License
 
