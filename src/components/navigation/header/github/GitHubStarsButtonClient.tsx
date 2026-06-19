@@ -12,7 +12,7 @@ interface GitHubStarsButtonClientProps {
 export const GitHubStarsButtonClient = ({ stars }: GitHubStarsButtonClientProps) => {
   return (
     <Button variant="outline" asChild>
-      <ExternalLink href={siteConfig.links.github} rel="noreferrer">
+      <ExternalLink href={`${siteConfig.links.github}/dashfy`} rel="noreferrer">
         <GitHubIcon className="size-4" />
         <span className="max-sm:sr-only">{stars}</span>
       </ExternalLink>
