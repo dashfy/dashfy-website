@@ -16,6 +16,7 @@ ${siteConfig.description}
 
 - [Home](${url(paths.home)}): Product overview, features, config examples, and use cases
 - [Extensions](${url(paths.extensions)}): Official integrations and connectors
+- [Docs](${url(paths.docs)}): Installation, configuration, CLI, and extension docs
 - [Brand](${url(paths.brand)}): Logos, icons, screenshots, and brand guidelines
 
 ## Getting started
@@ -40,11 +41,11 @@ GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full list: ${url(paths
 
 ## External resources
 
-- [Docs](${siteConfig.links.docs})
 - [Live demo](${siteConfig.links.demo})
 - [GitHub](${siteConfig.links.github})
-- [Roadmap](${siteConfig.links.roadmap})
-- [Discord](${siteConfig.links.discord})
+- [Roadmap](${siteConfig.url + siteConfig.links.roadmap})
+- [Sponsor](${siteConfig.url + siteConfig.links.sponsor})
+- [Discord](${siteConfig.url + siteConfig.links.discord})
 - [X](${siteConfig.links.x})
 
 ## Contact

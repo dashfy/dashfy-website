@@ -1,0 +1,102 @@
+---
+title: Quick Start
+description: Create a Dashfy server, load a dashboard configuration, and render widgets in React.
+---
+
+A Dashfy app has two halves: a **server** that loads configuration and connects to
+APIs, and a **client** that renders widgets and receives real-time updates over
+WebSockets.
+
+## Create a server
+
+Create a Dashfy server, load a dashboard configuration, and register the API
+clients your widgets need:
+
+```ts
+import { createJsonClient } from '@dashfy/ext-json'
+import { createGitHubClient } from '@dashfy/ext-github'
+import { Dashfy } from '@dashfy/server'
+
+// Create server instance
+const dashfy = new Dashfy()
+
+// Load dashboard configuration from a file (JSON or YAML):
+await dashfy.configureFromFile('./dashfy.config.yml')
+
+// or from a TypeScript object:
+// import type { DashfyConfig } from '@dashfy/types'
+// const dashfyConfig: DashfyConfig = {...}
+// dashfy.configure(dashfyConfig)
+
+// Register JSON API
+dashfy.registerApi('json', createJsonClient())
+
+// Register GitHub API
+dashfy.registerApi(
+  'github',
+  createGitHubClient({
+    token: process.env.GITHUB_TOKEN!,
+  }),
+)
+
+// Start server
+await dashfy.start()
+// Server running at http://0.0.0.0:5001
+```
+
+## Register widgets in React
+
+On the client, register each extension's widgets with the `WidgetRegistry`, then
+render the `<Dashfy />` component:
+
+```tsx
+import { CustomJson, JsonKeys, JsonStatus } from '@dashfy/ext-json'
+import {
+  Branches,
+  CommitActivityLine,
+  ContributorsStats,
+  Gitmap,
+  OrgBadge,
+  PullRequests,
+  RepoBadge,
+  Status,
+  UserBadge,
+} from '@dashfy/ext-github'
+import { Dashfy, WidgetRegistry } from '@dashfy/ui'
+
+// Register GitHub extension widgets
+WidgetRegistry.addExtension('github', {
+  Branches,
+  CommitActivityLine,
+  ContributorsStats,
+  Gitmap,
+  OrgBadge,
+  PullRequests,
+  RepoBadge,
+  Status,
+  UserBadge,
+})
+
+// Register JSON extension widgets
+WidgetRegistry.addExtension('json', {
+  CustomJson,
+  JsonKeys,
+  JsonStatus,
+})
+
+export const App = () => {
+  return <Dashfy />
+}
+```
+
+<Callout type="info" title="Let the CLI wire it for you">
+  Running [`dashfy add`](/docs/cli) performs both steps automatically — it
+  registers widgets in `App.tsx`, registers the server API in your bootstrap, adds
+  the required `.env` entries, and seeds a starter dashboard block.
+</Callout>
+
+## Next steps
+
+- [Configuration](/docs/configuration) — the full dashboard configuration model.
+- [How it works](/docs/how-it-works) — the server–client runtime flow.
+- [Extensions](/docs/extensions) — connect Dashfy to your stack.

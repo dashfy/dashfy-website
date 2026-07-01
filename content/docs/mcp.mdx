@@ -1,0 +1,62 @@
+---
+title: MCP server
+description: Run a Model Context Protocol server so AI assistants can discover and install Dashfy extensions.
+---
+
+`dashfy mcp` runs a [Model Context Protocol](https://modelcontextprotocol.io) server
+over stdio so AI assistants (Cursor, Claude, VS Code, Codex, OpenCode) can discover
+and install Dashfy extensions. Tool output is plain text, and the server uses stdout
+for the protocol only — it never logs to stdout.
+
+## Tools
+
+| Tool                         | Description                                                                       |
+| ---------------------------- | -------------------------------------------------------------------------------- |
+| `get_project_registries`     | List the registries configured for the project (plus built-in `@dashfy`).        |
+| `list_items_in_registries`   | List extensions across registries (filter by `types`, paginate).                 |
+| `search_items_in_registries` | Fuzzy-search extensions by text query (ranked, paginated; runner-aware command). |
+| `view_items_in_registries`   | Full details for one or more extensions (deps, env vars, wiring).                |
+| `get_docs_for_items`         | Setup-oriented docs (env, wiring, starter blocks, runner-aware install command). |
+| `get_add_command_for_items`  | The add command (and variants), prefixed with the project's package runner.      |
+| `get_audit_checklist`        | Project-aware post-install checklist (env vars, server wiring, starters).        |
+
+## Configure a client
+
+`dashfy mcp init` writes the client configuration that points to
+`npx dashfy@latest mcp`. With no `--client`, it prompts you to select one or more.
+
+```bash
+npx dashfy@latest mcp init --client cursor
+```
+
+| Client   | File written       | Notes                                  |
+| -------- | ------------------ | -------------------------------------- |
+| Cursor   | `.cursor/mcp.json` | `mcpServers.dashfy`                    |
+| Claude   | `.mcp.json`        | `mcpServers.dashfy`                    |
+| VS Code  | `.vscode/mcp.json` | `servers.dashfy`                       |
+| OpenCode | `opencode.json`    | `mcp.dashfy` (local)                   |
+| Codex    | _none_             | prints TOML for `~/.codex/config.toml` |
+
+Existing config files are preserved; only the `dashfy` server entry is merged in.
+
+## Pin the CLI version
+
+Pass `--install` to install `dashfy` as an exact devDependency (using your detected
+package manager) and point the MCP config at the local binary (`npx dashfy mcp`)
+instead of `npx dashfy@latest mcp`. This is useful for monorepos and teams that want
+a locked CLI version.
+
+```bash
+npx dashfy@latest mcp init --client cursor --install
+```
+
+| Flag                | Description                                                  |
+| ------------------- | ----------------------------------------------------------- |
+| `-c, --cwd <cwd>`   | Working directory (on the `mcp` command).                   |
+| `--client <client>` | `cursor`, `claude`, `vscode`, `codex`, or `opencode`.       |
+| `--install`         | Install `dashfy` as a pinned devDependency and use it.      |
+
+<Callout type="info" title="Using Cursor?">
+  The [Cursor plugin](/docs/cursor-plugin) bundles this MCP server together with the
+  Dashfy agent skill and project rules in a single installable package.
+</Callout>

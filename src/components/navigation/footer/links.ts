@@ -25,7 +25,7 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
 
 export const QUICK_LINKS: readonly QuickLink[] = [
   { name: 'Extensions', href: paths.extensions },
-  { name: 'Docs', href: siteConfig.links.docs, external: true, prefetch: false },
+  { name: 'Docs', href: paths.docs },
   { name: 'Roadmap', href: siteConfig.links.roadmap, external: true, prefetch: false },
   { name: 'Sponsor', href: siteConfig.links.sponsor, external: true, prefetch: false },
   { name: 'Brand', href: paths.brand },

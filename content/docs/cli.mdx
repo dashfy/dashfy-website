@@ -1,0 +1,197 @@
+---
+title: CLI
+description: The dashfy CLI scaffolds dashboards, manages extensions, and audits your project.
+---
+
+The `dashfy` CLI helps you create a new Dashfy project and add extensions (widgets +
+data sources) to an existing one — the dashboards analog of `shadcn add`.
+
+```bash
+npx dashfy@latest init           # scaffold a project
+npx dashfy@latest add @dashfy/github  # add an extension
+```
+
+## Addresses
+
+You reference extensions by **address**:
+
+| Address                          | Resolves to                                           |
+| -------------------------------- | ----------------------------------------------------- |
+| `github`                         | the `@dashfy` namespace (default) → `…/r/github.json` |
+| `@dashfy/github`                 | the `@dashfy` namespace explicitly                    |
+| `@acme/widget`                   | a custom namespace declared in `dashfy.json`          |
+| `https://example.com/r/foo.json` | a direct URL                                          |
+| `./local/foo.json`               | a local registry file                                 |
+| `owner/repo/foo`                 | a registry item in a GitHub repo (`#ref` optional)    |
+
+## `dashfy init|create [name]`
+
+Scaffolds a runnable Dashfy app (Vite client + Node server + configuration).
+`create` is an alias for `init`.
+
+| Flag                       | Description                                                            |
+| -------------------------- | --------------------------------------------------------------------- |
+| `-t, --template <template>`| `vite-starter` (default) or `vite-app`.                               |
+| `-e, --extensions <names>` | Comma-separated extensions to wire (`vite-starter` only).             |
+| `-c, --cwd <cwd>`          | Working directory.                                                     |
+| `--no-install`             | Skip installing npm dependencies.                                     |
+| `-y, --yes`                | Accept defaults / skip prompts.                                       |
+
+```bash
+npx dashfy@latest init my-app -t vite-app
+```
+
+## `dashfy add [extensions...]`
+
+Resolves the extension address(es), installs the `@dashfy/ext-*` package(s), and
+auto-wires them (widgets in `App.tsx`, server API in your bootstrap, `.env` entries,
+and a starter block in `dashfy.config.yml`). With no arguments, `add` prompts you to
+pick from the catalog. See [Extensions](/docs/extensions).
+
+| Flag              | Description                                              |
+| ----------------- | ------------------------------------------------------- |
+| `-c, --cwd <cwd>` | Working directory.                                      |
+| `--no-install`    | Skip installing npm dependencies (wire only).           |
+| `--dry-run`       | Print what would be added without writing anything.     |
+| `-y, --yes`       | Accept defaults / skip prompts.                         |
+
+## `dashfy remove [extensions...]`
+
+Reverses what `add` wired in. Removal is registry-first and idempotent, and it
+falls back to deriving wiring from your project when the registry is unreachable.
+
+| Flag              | Description                                              |
+| ----------------- | ------------------------------------------------------- |
+| `-c, --cwd <cwd>` | Working directory.                                      |
+| `--keep-deps`     | Leave npm dependencies installed (wire-only removal).   |
+| `--dry-run`       | Print what would be removed without writing anything.   |
+| `-y, --yes`       | Skip the confirmation prompt.                           |
+
+## `dashfy search [registries...]`
+
+Searches extension catalogs and prints matches (aliased as `dashfy list`). Queries
+are fuzzy-matched and ranked across name, title, description, and categories, and
+each result includes a ready-to-run add command.
+
+```bash
+npx dashfy@latest search --query git
+npx dashfy@latest search @dashfy --json
+```
+
+| Flag                  | Description                                                     |
+| --------------------- | -------------------------------------------------------------- |
+| `[registries...]`     | Registry namespace(s) to search (defaults to all configured).  |
+| `-q, --query <query>` | Filter by name, title, description, or category.               |
+| `-t, --type <type>`   | Filter by item type (e.g. `registry:extension`).               |
+| `-l, --limit <n>`     | Max items per registry (default `100`).                        |
+| `-o, --offset <n>`    | Items to skip (default `0`).                                   |
+| `--json`              | Output as JSON.                                                |
+
+## `dashfy view <items...>`
+
+Resolves the given address(es) and prints the full registry item JSON (deps, env
+vars, widgets, starter config) — useful for inspection and piping:
+
+```bash
+npx dashfy@latest view @dashfy/github | jq '.dependencies'
+```
+
+## `dashfy docs <extensions...>`
+
+Resolves the extension(s) and prints setup-oriented documentation: setup notes,
+required env vars, how it wires into your app and server, the starter dashboard it
+seeds, and a ready-to-run install command.
+
+```bash
+dashfy docs github
+dashfy docs @dashfy/github --json
+```
+
+## `dashfy info`
+
+Prints a snapshot of the current project: detected files, `dashfy.json` paths,
+configured registries, installed `ext-*` packages, and useful links.
+
+```bash
+npx dashfy@latest info --json
+```
+
+## `dashfy doctor [extensions...]`
+
+Diagnoses the project and verifies each extension is fully set up. Exits non-zero
+when any check fails, making it suitable as a CI gate. Falls back to inspecting
+source files when the registry is unreachable.
+
+```bash
+npx dashfy@latest doctor
+npx dashfy@latest doctor @dashfy/github --json
+```
+
+## Package runner
+
+Suggested copy-paste commands are prefixed with the runner for your project's
+detected package manager, so they work as-is in monorepos:
+
+| Package manager | Suggested command                           |
+| --------------- | ------------------------------------------- |
+| pnpm            | `pnpm dlx dashfy@latest add @dashfy/github` |
+| bun             | `bunx dashfy@latest add @dashfy/github`     |
+| npm / yarn      | `npx dashfy@latest add @dashfy/github`      |
+
+## Global flags
+
+These apply to every command:
+
+- `--json` — emit machine-readable JSON only and suppress human output. Place before
+  the command (e.g. `dashfy --json add @dashfy/github`); `info`, `search`, `view`,
+  `docs`, and `doctor` also accept it after the command.
+- `--silent` — mute non-error output.
+
+## Project configuration (`dashfy.json`)
+
+`dashfy init` writes a `dashfy.json`, and `add` reads it. It declares where the CLI
+wires changes and any custom registries:
+
+```json
+{
+  "$schema": "https://dashfy.dev/schema.json",
+  "registries": {
+    "@acme": "https://acme.com/r/{name}.json"
+  },
+  "paths": {
+    "app": "src/App.tsx",
+    "server": "dashfy.server.ts",
+    "config": "dashfy.config.yml",
+    "env": ".env"
+  }
+}
+```
+
+- `registries` are merged over the built-in `@dashfy` namespace. A registry endpoint
+  is a URL template containing `{name}`, or an object with `url` plus optional
+  `params` / `headers` (values may reference `${ENV_VAR}` for auth).
+- `paths` take precedence over the CLI's heuristic file discovery.
+
+## Environment variables
+
+`init`, `add`, and `registry add` load `.env` files before resolving registries (so
+`${ENV_VAR}` auth works), in this precedence order — first match wins, existing
+process env is never overridden:
+
+```
+.env.local
+.env.development.local
+.env.development
+.env
+```
+
+CLI behavior can also be tuned with:
+
+- `DASHFY_REGISTRY_URL` — base URL/dir for `@dashfy` items (offline/dev).
+- `DASHFY_REGISTRIES_URL` — location of the discovery index (`registries.json`).
+- `DASHFY_TEMPLATE_DIR` / `DASHFY_GITHUB_URL` — template source for `init`.
+
+## More
+
+- [Registry](/docs/registry) — `registry add/remove/build/validate` and authoring.
+- [MCP server](/docs/mcp) — `dashfy mcp` for AI assistants.

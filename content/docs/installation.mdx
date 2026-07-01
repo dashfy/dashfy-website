@@ -1,0 +1,90 @@
+---
+title: Installation
+description: Scaffold a new Dashfy project with the CLI, or add Dashfy to an existing app.
+---
+
+The fastest way to start a Dashfy project is the [`dashfy` CLI](/docs/cli), which
+scaffolds a runnable app (Vite client + Node server + configuration) and can wire
+extensions in for you.
+
+## Requirements
+
+- [Node.js](https://nodejs.org) (see the repository `package.json` engines)
+- [pnpm](https://pnpm.io/installation), npm, bun, or yarn
+
+## Scaffold a project
+
+<Steps>
+
+### Create a new app
+
+Run `init` to scaffold the minimal starter. You will be prompted to choose
+extensions, which Dashfy wires into the new project for you:
+
+```bash
+npx dashfy@latest init
+```
+
+Prefer the full, pre-wired demo (GitHub, NBA, System, Market Live)? Use the
+`vite-app` template instead:
+
+```bash
+npx dashfy@latest init -t vite-app
+```
+
+### Install dependencies
+
+If you scaffolded with `--no-install`, install dependencies inside the new
+project directory:
+
+```bash
+cd my-app
+pnpm install
+```
+
+### Start developing
+
+Run the dev server for both the client and server:
+
+```bash
+pnpm dev:all
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see your dashboard.
+
+</Steps>
+
+## Templates
+
+The CLI ships two templates:
+
+| Template        | Description                                                                 |
+| --------------- | --------------------------------------------------------------------------- |
+| `vite-starter`  | Minimal app (default). The CLI prompts for extensions and wires them in.    |
+| `vite-app`      | Full demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
+
+```bash
+npx dashfy@latest init my-app -t vite-starter
+npx dashfy@latest init my-app -t vite-app
+```
+
+## Add extensions
+
+Extensions (widgets + data sources) are resolved from a hosted registry. Add one to
+an existing project with `add`:
+
+```bash
+npx dashfy@latest add @dashfy/github
+```
+
+This installs the `@dashfy/ext-*` package and auto-wires it: widgets are registered
+in your `App.tsx`, the server API is registered in your server bootstrap, required
+environment variables are added to `.env`, and a starter widget block is appended to
+your dashboard config. See [Extensions](/docs/extensions) and the [CLI
+reference](/docs/cli) for details.
+
+<Callout type="info" title="Offline / local development">
+  Point `DASHFY_REGISTRY_URL` at a built registry directory to resolve extensions
+  without network access, and set `DASHFY_TEMPLATE_DIR` to scaffold from a local
+  template checkout. See the [CLI reference](/docs/cli).
+</Callout>

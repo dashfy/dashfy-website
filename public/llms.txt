@@ -8,6 +8,7 @@ Define dashboards as code. Connect APIs. Render real-time interfaces.
 
 - [Home](https://dashfy.dev/): Product overview, features, config examples, and use cases
 - [Extensions](https://dashfy.dev/extensions): Official integrations and connectors
+- [Docs](https://dashfy.dev/docs): Installation, configuration, CLI, and extension docs
 - [Brand](https://dashfy.dev/brand): Logos, icons, screenshots, and brand guidelines
 
 ## Getting started
@@ -32,12 +33,12 @@ GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full list: https://das
 
 ## External resources
 
-- [Docs](https://docs.dashfy.dev)
 - [Live demo](https://demo.dashfy.dev)
-- [GitHub](https://github.com/dashfy/dashfy)
-- [Roadmap](https://github.com/orgs/dashfy/projects/1)
-- [Discord](https://discord.gg/dashfy)
-- [X](https://x.com/dashfy)
+- [GitHub](https://github.com/dashfy)
+- [Roadmap](https://dashfy.dev/roadmap)
+- [Sponsor](https://dashfy.dev/sponsor)
+- [Discord](https://dashfy.dev/discord)
+- [X](https://x.com/dashfydev)
 
 ## Contact
 

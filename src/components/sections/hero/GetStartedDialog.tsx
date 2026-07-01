@@ -1,7 +1,8 @@
 'use client'
 
+import Link from 'next/link'
+
 import { CopyButton } from '@/components/common/CopyButton'
-import { ExternalLink } from '@/components/common/ExternalLink'
 import {
   ResponsiveDialog,
   ResponsiveDialogBody,
@@ -15,6 +16,7 @@ import {
 } from '@/components/common/ResponsiveDialog'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
 import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn, generateReactKey } from '@/lib/utils'
@@ -163,13 +165,13 @@ export const GetStartedDialog = () => {
             <Button variant="outline">Close</Button>
           </ResponsiveDialogClose>
           <Button asChild>
-            <ExternalLink
+            <Link
               data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
               data-analytics-location="get_started_dialog"
-              href={siteConfig.links.docs}
+              href={paths.docs}
             >
               Go to docs
-            </ExternalLink>
+            </Link>
           </Button>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>
