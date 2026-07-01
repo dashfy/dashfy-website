@@ -5,11 +5,11 @@ description: Extensions add widgets and data sources to Dashfy. Add, remove, and
 
 Extensions are how Dashfy connects to your stack. Each extension is an
 `@dashfy/ext-*` npm package that provides **widgets** (visual components) and,
-optionally, a **server API client** (data source) plus wiring metadata.
+optionally, a **server API client** (data source) plus setup metadata.
 
 Extensions are resolved from a [registry](/docs/registry) at runtime over HTTP — the
 same model as shadcn/ui's component registry. The difference: a Dashfy registry item
-describes an npm package plus wiring metadata, so "applying" an extension means
+describes an npm package plus setup metadata, so "applying" an extension means
 _installing_ the package and running codemods, rather than copying source files.
 
 ## Available extensions
@@ -29,7 +29,7 @@ npx dashfy@latest add @dashfy/github
 ```
 
 `add` resolves the extension address from the registry, installs the npm package,
-and auto-wires it:
+and sets it up automatically:
 
 - registers widgets in your `App.tsx` via `WidgetRegistry.addExtension`
 - registers the server API in your server bootstrap via `dashfy.registerApi`
@@ -39,9 +39,9 @@ and auto-wires it:
 With no arguments, `add` fetches the catalog and prompts you to pick. Any
 `registryDependencies` an item declares are resolved and applied first.
 
-<Callout type="info" title="Wiring is automatic — and reversible">
-  Prefer the CLI over editing wiring by hand. `dashfy add` and `dashfy remove` are
-  idempotent, so re-running them is safe.
+<Callout type="info" title="Setup is automatic — and reversible">
+  Prefer the CLI over setting extensions up by hand. `dashfy add` and `dashfy remove`
+  are idempotent, so re-running them is safe.
 </Callout>
 
 ## Remove an extension
@@ -50,7 +50,7 @@ With no arguments, `add` fetches the catalog and prompts you to pick. Any
 npx dashfy@latest remove @dashfy/github
 ```
 
-`remove` reverses what `add` wired in: it removes the widget registration and
+`remove` reverses what `add` set up: it removes the widget registration and
 imports, the server API registration, and the starter dashboard. It uninstalls the
 package (unless `--keep-deps`) and removes the extension's `.env` entries — but
 **only when they are still empty placeholders**. Lines that hold a value are
@@ -59,8 +59,8 @@ preserved and reported, so your secrets are never deleted.
 ## Audit your project
 
 `doctor` verifies that each extension is fully set up — its dependency is installed,
-its widgets are registered, its server API is wired, its env vars are set, and its
-starter block exists. It exits non-zero on failure, making it a useful CI gate:
+its widgets are registered, its server API is registered, its env vars are set, and
+its starter block exists. It exits non-zero on failure, making it a useful CI gate:
 
 ```bash
 npx dashfy@latest doctor          # auto-detect installed extensions

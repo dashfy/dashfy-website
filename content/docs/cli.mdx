@@ -32,7 +32,7 @@ Scaffolds a runnable Dashfy app (Vite client + Node server + configuration).
 | Flag                       | Description                                                            |
 | -------------------------- | --------------------------------------------------------------------- |
 | `-t, --template <template>`| `vite-starter` (default) or `vite-app`.                               |
-| `-e, --extensions <names>` | Comma-separated extensions to wire (`vite-starter` only).             |
+| `-e, --extensions <names>` | Comma-separated extensions to set up (`vite-starter` only).           |
 | `-c, --cwd <cwd>`          | Working directory.                                                     |
 | `--no-install`             | Skip installing npm dependencies.                                     |
 | `-y, --yes`                | Accept defaults / skip prompts.                                       |
@@ -44,26 +44,26 @@ npx dashfy@latest init my-app -t vite-app
 ## `dashfy add [extensions...]`
 
 Resolves the extension address(es), installs the `@dashfy/ext-*` package(s), and
-auto-wires them (widgets in `App.tsx`, server API in your bootstrap, `.env` entries,
-and a starter block in `dashfy.config.yml`). With no arguments, `add` prompts you to
-pick from the catalog. See [Extensions](/docs/extensions).
+sets them up automatically (widgets in `App.tsx`, server API in your bootstrap,
+`.env` entries, and a starter block in `dashfy.config.yml`). With no arguments, `add`
+prompts you to pick from the catalog. See [Extensions](/docs/extensions).
 
 | Flag              | Description                                              |
 | ----------------- | ------------------------------------------------------- |
 | `-c, --cwd <cwd>` | Working directory.                                      |
-| `--no-install`    | Skip installing npm dependencies (wire only).           |
+| `--no-install`    | Skip installing npm dependencies (set up only).         |
 | `--dry-run`       | Print what would be added without writing anything.     |
 | `-y, --yes`       | Accept defaults / skip prompts.                         |
 
 ## `dashfy remove [extensions...]`
 
-Reverses what `add` wired in. Removal is registry-first and idempotent, and it
-falls back to deriving wiring from your project when the registry is unreachable.
+Reverses what `add` set up. Removal is registry-first and idempotent, and it
+falls back to deriving the setup from your project when the registry is unreachable.
 
 | Flag              | Description                                              |
 | ----------------- | ------------------------------------------------------- |
 | `-c, --cwd <cwd>` | Working directory.                                      |
-| `--keep-deps`     | Leave npm dependencies installed (wire-only removal).   |
+| `--keep-deps`     | Leave npm dependencies installed (setup-only removal).  |
 | `--dry-run`       | Print what would be removed without writing anything.   |
 | `-y, --yes`       | Skip the confirmation prompt.                           |
 
@@ -99,8 +99,8 @@ npx dashfy@latest view @dashfy/github | jq '.dependencies'
 ## `dashfy docs <extensions...>`
 
 Resolves the extension(s) and prints setup-oriented documentation: setup notes,
-required env vars, how it wires into your app and server, the starter dashboard it
-seeds, and a ready-to-run install command.
+required env vars, how it integrates into your app and server, the starter dashboard
+it seeds, and a ready-to-run install command.
 
 ```bash
 dashfy docs github
@@ -150,7 +150,7 @@ These apply to every command:
 ## Project configuration (`dashfy.json`)
 
 `dashfy init` writes a `dashfy.json`, and `add` reads it. It declares where the CLI
-wires changes and any custom registries:
+applies changes and any custom registries:
 
 ```json
 {

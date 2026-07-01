@@ -4,8 +4,8 @@ description: Scaffold a new Dashfy project with the CLI, or add Dashfy to an exi
 ---
 
 The fastest way to start a Dashfy project is the [`dashfy` CLI](/docs/cli), which
-scaffolds a runnable app (Vite client + Node server + configuration) and can wire
-extensions in for you.
+scaffolds a runnable app (Vite client + Node server + configuration) and can set
+extensions up for you.
 
 ## Requirements
 
@@ -19,13 +19,13 @@ extensions in for you.
 ### Create a new app
 
 Run `init` to scaffold the minimal starter. You will be prompted to choose
-extensions, which Dashfy wires into the new project for you:
+extensions, which Dashfy sets up in the new project for you:
 
 ```bash
 npx dashfy@latest init
 ```
 
-Prefer the full, pre-wired demo (GitHub, NBA, System, Market Live)? Use the
+Prefer the full, pre-configured demo (GitHub, NBA, System, Market Live)? Use the
 `vite-app` template instead:
 
 ```bash
@@ -60,7 +60,7 @@ The CLI ships two templates:
 
 | Template        | Description                                                                 |
 | --------------- | --------------------------------------------------------------------------- |
-| `vite-starter`  | Minimal app (default). The CLI prompts for extensions and wires them in.    |
+| `vite-starter`  | Minimal app (default). The CLI prompts for extensions and sets them up.      |
 | `vite-app`      | Full demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
 
 ```bash
@@ -77,8 +77,8 @@ an existing project with `add`:
 npx dashfy@latest add @dashfy/github
 ```
 
-This installs the `@dashfy/ext-*` package and auto-wires it: widgets are registered
-in your `App.tsx`, the server API is registered in your server bootstrap, required
+This installs the `@dashfy/ext-*` package and sets it up automatically: widgets are
+registered in your `App.tsx`, the server API is registered in your server bootstrap, required
 environment variables are added to `.env`, and a starter widget block is appended to
 your dashboard config. See [Extensions](/docs/extensions) and the [CLI
 reference](/docs/cli) for details.

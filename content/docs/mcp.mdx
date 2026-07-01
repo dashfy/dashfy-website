@@ -15,10 +15,10 @@ for the protocol only — it never logs to stdout.
 | `get_project_registries`     | List the registries configured for the project (plus built-in `@dashfy`).        |
 | `list_items_in_registries`   | List extensions across registries (filter by `types`, paginate).                 |
 | `search_items_in_registries` | Fuzzy-search extensions by text query (ranked, paginated; runner-aware command). |
-| `view_items_in_registries`   | Full details for one or more extensions (deps, env vars, wiring).                |
-| `get_docs_for_items`         | Setup-oriented docs (env, wiring, starter blocks, runner-aware install command). |
+| `view_items_in_registries`   | Full details for one or more extensions (deps, env vars, setup).                 |
+| `get_docs_for_items`         | Setup-oriented docs (env, setup, starter blocks, runner-aware install command).  |
 | `get_add_command_for_items`  | The add command (and variants), prefixed with the project's package runner.      |
-| `get_audit_checklist`        | Project-aware post-install checklist (env vars, server wiring, starters).        |
+| `get_audit_checklist`        | Project-aware post-install checklist (env vars, server setup, starters).         |
 
 ## Configure a client
 
