@@ -74,7 +74,7 @@ export const MainNav = ({ open = false, onToggle, onClose }: MainNavProps) => {
           <nav aria-label="Mobile navigation" className="flex flex-1 flex-col px-6 py-6">
             {NAV_LINKS.map((link, index) => {
               const className =
-                'group animate-in fade-in slide-in-from-top-2 fill-mode-both flex items-center justify-between border-b border-border/60 py-5 text-2xl font-semibold tracking-tight text-foreground transition-colors hover:text-muted-foreground'
+                'flex justify-between items-center py-5 text-2xl font-semibold tracking-tight border-b transition-colors group animate-in fade-in slide-in-from-top-2 fill-mode-both border-border/60 text-foreground hover:text-muted-foreground'
               const style = { animationDelay: `${index * 60}ms` }
 
               return link.external ? (

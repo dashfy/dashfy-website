@@ -162,9 +162,11 @@ export const GetStartedDialog = () => {
         </ResponsiveDialogBody>
         <ResponsiveDialogFooter>
           <ResponsiveDialogClose asChild>
-            <Button variant="outline">Close</Button>
+            <Button size="lg" variant="outline">
+              Close
+            </Button>
           </ResponsiveDialogClose>
-          <Button asChild>
+          <Button size="lg" asChild>
             <Link
               data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
               data-analytics-location="get_started_dialog"
