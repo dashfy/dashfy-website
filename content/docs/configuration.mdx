@@ -1,0 +1,192 @@
+---
+title: Configuration
+description: Define Dashfy dashboards declaratively using TypeScript, JSON, or YAML.
+---
+
+Dashfy dashboards are defined using declarative configuration. You can author them as
+a **TypeScript** object, **JSON**, or **YAML** — pick whichever fits your workflow.
+
+A configuration declares one or more `dashboards`, each with a grid (`columns` ×
+`rows`) and a list of `widgets` placed on that grid.
+
+## Dashboard fields
+
+| Field        | Type       | Description                                              |
+| ------------ | ---------- | ------------------------------------------------------- |
+| `title`      | `string`   | Display title for the dashboard.                        |
+| `columns`    | `number`   | Number of grid columns.                                 |
+| `rows`       | `number`   | Number of grid rows.                                    |
+| `widgets`    | `Widget[]` | Widgets placed on the grid.                             |
+
+## Widget fields
+
+Every widget references an `extension` and a `widget` name, and is positioned on the
+grid. Remaining fields are widget-specific props.
+
+| Field        | Type     | Description                                            |
+| ------------ | -------- | ----------------------------------------------------- |
+| `extension`  | `string` | Extension the widget comes from (e.g. `github`).      |
+| `widget`     | `string` | Widget name exported by the extension.                |
+| `x`          | `number` | Column position (0-based).                             |
+| `y`          | `number` | Row position (0-based).                                |
+| `columns`    | `number` | How many columns the widget spans.                    |
+| `rows`       | `number` | How many rows the widget spans.                       |
+| _…props_     | `any`    | Widget-specific props (e.g. `repository`, `url`).     |
+
+<Callout type="warning" title="Keep widgets inside the grid">
+  A widget's `x + columns` must not exceed the dashboard's `columns`, and
+  `y + rows` must not exceed its `rows`. Widgets should not overlap.
+</Callout>
+
+## TypeScript
+
+```ts
+import type { DashfyConfig } from '@dashfy/types'
+
+const dashfyConfig: DashfyConfig = {
+  dashboards: [
+    {
+      title: 'GitHub Dashboard',
+      columns: 3,
+      rows: 2,
+      widgets: [
+        {
+          extension: 'github',
+          widget: 'RepoBadge',
+          x: 0,
+          y: 0,
+          columns: 1,
+          rows: 1,
+          repository: 'facebook/react',
+        },
+        {
+          extension: 'github',
+          widget: 'PullRequests',
+          x: 1,
+          y: 0,
+          columns: 2,
+          rows: 1,
+          repository: 'vercel/next.js',
+          state: 'open',
+        },
+        {
+          extension: 'json',
+          widget: 'JsonStatus',
+          x: 0,
+          y: 1,
+          columns: 3,
+          rows: 1,
+          title: 'API Status',
+          url: 'https://api.example.com/health',
+          statuses: [
+            {
+              assert: 'equals(status, ok)',
+              status: 'success',
+              label: 'API Online',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+```
+
+## JSON
+
+```json
+{
+  "dashboards": [
+    {
+      "title": "GitHub Dashboard",
+      "columns": 3,
+      "rows": 2,
+      "widgets": [
+        {
+          "extension": "github",
+          "widget": "RepoBadge",
+          "x": 0,
+          "y": 0,
+          "columns": 1,
+          "rows": 1,
+          "repository": "facebook/react"
+        },
+        {
+          "extension": "github",
+          "widget": "PullRequests",
+          "x": 1,
+          "y": 0,
+          "columns": 2,
+          "rows": 1,
+          "repository": "vercel/next.js",
+          "state": "open"
+        },
+        {
+          "extension": "json",
+          "widget": "JsonStatus",
+          "x": 0,
+          "y": 1,
+          "columns": 3,
+          "rows": 1,
+          "title": "API Status",
+          "url": "https://api.example.com/health",
+          "statuses": [
+            {
+              "assert": "equals(status, ok)",
+              "status": "success",
+              "label": "API Online"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## YAML
+
+```yml
+title: GitHub Dashboard
+columns: 3
+rows: 2
+widgets:
+  - extension: github
+    widget: RepoBadge
+    x: 0
+    y: 0
+    columns: 1
+    rows: 1
+    repository: facebook/react
+  - extension: github
+    widget: PullRequests
+    x: 1
+    y: 0
+    columns: 2
+    rows: 1
+    repository: vercel/next.js
+    state: open
+  - extension: json
+    widget: JsonStatus
+    x: 0
+    y: 1
+    columns: 3
+    rows: 1
+    title: API Status
+    url: https://api.example.com/health
+    statuses:
+      - assert: equals(status, ok)
+        status: success
+        label: API Online
+```
+
+## Loading configuration
+
+Load a file (JSON or YAML) on the server with `configureFromFile`, or pass a
+TypeScript object to `configure`:
+
+```ts
+await dashfy.configureFromFile('./dashfy.config.yml')
+// or
+dashfy.configure(dashfyConfig)
+```

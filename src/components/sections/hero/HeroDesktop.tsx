@@ -1,10 +1,12 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import { ExternalLink } from '@/components/common/ExternalLink'
 import { ChevronRightIcon } from '@/components/common/Icons'
 import { Button } from '@/components/ui/button'
+import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
 import { ANALYTICS_EVENTS } from '@/lib/analytics'
 
@@ -97,13 +99,13 @@ export const HeroDesktop = () => {
                 variant="outline"
                 asChild
               >
-                <ExternalLink
+                <Link
                   data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
                   data-analytics-location="hero"
-                  href={siteConfig.links.docs}
+                  href={paths.docs}
                 >
                   Documentation
-                </ExternalLink>
+                </Link>
               </Button>
             </div>
           </div>

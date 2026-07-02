@@ -1,0 +1,19 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "---Get Started---",
+    "index",
+    "installation",
+    "quick-start",
+    "---Guides---",
+    "configuration",
+    "how-it-works",
+    "extensions",
+    "themes",
+    "---Reference---",
+    "cli",
+    "registry",
+    "mcp",
+    "cursor-plugin"
+  ]
+}

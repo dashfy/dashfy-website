@@ -1,0 +1,113 @@
+---
+title: Registry
+description: How Dashfy resolves extensions from registries, and how to author and host your own.
+---
+
+Extensions are resolved from a **registry** at runtime over HTTP — the same model as
+shadcn/ui. The default registry is the `@dashfy` namespace, served from
+`https://registry.dashfy.dev/r`. A Dashfy registry item describes an npm package plus
+setup metadata, so "applying" an extension installs the package and runs codemods,
+rather than copying source files.
+
+## Registry items
+
+Each extension publishes a `<name>.json` registry item that validates against
+[`registry-item.json`](https://dashfy.dev/schema/registry-item.json). It describes
+the npm package, its dependencies, required environment variables, the widgets it
+provides, and a starter dashboard block. Items can declare `registryDependencies`,
+which are resolved and applied first when the item is added.
+
+The item's `docs` field (surfaced by `dashfy docs` and the MCP `get_docs_for_items`
+tool) is authored in each extension's `package.json` under `dashfy.docs` and copied
+into the registry item by `dashfy registry build`.
+
+## Custom & third-party registries
+
+Anyone can publish a registry: serve `<name>.json` files plus an `index.json` catalog
+at a public URL, declare the namespace in your `dashfy.json`, and install with
+`dashfy add @yourscope/widget`. Items can also live in a GitHub repo (under
+`r/<name>.json`) and be installed with `dashfy add owner/repo/widget`.
+
+```json
+{
+  "registries": {
+    "@acme": "https://acme.com/r/{name}.json"
+  }
+}
+```
+
+For private/authenticated registries, use the object form with `${ENV_VAR}`
+placeholders that resolve from your `.env`:
+
+```json
+{
+  "registries": {
+    "@acme": {
+      "url": "https://acme.com/r/{name}.json",
+      "headers": { "Authorization": "Bearer ${ACME_TOKEN}" }
+    }
+  }
+}
+```
+
+## `dashfy registry add [registries...]`
+
+Adds custom registries to your `dashfy.json` (merged over the built-in `@dashfy`).
+Accepts a bare namespace resolved from the discovery index, or an explicit
+`namespace=url` pair:
+
+```bash
+# resolve @acme from the hosted discovery index
+npx dashfy@latest registry add @acme
+
+# declare a namespace with an explicit URL template (must contain {name})
+npx dashfy@latest registry add @acme=https://acme.com/r/{name}.json
+```
+
+## `dashfy registry remove [registries...]`
+
+Removes custom registries from your `dashfy.json` — the inverse of `registry add`.
+Removing a namespace that is not configured is a safe no-op, and the built-in
+`@dashfy` namespace can never be removed.
+
+```bash
+npx dashfy@latest registry remove @acme
+```
+
+## Discovery index (`registries.json`)
+
+The CLI resolves bare namespaces from a hosted discovery index at
+`https://registry.dashfy.dev/registries.json`, which maps each public `@namespace` to
+its URL template plus optional `name`, `description`, and `homepage`. Override its
+location with `DASHFY_REGISTRIES_URL` for offline work or testing.
+
+## `dashfy registry build [packages]`
+
+Builds the hosted registry artifacts (`<name>.json` per extension + `index.json`)
+from the `dashfy` metadata field of each `ext-*` package.
+
+| Flag                 | Description                                          |
+| -------------------- | -------------------------------------------------- |
+| `[packages]`         | Directory with the `ext-*` packages (`./packages`). |
+| `-o, --output <path>`| Destination directory (`apps/registry/public/r`).   |
+| `-c, --cwd <cwd>`    | Working directory.                                  |
+
+## `dashfy registry validate [dir]`
+
+Validates a built registry directory before publishing: it checks that `index.json`
+and every `<name>.json` match the schemas, that filenames match item names, that
+there are no duplicates, that the index is in sync, and that local
+`registryDependencies` resolve within the same registry. Exits non-zero on failure.
+
+```bash
+npx dashfy@latest registry build && npx dashfy@latest registry validate
+```
+
+## Offline / local development
+
+`add` reaches the network by default. Override the registry base with
+`DASHFY_REGISTRY_URL` (a URL or a local directory) for offline work, CI, or testing:
+
+```bash
+DASHFY_REGISTRY_URL="/path/to/apps/registry/public/r" dashfy add @dashfy/github --no-install
+```

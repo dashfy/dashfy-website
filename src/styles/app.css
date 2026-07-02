@@ -30,6 +30,52 @@
   }
 }
 
+/* Docs MDX code blocks (Fumadocs/Shiki dual-theme output) */
+@layer components {
+  .dashfy-docs-code {
+    @apply bg-transparent!;
+  }
+
+  .dark .dashfy-docs-code,
+  .dark .dashfy-docs-code span {
+    color: var(--shiki-dark) !important;
+    background-color: transparent !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+/* Docs <Steps> numbered markers */
+@layer components {
+  .docs-steps {
+    counter-reset: docs-step;
+  }
+
+  .docs-steps > h3 {
+    position: relative;
+    counter-increment: docs-step;
+  }
+
+  .docs-steps > h3::before {
+    content: counter(docs-step);
+    position: absolute;
+    top: -0.1rem;
+    left: -2.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 9999px;
+    border: 4px solid var(--background);
+    background-color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
 @layer utilities {
   /* Rainbow gradient border for the hero announcement pill */
   .rainbow-border {

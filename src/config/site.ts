@@ -12,7 +12,6 @@ export const siteConfig = {
   links: {
     demo: 'https://demo.dashfy.dev',
     discord: '/discord',
-    docs: 'https://docs.dashfy.dev',
     github: 'https://github.com/dashfy',
     roadmap: '/roadmap',
     sponsor: '/sponsor',

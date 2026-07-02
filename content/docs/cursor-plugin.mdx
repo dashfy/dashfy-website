@@ -1,0 +1,51 @@
+---
+title: Cursor plugin
+description: Bundle the Dashfy agent skill, project rules, and MCP server as a single Cursor plugin.
+---
+
+The Dashfy Cursor plugin bundles everything an AI agent needs to work in a Dashfy
+project: the **agent skill**, **project rules**, and the **MCP server** — in a single
+installable package. With it, Cursor can scaffold apps, search and install
+extensions, set up widgets and data sources, and lay out dashboards as code.
+
+## What's in the bundle
+
+| Part        | Description                                                                       |
+| ----------- | -------------------------------------------------------------------------------- |
+| Agent skill | Principles, CLI/registry/MCP/config references, and setup/layout/address rules. |
+| Project rules | Conventions activated for `dashfy.json`, `dashfy.config.yml`, and server files. |
+| MCP server  | The [`dashfy mcp`](/docs/mcp) tools for discovering and installing extensions.    |
+
+The manifest ties these together:
+
+```json
+{
+  "name": "dashfy",
+  "displayName": "Dashfy",
+  "skills": "./skills/",
+  "rules": "./.cursor/rules/",
+  "mcpServers": {
+    "dashfy": {
+      "command": "npx",
+      "args": ["dashfy@latest", "mcp"]
+    }
+  }
+}
+```
+
+## MCP-only setup
+
+If you only want the MCP tools (without the skill and rules), configure the server
+directly with the CLI:
+
+```bash
+npx dashfy@latest mcp init --client cursor
+```
+
+This writes `.cursor/mcp.json` with the `dashfy` server entry. See the
+[MCP server](/docs/mcp) reference for the full list of tools and clients.
+
+<Callout type="info" title="Pin the CLI">
+  Add `--install` to pin `dashfy` as a devDependency and point the config at the
+  local binary — handy for monorepos and teams that want a locked version.
+</Callout>
