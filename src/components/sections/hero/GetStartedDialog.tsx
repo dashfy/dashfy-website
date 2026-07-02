@@ -38,10 +38,10 @@ const INSTALL_TABS: readonly InstallTab[] = [
     label: 'CLI',
     description: 'Scaffolds a new dashboard project.',
     commands: {
-      pnpm: 'pnpm create dashfy@latest',
-      npm: 'npx create-dashfy@latest',
-      yarn: 'yarn create dashfy',
-      bun: 'bun create dashfy@latest',
+      pnpm: 'pnpm dlx dashfy@latest init',
+      npm: 'npx dashfy@latest init',
+      yarn: 'yarn dlx dashfy@latest init',
+      bun: 'bunx dashfy@latest init',
     },
   },
   {
