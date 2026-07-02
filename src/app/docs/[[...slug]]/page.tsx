@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { ArrowLeftIcon, ChevronRightIcon } from '@/components/common/Icons'
+import { ChevronLeftIcon, ChevronRightIcon } from '@/components/common/Icons'
 import { DocsToc } from '@/components/docs/DocsToc'
 import { mdxComponents } from '@/components/docs/mdx'
 import { siteConfig } from '@/config/site'
@@ -81,7 +81,7 @@ const DocsPage = async (props: DocsPageProps) => {
                 href={neighbours.previous.url}
               >
                 <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <ArrowLeftIcon className="size-3.5" />
+                  <ChevronLeftIcon className="size-3.5" />
                   Previous
                 </span>
                 <span className="font-medium">{neighbours.previous.name}</span>
