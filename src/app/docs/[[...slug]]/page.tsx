@@ -3,10 +3,18 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { ChevronLeftIcon, ChevronRightIcon } from '@/components/common/Icons'
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from '@/components/common/Icons'
+import { DocsCopyPage } from '@/components/docs/DocsCopyPage'
 import { DocsToc } from '@/components/docs/DocsToc'
 import { mdxComponents } from '@/components/docs/mdx'
+import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
+import { getDocMarkdown } from '@/lib/docsRaw'
 import { source } from '@/lib/source'
 
 export const dynamicParams = false
@@ -58,12 +66,41 @@ const DocsPage = async (props: DocsPageProps) => {
 
   const { body: MDX, toc, title, description } = page.data
   const neighbours = findNeighbour(source.pageTree, page.url)
+  const markdown = await getDocMarkdown(page)
+  const markdownUrl = `${siteConfig.url}${page.url}.md`
 
   return (
     <div className="flex gap-10">
       <article className="min-w-0 flex-1 py-8 lg:py-10">
         <div className="mb-8 flex flex-col gap-2">
-          <h1 className="scroll-m-24 text-3xl font-semibold tracking-tight">{title}</h1>
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="scroll-m-24 text-3xl font-semibold tracking-tight">{title}</h1>
+            <div className="docs-nav flex items-center gap-2">
+              <div className="hidden sm:block">
+                <DocsCopyPage markdown={markdown} url={markdownUrl} />
+              </div>
+              {neighbours.previous || neighbours.next ? (
+                <div className="ml-auto flex gap-2">
+                  {neighbours.previous ? (
+                    <Button className="shadow-none" size="icon-sm" variant="secondary" asChild>
+                      <Link href={neighbours.previous.url}>
+                        <ArrowLeftIcon />
+                        <span className="sr-only">Previous</span>
+                      </Link>
+                    </Button>
+                  ) : null}
+                  {neighbours.next ? (
+                    <Button className="shadow-none" size="icon-sm" variant="secondary" asChild>
+                      <Link href={neighbours.next.url}>
+                        <span className="sr-only">Next</span>
+                        <ArrowRightIcon />
+                      </Link>
+                    </Button>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+          </div>
           {description ? (
             <p className="text-base text-balance text-muted-foreground">{description}</p>
           ) : null}

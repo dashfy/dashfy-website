@@ -24,6 +24,18 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/docs.md',
+        destination: '/docs-raw',
+      },
+      {
+        source: '/docs/:slug*.md',
+        destination: '/docs-raw/:slug*',
+      },
+    ]
+  },
 }
 
 const withMDX = createMDX()

@@ -46,7 +46,7 @@ GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full list: ${url(paths
 - [Roadmap](${siteConfig.url + siteConfig.links.roadmap})
 - [Sponsor](${siteConfig.url + siteConfig.links.sponsor})
 - [Discord](${siteConfig.url + siteConfig.links.discord})
-- [X](${siteConfig.links.x})
+- [X (Twitter)](${siteConfig.links.x})
 
 ## Contact
 
