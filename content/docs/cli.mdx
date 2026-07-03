@@ -26,13 +26,13 @@ You reference extensions by **address**:
 
 ## `dashfy init|create [name]`
 
-Scaffolds a runnable Dashfy app (Vite client + Node server + configuration).
+Scaffolds a runnable Dashfy app (a framework client + Node server + configuration).
 `create` is an alias for `init`.
 
-| Flag                       | Description                                                            |
-| -------------------------- | --------------------------------------------------------------------- |
-| `-t, --template <template>`| `vite-starter` (default) or `vite-app`.                               |
-| `-e, --extensions <names>` | Comma-separated extensions to set up (`vite-starter` only).           |
+| Flag                       | Description                                                                    |
+| -------------------------- | ----------------------------------------------------------------------------- |
+| `-t, --template <template>`| `vite-starter` (default), `vite-app`, `astro-starter`, `astro-app`, `next-starter`, `next-app`, `react-router-starter`, `react-router-app`, `start-starter`, or `start-app`. |
+| `-e, --extensions <names>` | Comma-separated extensions to set up (`*-starter` only).                       |
 | `-c, --cwd <cwd>`          | Working directory.                                                     |
 | `--no-install`             | Skip installing npm dependencies.                                     |
 | `-y, --yes`                | Accept defaults / skip prompts.                                       |

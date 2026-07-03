@@ -56,16 +56,32 @@ Open [http://localhost:3000](http://localhost:3000) to see your dashboard.
 
 ## Templates
 
-The CLI ships two templates:
+The CLI ships ten templates:
 
-| Template        | Description                                                                 |
-| --------------- | --------------------------------------------------------------------------- |
-| `vite-starter`  | Minimal app (default). The CLI prompts for extensions and sets them up.      |
-| `vite-app`      | Full demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
+| Template               | Description                                                                          |
+| ---------------------- | ----------------------------------------------------------------------------------- |
+| `vite-starter`         | Minimal Vite app (default). The CLI prompts for extensions and sets them up.         |
+| `vite-app`             | Full Vite demo with GitHub, NBA, System, and Market Live extensions, no prompts.     |
+| `astro-starter`        | Minimal Astro app. The CLI prompts for extensions and sets them up.                  |
+| `astro-app`            | Full Astro demo with GitHub, NBA, System, and Market Live extensions, no prompts.    |
+| `next-starter`         | Minimal Next.js app. The CLI prompts for extensions and sets them up.                |
+| `next-app`             | Full Next.js demo with GitHub, NBA, System, and Market Live extensions, no prompts.  |
+| `react-router-starter` | Minimal React Router app. The CLI prompts for extensions and sets them up.           |
+| `react-router-app`     | Full React Router demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
+| `start-starter`        | Minimal TanStack Start app. The CLI prompts for extensions and sets them up.         |
+| `start-app`            | Full TanStack Start demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
 
 ```bash
 npx dashfy@latest init my-app -t vite-starter
 npx dashfy@latest init my-app -t vite-app
+npx dashfy@latest init my-app -t astro-starter
+npx dashfy@latest init my-app -t astro-app
+npx dashfy@latest init my-app -t next-starter
+npx dashfy@latest init my-app -t next-app
+npx dashfy@latest init my-app -t react-router-starter
+npx dashfy@latest init my-app -t react-router-app
+npx dashfy@latest init my-app -t start-starter
+npx dashfy@latest init my-app -t start-app
 ```
 
 ## Add extensions
@@ -78,7 +94,7 @@ npx dashfy@latest add @dashfy/github
 ```
 
 This installs the `@dashfy/ext-*` package and sets it up automatically: widgets are
-registered in your `App.tsx`, the server API is registered in your server bootstrap, required
+registered in your app file (`App.tsx`, or the file set in `dashfy.json` `paths.app`), the server API is registered in your server bootstrap, required
 environment variables are added to `.env`, and a starter widget block is appended to
 your dashboard config. See [Extensions](/docs/extensions) and the [CLI
 reference](/docs/cli) for details.
