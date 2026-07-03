@@ -7,6 +7,7 @@ import {
   ChevronDownIcon,
   ClaudeIcon,
   CopyIcon,
+  CursorIcon,
   MarkdownIcon,
 } from '@/components/common/Icons'
 import { Button } from '@/components/ui/button'
@@ -18,13 +19,23 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
+import { siteConfig } from '@/config/site'
 import { useCopy } from '@/hooks/useCopy'
 
+const buildPrompt = (url: string) =>
+  `I'm looking at this ${siteConfig.name} documentation: ${url}.
+Help me understand how to use it. Be ready to explain concepts, give examples, or help me debug based on it.`
+
 const buildPromptUrl = (baseUrl: string, url: string) =>
-  `${baseUrl}?q=${encodeURIComponent(
-    `I'm looking at this Dashfy documentation: ${url}.
-Help me understand how to use it. Be ready to explain concepts, give examples, or help me debug based on it.`,
-  )}`
+  `${baseUrl}?q=${encodeURIComponent(buildPrompt(url))}`
+
+const buildCursorPromptUrl = (url: string) => {
+  const prompt = buildPrompt(url)
+
+  const link = new URL('https://cursor.com/link/prompt')
+  link.searchParams.set('text', prompt)
+  return link.toString()
+}
 
 interface DocsCopyPageProps {
   markdown: string
@@ -37,21 +48,27 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
   const menuItems = [
     {
       key: 'markdown',
-      href: `${url}.md`,
+      href: url,
       icon: <MarkdownIcon />,
       label: 'View as Markdown',
     },
     {
       key: 'chatgpt',
-      href: buildPromptUrl('https://chatgpt.com', `${url}.md`),
+      href: buildPromptUrl('https://chatgpt.com', url),
       icon: <ChatGptIcon />,
       label: 'Open in ChatGPT',
     },
     {
       key: 'claude',
-      href: buildPromptUrl('https://claude.ai/new', `${url}.md`),
+      href: buildPromptUrl('https://claude.ai/new', url),
       icon: <ClaudeIcon />,
       label: 'Open in Claude',
+    },
+    {
+      key: 'cursor',
+      href: buildCursorPromptUrl(url),
+      icon: <CursorIcon />,
+      label: 'Open in Cursor',
     },
   ]
 
@@ -68,7 +85,7 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
 
   return (
     <Popover>
-      <div className="group/buttons relative flex rounded-lg bg-secondary *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10">
+      <div className="group/buttons relative flex rounded-lg bg-secondary *:data-[slot=button]:focus-visible:relative *:data-[slot=button]:focus-visible:z-10">
         <PopoverAnchor />
         <Button
           className="shadow-none"
