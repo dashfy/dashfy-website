@@ -4,24 +4,9 @@ import { useDocsSearch } from 'fumadocs-core/search/client'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
+import { SearchIcon } from '@/components/common/Icons'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { cn, generateReactKey } from '@/lib/utils'
-
-const SearchIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    strokeWidth="2"
-    viewBox="0 0 24 24"
-    aria-hidden
-  >
-    <circle cx="11" cy="11" r="8" />
-    <path d="m21 21-4.3-4.3" />
-  </svg>
-)
 
 export const DocsSearch = () => {
   const [open, setOpen] = useState(false)
@@ -53,7 +38,6 @@ export const DocsSearch = () => {
     <>
       <button
         className="flex w-full items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted"
-        type="button"
         onClick={() => setOpen(true)}
       >
         <SearchIcon className="size-4" />
@@ -75,6 +59,9 @@ export const DocsSearch = () => {
               autoFocus
               onChange={(event) => setSearch(event.target.value)}
             />
+            <kbd className="hidden rounded border border-border bg-muted px-1.5 font-mono text-[0.7rem] sm:inline">
+              ESC
+            </kbd>
           </div>
 
           <div className="max-h-[60vh] overflow-y-auto p-2">
