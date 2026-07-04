@@ -3,14 +3,10 @@ title: Installation
 description: Scaffold a new Dashfy project with the CLI, or add Dashfy to an existing app.
 ---
 
-The fastest way to start a Dashfy project is the [`dashfy` CLI](/docs/cli), which
-scaffolds a runnable app (Vite client + Node server + configuration) and can set
-extensions up for you.
+The fastest way to start a Dashfy project is the [`dashfy CLI`](/docs/cli), which
+scaffolds a runnable app and can set extensions up for you.
 
-## Requirements
-
-- [Node.js](https://nodejs.org) (see the repository `package.json` engines)
-- [pnpm](https://pnpm.io/installation), npm, bun, or yarn
+Available for Next.js, Vite, React Router, Astro, and TanStack Start.
 
 ## Scaffold a project
 
@@ -31,6 +27,8 @@ Prefer the full, pre-configured demo (GitHub, NBA, System, Market Live)? Use the
 ```bash
 npx dashfy@latest init -t vite-app
 ```
+
+Supported templates: `vite-app`, `astro-app`, `next-app`, `react-router-app`, and `start-app`.
 
 ### Install dependencies
 
@@ -58,17 +56,17 @@ Open [http://localhost:3000](http://localhost:3000) to see your dashboard.
 
 The CLI ships ten templates:
 
-| Template               | Description                                                                          |
-| ---------------------- | ----------------------------------------------------------------------------------- |
-| `vite-starter`         | Minimal Vite app (default). The CLI prompts for extensions and sets them up.         |
-| `vite-app`             | Full Vite demo with GitHub, NBA, System, and Market Live extensions, no prompts.     |
-| `astro-starter`        | Minimal Astro app. The CLI prompts for extensions and sets them up.                  |
-| `astro-app`            | Full Astro demo with GitHub, NBA, System, and Market Live extensions, no prompts.    |
-| `next-starter`         | Minimal Next.js app. The CLI prompts for extensions and sets them up.                |
-| `next-app`             | Full Next.js demo with GitHub, NBA, System, and Market Live extensions, no prompts.  |
-| `react-router-starter` | Minimal React Router app. The CLI prompts for extensions and sets them up.           |
-| `react-router-app`     | Full React Router demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
-| `start-starter`        | Minimal TanStack Start app. The CLI prompts for extensions and sets them up.         |
+| Template               | Description                                                                                |
+| ---------------------- | ------------------------------------------------------------------------------------------ |
+| `vite-starter`         | Minimal Vite app (default). The CLI prompts for extensions and sets them up.               |
+| `vite-app`             | Full Vite demo with GitHub, NBA, System, and Market Live extensions, no prompts.           |
+| `astro-starter`        | Minimal Astro app. The CLI prompts for extensions and sets them up.                        |
+| `astro-app`            | Full Astro demo with GitHub, NBA, System, and Market Live extensions, no prompts.          |
+| `next-starter`         | Minimal Next.js app. The CLI prompts for extensions and sets them up.                      |
+| `next-app`             | Full Next.js demo with GitHub, NBA, System, and Market Live extensions, no prompts.        |
+| `react-router-starter` | Minimal React Router app. The CLI prompts for extensions and sets them up.                 |
+| `react-router-app`     | Full React Router demo with GitHub, NBA, System, and Market Live extensions, no prompts.   |
+| `start-starter`        | Minimal TanStack Start app. The CLI prompts for extensions and sets them up.               |
 | `start-app`            | Full TanStack Start demo with GitHub, NBA, System, and Market Live extensions, no prompts. |
 
 ```bash
@@ -98,9 +96,3 @@ registered in your app file (`App.tsx`, or the file set in `dashfy.json` `paths.
 environment variables are added to `.env`, and a starter widget block is appended to
 your dashboard config. See [Extensions](/docs/extensions) and the [CLI
 reference](/docs/cli) for details.
-
-<Callout type="info" title="Offline / local development">
-  Point `DASHFY_REGISTRY_URL` at a built registry directory to resolve extensions
-  without network access, and set `DASHFY_TEMPLATE_DIR` to scaffold from a local
-  template checkout. See the [CLI reference](/docs/cli).
-</Callout>

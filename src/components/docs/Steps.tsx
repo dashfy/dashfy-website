@@ -6,7 +6,7 @@ export const Steps = ({ className, ...props }: ComponentProps<'div'>) => {
   return (
     <div
       className={cn(
-        'docs-steps mb-8 ml-4 border-l border-border pl-8 [&>h3]:mt-8 [&>h3]:mb-3',
+        'docs-steps mb-8 ml-4 border-l border-border pl-6 [&>h3]:mt-8 [&>h3]:mb-3',
         className,
       )}
       {...props}

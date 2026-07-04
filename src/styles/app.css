@@ -65,8 +65,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 1.75rem;
-    width: 1.75rem;
+    height: 2.15rem;
+    width: 2.15rem;
     border-radius: 9999px;
     border: 4px solid var(--background);
     background-color: var(--muted);
