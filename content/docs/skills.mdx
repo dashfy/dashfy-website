@@ -5,14 +5,14 @@ description: Give your AI agent project-aware knowledge of Dashfy — scaffoldin
 
 Skills give AI assistants like Cursor, Claude Code, and Codex project-aware context
 about Dashfy. When installed, your agent knows how to scaffold apps, find and install
-extensions, set up widgets and data sources, and lay out dashboards using the correct
+extensions, set up widgets and data sources, and create dashboards using the correct
 CLI, registry, and MCP APIs for your project.
 
 For example, you can ask your AI assistant to:
 
 - _"Add the GitHub extension and show my repo's pull requests."_
 - _"Scaffold a new dashboard app with the system monitor extension."_
-- _"Lay out a dashboard with CPU, memory, and disk widgets."_
+- _"Create a dashboard with CPU, memory, and disk widgets."_
 - _"Find an extension for my JSON API and set it up."_
 
 The skill reads your project (`dashfy.json`, `dashfy.config.yml`, installed
@@ -24,16 +24,13 @@ first try.
 
 Add the Dashfy skill to your AI agent with the CLI:
 
-```bash
+```npm
 npx dashfy@latest add skill
 ```
 
-Use your project's package runner — `pnpm dlx dashfy@latest add skill`,
-`bunx dashfy@latest add skill`, or `yarn dlx dashfy@latest add skill`.
-
 <Callout type="info" title="Using Cursor?">
-  The [Cursor plugin](/docs/cursor-plugin) bundles the skill together with the
-  project rules and the [MCP server](/docs/mcp) in a single installable package.
+  The [Cursor plugin](/docs/cursor-plugin) bundles the skill together with the project rules and the
+  [MCP server](/docs/mcp) in a single installable package.
 </Callout>
 
 ## What's included

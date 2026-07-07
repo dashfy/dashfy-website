@@ -39,6 +39,21 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   </p>
 )
 
+// A nav item is active on its own page and on any nested page (e.g.
+// `/docs/installation` stays active on `/docs/installation/next`). The docs
+// root is excluded from prefix matching since every page starts with `/docs`.
+const isNavActive = (url: string, pathname: string) => {
+  if (pathname === url) {
+    return true
+  }
+
+  if (url === '/docs') {
+    return false
+  }
+
+  return pathname.startsWith(`${url}/`)
+}
+
 export const DocsNav = ({ tree, onNavigate }: DocsNavProps) => {
   const pathname = usePathname()
 
@@ -60,7 +75,7 @@ export const DocsNav = ({ tree, onNavigate }: DocsNavProps) => {
           <SectionLabel>{node.name}</SectionLabel>
           {node.index ? (
             <NavLink
-              active={pathname === node.index.url}
+              active={isNavActive(node.index.url, pathname)}
               href={node.index.url}
               onNavigate={onNavigate}
             >
@@ -75,7 +90,7 @@ export const DocsNav = ({ tree, onNavigate }: DocsNavProps) => {
     return (
       <NavLink
         key={generateReactKey('docs-page', node.url, index)}
-        active={pathname === node.url}
+        active={isNavActive(node.url, pathname)}
         href={node.url}
         onNavigate={onNavigate}
       >

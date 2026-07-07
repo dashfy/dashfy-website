@@ -10,7 +10,7 @@ for the protocol only — it never logs to stdout.
 
 ## Tools
 
-| Tool                         | Description                                                                       |
+| Tool                         | Description                                                                      |
 | ---------------------------- | -------------------------------------------------------------------------------- |
 | `get_project_registries`     | List the registries configured for the project (plus built-in `@dashfy`).        |
 | `list_items_in_registries`   | List extensions across registries (filter by `types`, paginate).                 |
@@ -25,7 +25,7 @@ for the protocol only — it never logs to stdout.
 `dashfy mcp init` writes the client configuration that points to
 `npx dashfy@latest mcp`. With no `--client`, it prompts you to select one or more.
 
-```bash
+```npm
 npx dashfy@latest mcp init --client cursor
 ```
 
@@ -46,17 +46,17 @@ package manager) and point the MCP config at the local binary (`npx dashfy mcp`)
 instead of `npx dashfy@latest mcp`. This is useful for monorepos and teams that want
 a locked CLI version.
 
-```bash
+```npm
 npx dashfy@latest mcp init --client cursor --install
 ```
 
-| Flag                | Description                                                  |
-| ------------------- | ----------------------------------------------------------- |
-| `-c, --cwd <cwd>`   | Working directory (on the `mcp` command).                   |
-| `--client <client>` | `cursor`, `claude`, `vscode`, `codex`, or `opencode`.       |
-| `--install`         | Install `dashfy` as a pinned devDependency and use it.      |
+| Flag                | Description                                            |
+| ------------------- | ------------------------------------------------------ |
+| `-c, --cwd <cwd>`   | Working directory (on the `mcp` command).              |
+| `--client <client>` | `cursor`, `claude`, `vscode`, `codex`, or `opencode`.  |
+| `--install`         | Install `dashfy` as a pinned devDependency and use it. |
 
 <Callout type="info" title="Using Cursor?">
-  The [Cursor plugin](/docs/cursor-plugin) bundles this MCP server together with the
-  [Dashfy agent skill](/docs/skills) and project rules in a single installable package.
+  The [Cursor plugin](/docs/cursor-plugin) bundles this MCP server together with the [Dashfy agent
+  skill](/docs/skills) and project rules in a single installable package.
 </Callout>

@@ -1,0 +1,183 @@
+---
+title: Manual
+description: Add Dashfy to any React app by hand, without the CLI.
+---
+
+Dashfy runs as two processes: the React app that renders the dashboard UI, and a
+separate Dashfy Node server that streams data over Socket.IO.
+
+This guide covers wiring Dashfy into a React setup that isn't one of the dedicated
+framework guides (for example Create React App, a custom webpack/Rspack build, or a
+bespoke Vite config). If you're on a supported framework, the
+[Next.js](/docs/installation/next), [Vite](/docs/installation/vite),
+[React Router](/docs/installation/react-router), [Astro](/docs/installation/astro),
+or [TanStack Start](/docs/installation/tanstack) guides are a smoother path.
+
+<Steps>
+
+### Install Dashfy
+
+Add the Dashfy runtime packages:
+
+```package-install
+@dashfy/server @dashfy/ui
+```
+
+And the dev tooling used to run the server:
+
+```npm
+npm install -D tsx dotenv-cli concurrently
+```
+
+### Create the Dashfy server
+
+Add a `dashfy.server.ts` file at the project root. It loads your dashboard
+configuration and starts the Dashfy backend:
+
+```ts title="dashfy.server.ts"
+import { Dashfy } from '@dashfy/server'
+
+const dashfy = new Dashfy()
+
+await dashfy.configureFromFile('./dashfy.config.yml')
+
+await dashfy.start()
+```
+
+### Create the dashboard config
+
+Add a `dashfy.config.yml` file at the project root. This is where you arrange
+dashboards and widgets:
+
+```yaml title="dashfy.config.yml"
+port: 5001
+apis:
+  pollInterval: 300000
+dashboards:
+  - title: Welcome
+    columns: 1
+    rows: 1
+    widgets: []
+```
+
+### Render the dashboard
+
+Render `<Dashfy />` in your app. In `src/App.tsx`:
+
+```tsx title="src/App.tsx"
+import { Dashfy } from '@dashfy/ui'
+
+export const App = () => {
+  return <Dashfy />
+}
+```
+
+Import the styles and load the themes at your app entry (for example
+`src/main.tsx`):
+
+```tsx title="src/main.tsx"
+import '@dashfy/ui/styles.css'
+
+import { ThemeRegistry } from '@dashfy/ui'
+import * as React from 'react'
+import { createRoot } from 'react-dom/client'
+
+import { App } from './App'
+
+ThemeRegistry.loadAllThemes()
+
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+```
+
+<Callout type="info" title="Client-only rendering">
+  `<Dashfy />` must render only in the browser. If your setup uses server-side rendering, load the
+  dashboard client-side (e.g. lazily on mount) so it never renders on the server.
+</Callout>
+
+### Make the config endpoint reachable
+
+The UI reads its configuration from `/config`. In development, proxy `/config` to
+the Dashfy server (`http://localhost:5001`) using whatever your dev server
+provides. With Vite, that's `server.proxy` in `vite.config.ts`:
+
+```ts title="vite.config.ts"
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    proxy: {
+      '/config': 'http://localhost:5001',
+    },
+  },
+})
+```
+
+For other setups, use the equivalent mechanism: Next.js uses `rewrites` in
+`next.config.ts`, and Astro and React Router proxy through their underlying Vite
+config. See the [Next.js](/docs/installation/next),
+[Astro](/docs/installation/astro), and
+[React Router](/docs/installation/react-router) guides for concrete examples.
+
+### Add scripts and environment
+
+Add the dev scripts to `package.json` so the app and server run together, and
+create a `.env` file for extension secrets. Replace `dev` with your app's own dev
+command if it isn't Vite:
+
+```json title="package.json"
+{
+  "scripts": {
+    "dev": "vite",
+    "dev:server": "dotenv -e .env -- tsx watch dashfy.server.ts",
+    "dev:all": "concurrently \"pnpm dev:server\" \"pnpm dev\""
+  }
+}
+```
+
+### Add `dashfy.json`
+
+Add a `dashfy.json` at the project root so the CLI knows where to apply changes
+when you run `dashfy add`. Point `paths.app` at your actual app file — it's the
+file `dashfy add` edits to register widgets (default `src/App.tsx`):
+
+```json title="dashfy.json"
+{
+  "$schema": "https://dashfy.dev/schema.json",
+  "registries": {},
+  "paths": {
+    "app": "src/App.tsx",
+    "server": "dashfy.server.ts",
+    "config": "dashfy.config.yml",
+    "env": ".env"
+  }
+}
+```
+
+### Start developing
+
+Run everything together and open [http://localhost:3000](http://localhost:3000):
+
+```npm
+npm run dev:all
+```
+
+</Steps>
+
+## Add extensions
+
+With `dashfy.json` in place, add extensions (widgets + data sources) from the
+registry. The CLI installs the package and sets it up in your app file,
+`dashfy.server.ts`, `dashfy.config.yml`, and `.env`:
+
+```npm
+npx dashfy@latest add @dashfy/github
+```
+
+See [Extensions](/docs/extensions) and the [CLI reference](/docs/cli) for details.

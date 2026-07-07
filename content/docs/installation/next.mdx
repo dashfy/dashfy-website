@@ -1,0 +1,232 @@
+---
+title: Next.js
+description: Scaffold a Dashfy dashboard with Next.js, or add Dashfy to an existing Next.js app.
+---
+
+Dashfy runs as two processes: the Next.js app that renders the client-only
+dashboard UI, and a separate Dashfy Node server that streams data over Socket.IO.
+
+<div className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6">
+  <LinkedCard className="gap-1 p-6 text-sm" href="#use-the-cli">
+    <div className="font-medium">Use the CLI</div>
+    <div className="leading-relaxed text-muted-foreground">
+      Scaffold a ready-to-run Next.js project from the terminal.
+    </div>
+  </LinkedCard>
+  <LinkedCard className="gap-1 p-6 text-sm" href="#existing-project">
+    <div className="font-medium">Existing project</div>
+    <div className="leading-relaxed text-muted-foreground">
+      Add Dashfy manually to an app you already created.
+    </div>
+  </LinkedCard>
+</div>
+
+<div id="use-the-cli" className="scroll-mt-24" />
+
+## Use the CLI
+
+<Steps>
+
+### Create a new app
+
+Scaffold the minimal Next.js starter. You will be prompted to choose extensions,
+which Dashfy sets up for you:
+
+```npm
+npx dashfy@latest init -t next-starter
+```
+
+Prefer the full, pre-configured demo? Use the
+`next-app` template instead:
+
+```npm
+npx dashfy@latest init -t next-app
+```
+
+### Install dependencies
+
+If you scaffolded with `--no-install`, install dependencies inside the new project
+directory (`cd my-dashfy-app`):
+
+```npm
+npm install
+```
+
+### Start developing
+
+Run the Next.js app and the Dashfy server together:
+
+```npm
+npm run dev:all
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see your dashboard. The
+Dashfy server runs on [http://localhost:5001](http://localhost:5001).
+
+</Steps>
+
+<div id="existing-project" className="scroll-mt-24" />
+
+## Existing project
+
+<Steps>
+
+### Install Dashfy
+
+Add the Dashfy runtime packages:
+
+```package-install
+@dashfy/server @dashfy/ui
+```
+
+And the dev tooling used to run the server:
+
+```npm
+npm install -D tsx dotenv-cli concurrently
+```
+
+### Create the Dashfy server
+
+Add a `dashfy.server.ts` file at the project root. It loads your dashboard
+configuration and starts the Dashfy backend:
+
+```ts title="dashfy.server.ts"
+import { Dashfy } from '@dashfy/server'
+
+const dashfy = new Dashfy()
+
+await dashfy.configureFromFile('./dashfy.config.yml')
+
+await dashfy.start()
+```
+
+### Create the dashboard config
+
+Add a `dashfy.config.yml` file at the project root. This is where you arrange
+dashboards and widgets:
+
+```yaml title="dashfy.config.yml"
+port: 5001
+apis:
+  pollInterval: 300000
+dashboards:
+  - title: Welcome
+    columns: 1
+    rows: 1
+    widgets: []
+```
+
+### Create the Dashfy app component
+
+The dashboard UI is client-only. Create `components/DashfyApp.tsx`:
+
+```tsx title="components/DashfyApp.tsx"
+'use client'
+
+import '@dashfy/ui/styles.css'
+
+import { Dashfy, ThemeRegistry } from '@dashfy/ui'
+
+ThemeRegistry.loadAllThemes()
+
+export default function DashfyApp() {
+  return <Dashfy />
+}
+```
+
+### Render it client-side
+
+Load the component with `next/dynamic` and `ssr: false` so it never renders on the
+server. For example, in `app/page.tsx`:
+
+```tsx title="app/page.tsx"
+'use client'
+
+import dynamic from 'next/dynamic'
+
+const DashfyApp = dynamic(() => import('@/components/DashfyApp'), {
+  ssr: false,
+})
+
+export default function Page() {
+  return <DashfyApp />
+}
+```
+
+### Proxy the config endpoint
+
+The UI reads its configuration from `/config`. Proxy it to the Dashfy server in
+`next.config.ts`:
+
+```ts title="next.config.ts"
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      { source: '/config', destination: 'http://localhost:5001/config' },
+      {
+        source: '/config/:path*',
+        destination: 'http://localhost:5001/config/:path*',
+      },
+    ]
+  },
+}
+
+export default nextConfig
+```
+
+### Add scripts and environment
+
+Add the dev scripts to `package.json` so the app and server run together, and
+create a `.env` file for extension secrets:
+
+```json title="package.json"
+{
+  "scripts": {
+    "dev": "next dev",
+    "dev:server": "dotenv -e .env -- tsx watch dashfy.server.ts",
+    "dev:all": "concurrently \"pnpm dev:server\" \"pnpm dev\""
+  }
+}
+```
+
+### Add `dashfy.json`
+
+Add a `dashfy.json` at the project root so the CLI knows where to apply changes
+when you run `dashfy add`:
+
+```json title="dashfy.json"
+{
+  "$schema": "https://dashfy.dev/schema.json",
+  "registries": {},
+  "paths": {
+    "app": "components/DashfyApp.tsx",
+    "server": "dashfy.server.ts",
+    "config": "dashfy.config.yml",
+    "env": ".env"
+  }
+}
+```
+
+### Start developing
+
+Run everything together and open [http://localhost:3000](http://localhost:3000):
+
+```npm
+npm run dev:all
+```
+
+</Steps>
+
+## Add extensions
+
+With `dashfy.json` in place, add extensions (widgets + data sources) from the
+registry. The CLI installs the package and sets it up in `components/DashfyApp.tsx`,
+`dashfy.server.ts`, `dashfy.config.yml`, and `.env`:
+
+```npm
+npx dashfy@latest add @dashfy/github
+```
+
+See [Extensions](/docs/extensions) and the [CLI reference](/docs/cli) for details.

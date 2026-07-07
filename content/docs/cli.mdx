@@ -4,11 +4,18 @@ description: The dashfy CLI scaffolds dashboards, manages extensions, and audits
 ---
 
 The `dashfy` CLI helps you create a new Dashfy project and add extensions (widgets +
-data sources) to an existing one — the dashboards analog of `shadcn add`.
+data sources) to an existing one.
 
-```bash
-npx dashfy@latest init           # scaffold a project
-npx dashfy@latest add @dashfy/github  # add an extension
+### Scaffold a project
+
+```npm
+npx dashfy@latest init
+```
+
+### Add an extension
+
+```npm
+npx dashfy@latest add @dashfy/github
 ```
 
 ## Addresses
@@ -29,15 +36,15 @@ You reference extensions by **address**:
 Scaffolds a runnable Dashfy app (a framework client + Node server + configuration).
 `create` is an alias for `init`.
 
-| Flag                       | Description                                                                    |
-| -------------------------- | ----------------------------------------------------------------------------- |
-| `-t, --template <template>`| `vite-starter` (default), `vite-app`, `astro-starter`, `astro-app`, `next-starter`, `next-app`, `react-router-starter`, `react-router-app`, `start-starter`, or `start-app`. |
-| `-e, --extensions <names>` | Comma-separated extensions to set up (`*-starter` only).                       |
-| `-c, --cwd <cwd>`          | Working directory.                                                     |
-| `--no-install`             | Skip installing npm dependencies.                                     |
-| `-y, --yes`                | Accept defaults / skip prompts.                                       |
+| Flag                        | Description                                                                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-t, --template <template>` | `vite-starter` (default), `vite-app`, `astro-starter`, `astro-app`, `next-starter`, `next-app`, `react-router-starter`, `react-router-app`, `start-starter`, or `start-app`. |
+| `-e, --extensions <names>`  | Comma-separated extensions to set up (`*-starter` only).                                                                                                                     |
+| `-c, --cwd <cwd>`           | Working directory.                                                                                                                                                           |
+| `--no-install`              | Skip installing npm dependencies.                                                                                                                                            |
+| `-y, --yes`                 | Accept defaults / skip prompts.                                                                                                                                              |
 
-```bash
+```npm
 npx dashfy@latest init my-app -t vite-app
 ```
 
@@ -48,24 +55,24 @@ sets them up automatically (widgets in `App.tsx`, server API in your bootstrap,
 `.env` entries, and a starter block in `dashfy.config.yml`). With no arguments, `add`
 prompts you to pick from the catalog. See [Extensions](/docs/extensions).
 
-| Flag              | Description                                              |
-| ----------------- | ------------------------------------------------------- |
-| `-c, --cwd <cwd>` | Working directory.                                      |
-| `--no-install`    | Skip installing npm dependencies (set up only).         |
-| `--dry-run`       | Print what would be added without writing anything.     |
-| `-y, --yes`       | Accept defaults / skip prompts.                         |
+| Flag              | Description                                         |
+| ----------------- | --------------------------------------------------- |
+| `-c, --cwd <cwd>` | Working directory.                                  |
+| `--no-install`    | Skip installing npm dependencies (set up only).     |
+| `--dry-run`       | Print what would be added without writing anything. |
+| `-y, --yes`       | Accept defaults / skip prompts.                     |
 
 ## `dashfy remove [extensions...]`
 
 Reverses what `add` set up. Removal is registry-first and idempotent, and it
 falls back to deriving the setup from your project when the registry is unreachable.
 
-| Flag              | Description                                              |
-| ----------------- | ------------------------------------------------------- |
-| `-c, --cwd <cwd>` | Working directory.                                      |
-| `--keep-deps`     | Leave npm dependencies installed (setup-only removal).  |
-| `--dry-run`       | Print what would be removed without writing anything.   |
-| `-y, --yes`       | Skip the confirmation prompt.                           |
+| Flag              | Description                                            |
+| ----------------- | ------------------------------------------------------ |
+| `-c, --cwd <cwd>` | Working directory.                                     |
+| `--keep-deps`     | Leave npm dependencies installed (setup-only removal). |
+| `--dry-run`       | Print what would be removed without writing anything.  |
+| `-y, --yes`       | Skip the confirmation prompt.                          |
 
 ## `dashfy search [registries...]`
 
@@ -73,26 +80,33 @@ Searches extension catalogs and prints matches (aliased as `dashfy list`). Queri
 are fuzzy-matched and ranked across name, title, description, and categories, and
 each result includes a ready-to-run add command.
 
-```bash
+### Search for extensions
+
+```npm
 npx dashfy@latest search --query git
+```
+
+### Machine-readable report for CI
+
+```npm
 npx dashfy@latest search @dashfy --json
 ```
 
-| Flag                  | Description                                                     |
-| --------------------- | -------------------------------------------------------------- |
-| `[registries...]`     | Registry namespace(s) to search (defaults to all configured).  |
-| `-q, --query <query>` | Filter by name, title, description, or category.               |
-| `-t, --type <type>`   | Filter by item type (e.g. `registry:extension`).               |
-| `-l, --limit <n>`     | Max items per registry (default `100`).                        |
-| `-o, --offset <n>`    | Items to skip (default `0`).                                   |
-| `--json`              | Output as JSON.                                                |
+| Flag                  | Description                                                   |
+| --------------------- | ------------------------------------------------------------- |
+| `[registries...]`     | Registry namespace(s) to search (defaults to all configured). |
+| `-q, --query <query>` | Filter by name, title, description, or category.              |
+| `-t, --type <type>`   | Filter by item type (e.g. `registry:extension`).              |
+| `-l, --limit <n>`     | Max items per registry (default `100`).                       |
+| `-o, --offset <n>`    | Items to skip (default `0`).                                  |
+| `--json`              | Output as JSON.                                               |
 
 ## `dashfy view <items...>`
 
 Resolves the given address(es) and prints the full registry item JSON (deps, env
 vars, widgets, starter config) — useful for inspection and piping:
 
-```bash
+```npm
 npx dashfy@latest view @dashfy/github | jq '.dependencies'
 ```
 
@@ -102,8 +116,15 @@ Resolves the extension(s) and prints setup-oriented documentation: setup notes,
 required env vars, how it integrates into your app and server, the starter dashboard
 it seeds, and a ready-to-run install command.
 
-```bash
+### View documentation for an extension
+
+```npm
 dashfy docs github
+```
+
+### Machine-readable report for CI
+
+```npm
 dashfy docs @dashfy/github --json
 ```
 
@@ -112,7 +133,7 @@ dashfy docs @dashfy/github --json
 Prints a snapshot of the current project: detected files, `dashfy.json` paths,
 configured registries, installed `ext-*` packages, and useful links.
 
-```bash
+```npm
 npx dashfy@latest info --json
 ```
 
@@ -122,8 +143,15 @@ Diagnoses the project and verifies each extension is fully set up. Exits non-zer
 when any check fails, making it suitable as a CI gate. Falls back to inspecting
 source files when the registry is unreachable.
 
-```bash
+### Auto-detect installed extensions
+
+```npm
 npx dashfy@latest doctor
+```
+
+### Machine-readable report for CI
+
+```npm
 npx dashfy@latest doctor @dashfy/github --json
 ```
 

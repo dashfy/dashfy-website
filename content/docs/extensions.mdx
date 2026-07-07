@@ -8,23 +8,15 @@ Extensions are how Dashfy connects to your stack. Each extension is an
 optionally, a **server API client** (data source) plus setup metadata.
 
 Extensions are resolved from a [registry](/docs/registry) at runtime over HTTP — the
-same model as shadcn/ui's component registry. The difference: a Dashfy registry item
+same model as [shadcn/ui's component registry](https://ui.shadcn.com/docs/registry). The difference: a Dashfy registry item
 describes an npm package plus setup metadata, so "applying" an extension means
 _installing_ the package and running codemods, rather than copying source files.
 
-## Available extensions
-
-| Extension     | Widgets                                     | Server API |
-| ------------- | ------------------------------------------- | ---------- |
-| `github`      | badges, charts, pull requests, gitmap, etc. | poll       |
-| `json`        | CustomJson, JsonKeys, JsonStatus            | poll       |
-| `nba`         | GameCard, Scoreboard, Standings             | poll       |
-| `system`      | CPU, memory, disk, network, processes       | push       |
-| `market-live` | PriceLive, TableLive                        | none       |
+See available extensions [here](https://dashfy.dev/extensions).
 
 ## Add an extension
 
-```bash
+```npm
 npx dashfy@latest add @dashfy/github
 ```
 
@@ -40,13 +32,13 @@ With no arguments, `add` fetches the catalog and prompts you to pick. Any
 `registryDependencies` an item declares are resolved and applied first.
 
 <Callout type="info" title="Setup is automatic — and reversible">
-  Prefer the CLI over setting extensions up by hand. `dashfy add` and `dashfy remove`
-  are idempotent, so re-running them is safe.
+  Prefer the CLI over setting extensions up by hand. `dashfy add` and `dashfy remove` are
+  idempotent, so re-running them is safe.
 </Callout>
 
 ## Remove an extension
 
-```bash
+```npm
 npx dashfy@latest remove @dashfy/github
 ```
 
@@ -62,9 +54,16 @@ preserved and reported, so your secrets are never deleted.
 its widgets are registered, its server API is registered, its env vars are set, and
 its starter block exists. It exits non-zero on failure, making it a useful CI gate:
 
-```bash
-npx dashfy@latest doctor          # auto-detect installed extensions
-npx dashfy@latest doctor --json   # machine-readable report for CI
+### Auto-detect installed extensions
+
+```npm
+npx dashfy@latest doctor
+```
+
+### Machine-readable report for CI
+
+```npm
+npx dashfy@latest doctor --json
 ```
 
 See the [CLI reference](/docs/cli) for `add`, `remove`, `doctor`, `search`, `view`,

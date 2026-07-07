@@ -5,6 +5,13 @@ import { cn } from '@/lib/utils'
 
 import { Callout } from './Callout'
 import { CodeBlock } from './CodeBlock'
+import {
+  CodeBlockTab,
+  CodeBlockTabs,
+  CodeBlockTabsList,
+  CodeBlockTabsTrigger,
+} from './CodeBlockTabs'
+import { LinkedCard } from './LinkedCard'
 import { Step, Steps } from './Steps'
 
 const isInlineCode = (children: ReactNode) => typeof children === 'string'
@@ -25,6 +32,11 @@ const DocsLink = ({ href = '', className, ...props }: AnchorHTMLAttributes<HTMLA
 
 export const mdxComponents = {
   Callout,
+  CodeBlockTab,
+  CodeBlockTabs,
+  CodeBlockTabsList,
+  CodeBlockTabsTrigger,
+  LinkedCard,
   Step,
   Steps,
   h1: ({ className, ...props }: ComponentProps<'h1'>) => (

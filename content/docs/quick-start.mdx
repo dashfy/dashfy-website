@@ -1,5 +1,5 @@
 ---
-title: Quick Start
+title: Quick start
 description: Create a Dashfy server, load a dashboard configuration, and render widgets in React.
 ---
 
@@ -13,8 +13,8 @@ Create a Dashfy server, load a dashboard configuration, and register the API
 clients your widgets need:
 
 ```ts
-import { createJsonClient } from '@dashfy/ext-json'
-import { createGitHubClient } from '@dashfy/ext-github'
+import { createJsonClient } from '@dashfy/ext-json/client'
+import { createGitHubClient } from '@dashfy/ext-github/client'
 import { Dashfy } from '@dashfy/server'
 
 // Create server instance
@@ -90,9 +90,9 @@ export const App = () => {
 ```
 
 <Callout type="info" title="Let the CLI set it up for you">
-  Running [`dashfy add`](/docs/cli) performs both steps automatically — it
-  registers widgets in `App.tsx`, registers the server API in your bootstrap, adds
-  the required `.env` entries, and seeds a starter dashboard block.
+  Running [`dashfy add`](/docs/cli) performs both steps automatically — it registers widgets in
+  `App.tsx`, registers the server API in your bootstrap, adds the required `.env` entries, and seeds
+  a starter dashboard block.
 </Callout>
 
 ## Next steps
