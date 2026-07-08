@@ -125,9 +125,7 @@ const { available, comingSoon } = loadExtensions()
 
 const content = `# ${siteConfig.name}
 
-> ${siteConfig.tagline}
-
-${siteConfig.description}
+> ${siteConfig.tagline}. ${siteConfig.description}
 
 ## Site
 

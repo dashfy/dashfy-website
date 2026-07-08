@@ -1,8 +1,6 @@
 # Dashfy
 
-> Dashboards for developers
-
-Define dashboards as code. Connect APIs. Render real-time interfaces.
+> Dashboards for developers. Define dashboards as code. Connect APIs. Render real-time interfaces.
 
 ## Site
 
