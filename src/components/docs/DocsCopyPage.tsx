@@ -6,6 +6,7 @@ import {
   CheckIcon,
   ChevronDownIcon,
   ClaudeIcon,
+  CopilotIcon,
   CopyIcon,
   CursorIcon,
   MarkdownIcon,
@@ -28,6 +29,14 @@ Help me understand how to use it. Be ready to explain concepts, give examples, o
 
 const buildPromptUrl = (baseUrl: string, url: string) =>
   `${baseUrl}?q=${encodeURIComponent(buildPrompt(url))}`
+
+const buildCopilotPromptUrl = (url: string) => {
+  const prompt = buildPrompt(url)
+
+  const link = new URL('vscode://GitHub.Copilot-Chat/chat')
+  link.searchParams.set('prompt', prompt)
+  return link.toString()
+}
 
 const buildCursorPromptUrl = (url: string) => {
   const prompt = buildPrompt(url)
@@ -63,6 +72,12 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
       href: buildPromptUrl('https://claude.ai/new', url),
       icon: <ClaudeIcon />,
       label: 'Open in Claude',
+    },
+    {
+      key: 'copilot',
+      href: buildCopilotPromptUrl(url),
+      icon: <CopilotIcon />,
+      label: 'Open in Copilot',
     },
     {
       key: 'cursor',
