@@ -11,14 +11,46 @@ Define dashboards as code. Connect APIs. Render real-time interfaces.
 - [Docs](https://dashfy.dev/docs): Installation, configuration, CLI, and extension docs
 - [Brand](https://dashfy.dev/brand): Logos, icons, screenshots, and brand guidelines
 
+## Get started
+
+- [Introduction](https://dashfy.dev/docs): Dashfy is an open-source framework for building dashboards using declarative configuration.
+- [Installation](https://dashfy.dev/docs/installation): Scaffold a new Dashfy project with the CLI, or add Dashfy to an existing app.
+- [Quick start](https://dashfy.dev/docs/quick-start): Create a Dashfy server, load a dashboard configuration, and render widgets in React.
+
+## Guides
+
+- [Configuration](https://dashfy.dev/docs/configuration): Define Dashfy dashboards declaratively using TypeScript, JSON, or YAML.
+- [How it works](https://dashfy.dev/docs/how-it-works): Dashfy uses a server–client architecture to load, compose, and render dashboards in real time.
+- [Extensions](https://dashfy.dev/docs/extensions): Extensions add widgets and data sources to Dashfy. Add, remove, and audit them with the CLI.
+- [Themes](https://dashfy.dev/docs/themes): Built-in themes, light/dark mode, and custom theming with @dashfy/themes.
+
+## Reference
+
+- [CLI](https://dashfy.dev/docs/cli): The dashfy CLI scaffolds dashboards, manages extensions, and audits your project.
+- [Registry](https://dashfy.dev/docs/registry): How Dashfy resolves extensions from registries, and how to author and host your own.
+- [Skills](https://dashfy.dev/docs/skills): Give your AI agent project-aware knowledge of Dashfy — scaffolding, extensions, widgets, and dashboard layout.
+- [MCP server](https://dashfy.dev/docs/mcp): Run a Model Context Protocol server so AI assistants can discover and install Dashfy extensions.
+- [Cursor plugin](https://dashfy.dev/docs/cursor-plugin): Bundle the Dashfy agent skill, project rules, and MCP server as a single Cursor plugin.
+
+## Installation guides
+
+Framework-specific setup guides:
+
+- [Astro](https://dashfy.dev/docs/installation/astro): Scaffold a Dashfy dashboard with Astro, or add Dashfy to an existing Astro app.
+- [Manual](https://dashfy.dev/docs/installation/manual): Add Dashfy to any React app by hand, without the CLI.
+- [Next.js](https://dashfy.dev/docs/installation/next): Scaffold a Dashfy dashboard with Next.js, or add Dashfy to an existing Next.js app.
+- [React Router](https://dashfy.dev/docs/installation/react-router): Scaffold a Dashfy dashboard with React Router, or add Dashfy to an existing React Router app.
+- [TanStack Start](https://dashfy.dev/docs/installation/tanstack): Scaffold a Dashfy dashboard with TanStack Start, or add Dashfy to an existing TanStack Start app.
+- [Vite](https://dashfy.dev/docs/installation/vite): Scaffold a Dashfy dashboard with Vite, or add Dashfy to an existing Vite app.
+
 ## Getting started
 
 Scaffold a new project:
 
-- pnpm: `pnpm create dashfy@latest`
-- npm: `npx create-dashfy@latest`
-- yarn: `yarn create dashfy@latest`
-- bun: `bun create dashfy@latest`
+- pnpm: `pnpm dlx dashfy@latest init`
+- npm: `npx dashfy@latest init`
+- yarn: `yarn dlx dashfy@latest init`
+- bun: `bunx dashfy@latest init`
 
 Add the Dashfy skill to an AI agent:
 
@@ -27,9 +59,29 @@ Add the Dashfy skill to an AI agent:
 - yarn: `yarn dlx dashfy@latest add skill`
 - bun: `bunx dashfy@latest add skill`
 
-## Available extensions
+Add an extension (GitHub example):
 
-GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full list: https://dashfy.dev/extensions
+- pnpm: `pnpm dlx dashfy@latest add @dashfy/github`
+- npm: `npx dashfy@latest add @dashfy/github`
+- yarn: `yarn dlx dashfy@latest add @dashfy/github`
+- bun: `bunx dashfy@latest add @dashfy/github`
+
+## Extensions
+
+Available now (5): GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full catalog: https://dashfy.dev/extensions
+
+Coming soon (28): AWS, Claude AI, Cloudflare, Cursor, Datadog, Discord, Docker, Firebase, Gemini, GitLab, Google Sheets, Grafana, Jira, Kubernetes, MongoDB, Notion, Open Claw, OpenAI, PostgreSQL, Prometheus, Redis, Resend, Sentry, Slack, Stripe, Supabase, Telegram, Vercel
+
+## Raw documentation (markdown)
+
+Any docs page is also available as plain markdown for AI tools — append `.md` to the docs URL:
+
+- [Introduction](https://dashfy.dev/docs.md)
+- [Installation](https://dashfy.dev/docs/installation.md)
+- [Configuration](https://dashfy.dev/docs/configuration.md)
+- [CLI](https://dashfy.dev/docs/cli.md)
+
+Pattern: `https://dashfy.dev/docs/<slug>.md` (example: `https://dashfy.dev/docs/installation/next.md`).
 
 ## External resources
 
@@ -38,7 +90,7 @@ GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full list: https://das
 - [Roadmap](https://dashfy.dev/roadmap)
 - [Sponsor](https://dashfy.dev/sponsor)
 - [Discord](https://dashfy.dev/discord)
-- [X](https://x.com/dashfydev)
+- [X (Twitter)](https://x.com/dashfydev)
 
 ## Contact
 
@@ -47,4 +99,6 @@ GitHub, JSON / REST, Market Live, NBA, System Monitoring. Full list: https://das
 ## Notes for AI agents
 
 - Brand name is "Dashfy" (capital D, single word). Do not alter brand assets from /brand.
+- Prefer the raw markdown docs (`.md` URLs) over scraping HTML when possible.
+- Dashfy extensions use the `@dashfy/<name>` namespace (e.g. `@dashfy/github`).
 - Do not invent API references or config options not shown on the site, docs, or GitHub repo.
