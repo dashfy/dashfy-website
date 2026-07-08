@@ -6,13 +6,13 @@ description: The dashfy CLI scaffolds dashboards, manages extensions, and audits
 The `dashfy` CLI helps you create a new Dashfy project and add extensions (widgets +
 data sources) to an existing one.
 
-### Scaffold a project
+Scaffold a project:
 
 ```npm
 npx dashfy@latest init
 ```
 
-### Add an extension
+Add an extension:
 
 ```npm
 npx dashfy@latest add @dashfy/github
@@ -80,13 +80,13 @@ Searches extension catalogs and prints matches (aliased as `dashfy list`). Queri
 are fuzzy-matched and ranked across name, title, description, and categories, and
 each result includes a ready-to-run add command.
 
-### Search for extensions
+Search for extensions:
 
 ```npm
 npx dashfy@latest search --query git
 ```
 
-### Machine-readable report for CI
+Machine-readable report for CI:
 
 ```npm
 npx dashfy@latest search @dashfy --json
@@ -116,13 +116,13 @@ Resolves the extension(s) and prints setup-oriented documentation: setup notes,
 required env vars, how it integrates into your app and server, the starter dashboard
 it seeds, and a ready-to-run install command.
 
-### View documentation for an extension
+View documentation for an extension:
 
 ```npm
 dashfy docs github
 ```
 
-### Machine-readable report for CI
+Machine-readable report for CI:
 
 ```npm
 dashfy docs @dashfy/github --json
@@ -143,28 +143,17 @@ Diagnoses the project and verifies each extension is fully set up. Exits non-zer
 when any check fails, making it suitable as a CI gate. Falls back to inspecting
 source files when the registry is unreachable.
 
-### Auto-detect installed extensions
+Auto-detect installed extensions:
 
 ```npm
 npx dashfy@latest doctor
 ```
 
-### Machine-readable report for CI
+Machine-readable report for CI:
 
 ```npm
 npx dashfy@latest doctor @dashfy/github --json
 ```
-
-## Package runner
-
-Suggested copy-paste commands are prefixed with the runner for your project's
-detected package manager, so they work as-is in monorepos:
-
-| Package manager | Suggested command                           |
-| --------------- | ------------------------------------------- |
-| pnpm            | `pnpm dlx dashfy@latest add @dashfy/github` |
-| bun             | `bunx dashfy@latest add @dashfy/github`     |
-| npm / yarn      | `npx dashfy@latest add @dashfy/github`      |
 
 ## Global flags
 

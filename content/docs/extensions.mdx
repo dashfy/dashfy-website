@@ -52,15 +52,15 @@ preserved and reported, so your secrets are never deleted.
 
 `doctor` verifies that each extension is fully set up — its dependency is installed,
 its widgets are registered, its server API is registered, its env vars are set, and
-its starter block exists. It exits non-zero on failure, making it a useful CI gate:
+its starter block exists. It exits non-zero on failure, making it a useful CI gate.
 
-### Auto-detect installed extensions
+Auto-detect installed extensions:
 
 ```npm
 npx dashfy@latest doctor
 ```
 
-### Machine-readable report for CI
+Machine-readable report for CI:
 
 ```npm
 npx dashfy@latest doctor --json

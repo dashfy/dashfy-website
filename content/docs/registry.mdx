@@ -54,15 +54,15 @@ placeholders that resolve from your `.env`:
 
 Adds custom registries to your `dashfy.json` (merged over the built-in `@dashfy`).
 Accepts a bare namespace resolved from the discovery index, or an explicit
-`namespace=url` pair:
+`namespace=url` pair.
 
-### Resolve @acme from the hosted discovery index
+Resolve @acme from the hosted discovery index:
 
 ```npm
 npx dashfy@latest registry add @acme
 ```
 
-### Declare a namespace with an explicit URL template (must contain `{name}`)
+Declare a namespace with an explicit URL template (must contain `{name}`):
 
 ```npm
 npx dashfy@latest registry add @acme=https://acme.com/r/{name}.json
