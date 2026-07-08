@@ -15,6 +15,7 @@
     "registry",
     "skills",
     "mcp",
-    "cursor-plugin"
+    "cursor-plugin",
+    "[llms.txt](/llms.txt)"
   ]
 }

@@ -15,6 +15,7 @@ const docMarkdownUrl = (slug: string) => `${docUrl(slug)}.md`
 
 const FRONTMATTER_PATTERN = /^---\r?\n([\s\S]*?)\r?\n---/
 const SECTION_PATTERN = /^---(.+)---$/
+const LINK_PATTERN = /^\[.+\]\(.+\)$/
 
 interface DocEntry {
   slug: string
@@ -63,6 +64,10 @@ const loadSectionsFromMeta = (): DocSection[] => {
     if (sectionMatch) {
       current = { title: sectionMatch[1].trim(), entries: [] }
       sections.push(current)
+      continue
+    }
+
+    if (LINK_PATTERN.test(page)) {
       continue
     }
 
