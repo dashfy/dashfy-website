@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { SearchIcon } from '@/components/common/Icons'
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogTitle,
+} from '@/components/common/ResponsiveDialog'
 import { Kbd } from '@/components/ui/kbd'
 import { cn, generateReactKey } from '@/lib/utils'
 
@@ -51,9 +55,9 @@ export const DocsSearch = () => {
         <Kbd>⌘K</Kbd>
       </button>
 
-      <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="top-24 max-w-lg translate-y-0 gap-0 p-0" showCloseButton={false}>
-          <DialogTitle className="sr-only">Search documentation</DialogTitle>
+      <ResponsiveDialog open={open} onOpenChange={handleClose}>
+        <ResponsiveDialogContent className="top-24 translate-y-0 gap-0 p-0" showCloseButton={false}>
+          <ResponsiveDialogTitle className="sr-only">Search documentation</ResponsiveDialogTitle>
           <div className="flex items-center gap-2 border-b border-border px-4 py-3">
             <SearchIcon className="size-4 text-muted-foreground" />
             <input
@@ -87,8 +91,8 @@ export const DocsSearch = () => {
               </button>
             ))}
           </div>
-        </DialogContent>
-      </Dialog>
+        </ResponsiveDialogContent>
+      </ResponsiveDialog>
     </>
   )
 }
