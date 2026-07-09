@@ -171,7 +171,11 @@ const StepTimeline = ({ steps, activeStep, isPaused = false, onSelect }: StepTim
   )
 }
 
-const StepPreview = ({ step }: { step: Step }) => {
+interface StepPreviewProps {
+  step: Step
+}
+
+const StepPreview = ({ step }: StepPreviewProps) => {
   return (
     <div className="relative flex h-full items-center justify-center overflow-hidden border border-border bg-background p-6 lg:p-8">
       <div className="step-art-grid absolute inset-0" aria-hidden />

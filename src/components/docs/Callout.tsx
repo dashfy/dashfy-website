@@ -1,23 +1,22 @@
 import { CircleAlertIcon, InfoIcon, LightbulbIcon, TriangleAlertIcon } from 'lucide-react'
-import type { ComponentProps, ComponentType } from 'react'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 type CalloutType = 'info' | 'warning' | 'danger' | 'note'
 
-interface CalloutProps extends Omit<ComponentProps<typeof Alert>, 'variant'> {
+interface CalloutProps extends Omit<React.ComponentProps<typeof Alert>, 'variant'> {
   type?: CalloutType
   title?: string
 }
 
-const VARIANT_BY_TYPE: Record<CalloutType, ComponentProps<typeof Alert>['variant']> = {
+const VARIANT_BY_TYPE: Record<CalloutType, React.ComponentProps<typeof Alert>['variant']> = {
   info: 'info',
   note: 'default',
   warning: 'warning',
   danger: 'destructive',
 }
 
-const ICON_BY_TYPE: Record<CalloutType, ComponentType<{ className?: string }>> = {
+const ICON_BY_TYPE: Record<CalloutType, React.ComponentType<{ className?: string }>> = {
   info: InfoIcon,
   note: LightbulbIcon,
   warning: TriangleAlertIcon,
@@ -30,7 +29,7 @@ export const Callout = ({ type = 'note', title, children, ...props }: CalloutPro
   return (
     <Alert className="my-6" variant={VARIANT_BY_TYPE[type]} {...props}>
       <Icon />
-      {title ? <AlertTitle>{title}</AlertTitle> : null}
+      {title && <AlertTitle>{title}</AlertTitle>}
       <AlertDescription>{children}</AlertDescription>
     </Alert>
   )

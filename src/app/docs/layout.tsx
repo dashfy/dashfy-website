@@ -4,7 +4,11 @@ import { CompactStickyFooter } from '@/components/navigation/footer/CompactStick
 import { Header } from '@/components/navigation/header/Header'
 import { source } from '@/lib/source'
 
-const DocsLayout = ({ children }: { children: React.ReactNode }) => {
+interface DocsLayoutProps {
+  children: React.ReactNode
+}
+
+const DocsLayout = ({ children }: DocsLayoutProps) => {
   const tree = source.pageTree
 
   return (

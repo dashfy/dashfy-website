@@ -22,6 +22,7 @@ import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from '@/compon
 import { Separator } from '@/components/ui/separator'
 import { siteConfig } from '@/config/site'
 import { useCopy } from '@/hooks/useCopy'
+import { generateReactKey } from '@/lib/utils'
 
 const buildPrompt = (url: string) =>
   `I'm looking at this ${siteConfig.name} documentation: ${url}.
@@ -118,11 +119,14 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="rounded-lg shadow-none">
             {menuItems.map((item) => (
-              <DropdownMenuItem key={item.key} asChild>
-                <a href={item.href} rel="noopener noreferrer" target="_blank">
+              <DropdownMenuItem
+                key={generateReactKey('docs-copy-page-menu-item', item.key)}
+                asChild
+              >
+                <ExternalLink href={item.href}>
                   {item.icon}
                   {item.label}
-                </a>
+                </ExternalLink>
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
@@ -142,7 +146,7 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
         >
           {menuItems.map((item) => (
             <Button
-              key={item.key}
+              key={generateReactKey('docs-copy-page-menu-item', item.key)}
               className="w-full justify-start text-base font-normal *:[svg]:text-muted-foreground"
               size="lg"
               variant="ghost"

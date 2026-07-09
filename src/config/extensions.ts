@@ -1,5 +1,4 @@
 import type { LucideIcon } from 'lucide-react'
-import type { ComponentType } from 'react'
 import aws from 'thesvg/aws'
 import claudeAi from 'thesvg/claude-ai'
 import cloudflare from 'thesvg/cloudflare'
@@ -37,7 +36,11 @@ import { siteConfig } from '@/config/site'
 import type { ThemedSvg } from '@/lib/thesvg'
 import { getThemedSvg } from '@/lib/thesvg'
 
-export type ExtensionLogo = LucideIcon | ComponentType<{ className?: string }> | string | ThemedSvg
+export type ExtensionLogo =
+  | LucideIcon
+  | React.ComponentType<{ className?: string }>
+  | string
+  | ThemedSvg
 
 export interface Extension {
   id: string

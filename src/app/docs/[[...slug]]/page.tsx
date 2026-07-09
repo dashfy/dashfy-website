@@ -81,29 +81,29 @@ const DocsPage = async (props: DocsPageProps) => {
               </div>
               {neighbours.previous || neighbours.next ? (
                 <div className="ml-auto flex gap-2">
-                  {neighbours.previous ? (
+                  {neighbours.previous && (
                     <Button className="shadow-none" size="icon-sm" variant="secondary" asChild>
                       <Link href={neighbours.previous.url}>
                         <ArrowLeftIcon />
                         <span className="sr-only">Previous</span>
                       </Link>
                     </Button>
-                  ) : null}
-                  {neighbours.next ? (
+                  )}
+                  {neighbours.next && (
                     <Button className="shadow-none" size="icon-sm" variant="secondary" asChild>
                       <Link href={neighbours.next.url}>
                         <span className="sr-only">Next</span>
                         <ArrowRightIcon />
                       </Link>
                     </Button>
-                  ) : null}
+                  )}
                 </div>
               ) : null}
             </div>
           </div>
-          {description ? (
+          {description && (
             <p className="text-base text-balance text-muted-foreground">{description}</p>
-          ) : null}
+          )}
         </div>
 
         <div className="text-[0.95rem]">

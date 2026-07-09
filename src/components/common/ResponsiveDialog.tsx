@@ -21,13 +21,15 @@ import {
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 
-interface RootResponsiveDialogProps extends React.PropsWithChildren {
+interface RootResponsiveDialogProps {
+  children: React.ReactNode
   open?: boolean
   onOpenChange?: (open: boolean) => void
 }
 
-interface ResponsiveDialogProps extends React.PropsWithChildren {
+interface ResponsiveDialogProps {
   className?: string
+  children: React.ReactNode
   asChild?: true
 }
 

@@ -1,8 +1,6 @@
-import type { ComponentProps } from 'react'
-
 import { cn } from '@/lib/utils'
 
-export const Steps = ({ className, ...props }: ComponentProps<'div'>) => {
+export const Steps = ({ className, ...props }: React.ComponentProps<'div'>) => {
   return (
     <div
       className={cn(
@@ -14,7 +12,7 @@ export const Steps = ({ className, ...props }: ComponentProps<'div'>) => {
   )
 }
 
-export const Step = ({ className, ...props }: ComponentProps<'h3'>) => {
+export const Step = ({ className, ...props }: React.ComponentProps<'h3'>) => {
   return (
     <h3
       className={cn('mt-8 mb-3 scroll-m-20 text-base font-semibold tracking-tight', className)}

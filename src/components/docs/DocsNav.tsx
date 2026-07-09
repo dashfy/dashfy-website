@@ -12,13 +12,13 @@ interface DocsNavProps {
 }
 
 interface NavLinkProps {
+  children: React.ReactNode
   href: string
   active: boolean
   onNavigate?: () => void
-  children: React.ReactNode
 }
 
-const NavLink = ({ href, active, onNavigate, children }: NavLinkProps) => {
+const NavLink = ({ children, href, active, onNavigate }: NavLinkProps) => {
   return (
     <Link
       className={cn(
@@ -33,7 +33,11 @@ const NavLink = ({ href, active, onNavigate, children }: NavLinkProps) => {
   )
 }
 
-const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+interface SectionLabelProps {
+  children: React.ReactNode
+}
+
+const SectionLabel = ({ children }: SectionLabelProps) => (
   <p className="px-3 pt-5 pb-1.5 text-xs font-semibold tracking-wide text-foreground/70 first:pt-0">
     {children}
   </p>
@@ -73,7 +77,7 @@ export const DocsNav = ({ tree, onNavigate }: DocsNavProps) => {
           className="flex flex-col gap-0.5"
         >
           <SectionLabel>{node.name}</SectionLabel>
-          {node.index ? (
+          {node.index && (
             <NavLink
               active={isNavActive(node.index.url, pathname)}
               href={node.index.url}
@@ -81,7 +85,7 @@ export const DocsNav = ({ tree, onNavigate }: DocsNavProps) => {
             >
               {node.index.name}
             </NavLink>
-          ) : null}
+          )}
           {node.children.map((child, childIndex) => renderNode(child, childIndex))}
         </div>
       )

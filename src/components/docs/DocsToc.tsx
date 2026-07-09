@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
-import { cn } from '@/lib/utils'
+import { cn, generateReactKey } from '@/lib/utils'
 
 interface TocItem {
   title: React.ReactNode
@@ -56,7 +56,7 @@ export const DocsToc = ({ toc }: DocsTocProps) => {
       <p className="text-xs font-semibold tracking-wide text-foreground/70">On this page</p>
       {toc.map((item) => (
         <a
-          key={item.url}
+          key={generateReactKey('docs-toc-item', item.url)}
           className={cn(
             'text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground',
             item.depth >= 3 && 'pl-3',
