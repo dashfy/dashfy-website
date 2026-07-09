@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 import { SearchIcon } from '@/components/common/Icons'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import { Kbd } from '@/components/ui/kbd'
 import { cn, generateReactKey } from '@/lib/utils'
 
 export const DocsSearch = () => {
@@ -34,6 +35,11 @@ export const DocsSearch = () => {
     router.push(url)
   }
 
+  const handleClose = () => {
+    setOpen(false)
+    setSearch('')
+  }
+
   return (
     <>
       <button
@@ -42,12 +48,10 @@ export const DocsSearch = () => {
       >
         <SearchIcon className="size-4" />
         <span className="flex-1 text-left">Search docs…</span>
-        <kbd className="hidden rounded border border-border bg-muted px-1.5 font-mono text-[0.7rem] sm:inline">
-          ⌘K
-        </kbd>
+        <Kbd>⌘K</Kbd>
       </button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={handleClose}>
         <DialogContent className="top-24 max-w-lg translate-y-0 gap-0 p-0" showCloseButton={false}>
           <DialogTitle className="sr-only">Search documentation</DialogTitle>
           <div className="flex items-center gap-2 border-b border-border px-4 py-3">
@@ -59,9 +63,7 @@ export const DocsSearch = () => {
               autoFocus
               onChange={(event) => setSearch(event.target.value)}
             />
-            <kbd className="hidden rounded border border-border bg-muted px-1.5 font-mono text-[0.7rem] sm:inline">
-              ESC
-            </kbd>
+            <Kbd className="hidden md:flex">ESC</Kbd>
           </div>
 
           <div className="max-h-[60vh] overflow-y-auto p-2">
