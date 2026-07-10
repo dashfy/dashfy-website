@@ -132,10 +132,16 @@ port: 5001
 apis:
   pollInterval: 300000
 dashboards:
-  - title: Welcome
+  - title: Dashfy Dashboard
     columns: 1
     rows: 1
-    widgets: []
+    widgets:
+      - extension: dashfy
+        widget: Inspector
+        x: 0
+        y: 0
+        columns: 1
+        rows: 1
 ```
 
 ### Create the Dashfy app component
