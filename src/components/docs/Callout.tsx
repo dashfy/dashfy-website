@@ -1,5 +1,9 @@
-import { CircleAlertIcon, InfoIcon, LightbulbIcon, TriangleAlertIcon } from 'lucide-react'
-
+import {
+  CircleAlertIcon,
+  InfoIcon,
+  LightbulbIcon,
+  TriangleAlertIcon,
+} from '@/components/common/Icons'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 type CalloutType = 'info' | 'warning' | 'danger' | 'note'
