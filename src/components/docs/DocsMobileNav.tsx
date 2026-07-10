@@ -29,7 +29,7 @@ export const DocsMobileNav = ({ tree }: DocsMobileNavProps) => {
           <MenuIcon className="size-4" />
           Menu
         </DrawerTrigger>
-        <DrawerContent className="w-72">
+        <DrawerContent className="w-72 data-[vaul-drawer-direction=left]:rounded-none">
           <DrawerHeader>
             <DrawerTitle>Documentation</DrawerTitle>
           </DrawerHeader>
