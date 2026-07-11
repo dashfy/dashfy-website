@@ -1,0 +1,251 @@
+---
+title: React Router
+description: Scaffold a Dashfy dashboard with React Router, or add Dashfy to an existing React Router app.
+---
+
+Dashfy runs the React Router app in SPA mode (the dashboard UI is client-only) plus
+a separate Dashfy Node server that streams data over Socket.IO.
+
+<div className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6">
+  <LinkedCard className="gap-1 p-6 text-sm" href="#use-the-cli">
+    <div className="font-medium">Use the CLI</div>
+    <div className="leading-relaxed text-muted-foreground">
+      Scaffold a ready-to-run React Router project from the terminal.
+    </div>
+  </LinkedCard>
+  <LinkedCard className="gap-1 p-6 text-sm" href="#existing-project">
+    <div className="font-medium">Existing project</div>
+    <div className="leading-relaxed text-muted-foreground">
+      Add Dashfy manually to an app you already created.
+    </div>
+  </LinkedCard>
+</div>
+
+<div id="use-the-cli" className="scroll-mt-24" />
+
+## Use the CLI
+
+<Steps>
+
+### Create a new app
+
+Scaffold the minimal React Router starter. You will be prompted to choose
+extensions, which Dashfy sets up for you:
+
+```npm
+npx dashfy@latest init -t react-router-starter
+```
+
+Prefer the full, pre-configured demo? Use the
+`react-router-app` template instead:
+
+```npm
+npx dashfy@latest init -t react-router-app
+```
+
+### Install dependencies
+
+If you scaffolded with `--no-install`, install dependencies inside the new project
+directory (`cd my-dashfy-app`):
+
+```npm
+npm install
+```
+
+### Start developing
+
+Run the React Router app and the Dashfy server together:
+
+```npm
+npm run dev:all
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see your dashboard. The
+Dashfy server runs on [http://localhost:5001](http://localhost:5001).
+
+</Steps>
+
+<div id="existing-project" className="scroll-mt-24" />
+
+## Existing project
+
+<Steps>
+
+### Install Dashfy
+
+Add the Dashfy runtime packages:
+
+```package-install
+@dashfy/server @dashfy/ui
+```
+
+And the dev tooling used to run the server:
+
+```npm
+npm install -D tsx dotenv-cli concurrently
+```
+
+### Enable SPA mode
+
+The Dashfy UI is client-only, so disable SSR in `react-router.config.ts`:
+
+```ts title="react-router.config.ts"
+import type { Config } from '@react-router/dev/config'
+
+export default {
+  // SPA mode: the Dashfy UI is client-only and talks to a separate Node server.
+  ssr: false,
+} satisfies Config
+```
+
+Add a `HydrateFallback` to `app/root.tsx` so nothing renders during prerender:
+
+```tsx title="app/root.tsx"
+// SPA mode: render nothing during prerender; the client hydrates the dashboard.
+export function HydrateFallback() {
+  return null
+}
+```
+
+### Create the Dashfy server
+
+Add a `dashfy.server.ts` file at the project root. It loads your dashboard
+configuration and starts the Dashfy backend:
+
+```ts title="dashfy.server.ts"
+import { Dashfy } from '@dashfy/server'
+
+const dashfy = new Dashfy()
+
+await dashfy.configureFromFile('./dashfy.config.yml')
+
+await dashfy.start()
+```
+
+### Create the dashboard config
+
+Add a `dashfy.config.yml` file at the project root. This is where you arrange
+dashboards and widgets:
+
+```yaml title="dashfy.config.yml"
+port: 5001
+apis:
+  pollInterval: 300000
+dashboards:
+  - title: Dashfy Dashboard
+    columns: 1
+    rows: 1
+    widgets:
+      - extension: dashfy
+        widget: Inspector
+        x: 0
+        y: 0
+        columns: 1
+        rows: 1
+```
+
+### Create the Dashfy app component
+
+Create `app/components/DashfyApp.tsx`:
+
+```tsx title="app/components/DashfyApp.tsx"
+import '@dashfy/ui/styles.css'
+
+import { Dashfy, ThemeRegistry } from '@dashfy/ui'
+
+ThemeRegistry.loadAllThemes()
+
+export default function DashfyApp() {
+  return <Dashfy />
+}
+```
+
+Render it from your index route (`app/routes/home.tsx`):
+
+```tsx title="app/routes/home.tsx"
+import DashfyApp from '~/components/DashfyApp'
+
+export function meta() {
+  return [{ title: 'Dashfy' }]
+}
+
+export default function Home() {
+  return <DashfyApp />
+}
+```
+
+### Proxy the config endpoint
+
+The UI reads its configuration from `/config`. Proxy it to the Dashfy server in
+`vite.config.ts`:
+
+```ts title="vite.config.ts"
+import { reactRouter } from '@react-router/dev/vite'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  resolve: { tsconfigPaths: true },
+  server: {
+    port: 3000,
+    proxy: {
+      '/config': 'http://localhost:5001',
+    },
+  },
+  plugins: [reactRouter()],
+})
+```
+
+### Add scripts and environment
+
+Add the dev scripts to `package.json` so the app and server run together, and
+create a `.env` file for extension secrets:
+
+```json title="package.json"
+{
+  "scripts": {
+    "dev": "react-router dev",
+    "dev:server": "dotenv -e .env -- tsx watch dashfy.server.ts",
+    "dev:all": "concurrently \"pnpm dev:server\" \"pnpm dev\""
+  }
+}
+```
+
+### Add `dashfy.json`
+
+Add a `dashfy.json` at the project root so the CLI knows where to apply changes
+when you run `dashfy add`:
+
+```json title="dashfy.json"
+{
+  "$schema": "https://dashfy.dev/schema.json",
+  "registries": {},
+  "paths": {
+    "app": "app/components/DashfyApp.tsx",
+    "server": "dashfy.server.ts",
+    "config": "dashfy.config.yml",
+    "env": ".env"
+  }
+}
+```
+
+### Start developing
+
+Run everything together and open [http://localhost:3000](http://localhost:3000):
+
+```npm
+npm run dev:all
+```
+
+</Steps>
+
+## Add extensions
+
+With `dashfy.json` in place, add extensions (widgets + data sources) from the
+registry. The CLI installs the package and sets it up in
+`app/components/DashfyApp.tsx`, `dashfy.server.ts`, `dashfy.config.yml`, and `.env`:
+
+```npm
+npx dashfy@latest add @dashfy/github
+```
+
+See [Extensions](/docs/extensions) and the [CLI reference](/docs/cli) for details.

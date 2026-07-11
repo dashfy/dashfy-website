@@ -12,6 +12,7 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
+      "@/.source": ["./.source/index.ts"],
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"],
       "@thesvg/icons": ["./src/types/thesvg.d.ts"],

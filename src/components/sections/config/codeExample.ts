@@ -85,7 +85,7 @@ export const STEP_META: readonly StepMeta[] = [
   {
     id: 'server',
     title: 'Register APIs on the server',
-    description: `Wire extensions into the ${siteConfig.name} server, hand them credentials, and start streaming data over WebSockets.`,
+    description: `Set up extensions on the ${siteConfig.name} server, hand them credentials, and start streaming data over WebSockets.`,
     filename: 'dashfy.server.ts',
     language: 'ts',
     code: SERVER_EXAMPLE,

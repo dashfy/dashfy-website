@@ -21,13 +21,15 @@ import {
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 
-interface RootResponsiveDialogProps extends React.PropsWithChildren {
+interface RootResponsiveDialogProps {
+  children: React.ReactNode
   open?: boolean
   onOpenChange?: (open: boolean) => void
 }
 
-interface ResponsiveDialogProps extends React.PropsWithChildren {
+interface ResponsiveDialogProps {
   className?: string
+  children: React.ReactNode
   asChild?: true
 }
 
@@ -66,18 +68,30 @@ export const ResponsiveDialogClose = ({ className, children, ...props }: Respons
   )
 }
 
+interface ResponsiveDialogContentProps extends ResponsiveDialogProps {
+  showCloseButton?: boolean
+}
+
 export const ResponsiveDialogContent = ({
   className,
   children,
+  showCloseButton,
   ...props
-}: ResponsiveDialogProps) => {
+}: ResponsiveDialogContentProps) => {
   const isDesktop = useMediaQuery(desktop)
-  const ResponsiveDialogContent = isDesktop ? DialogContent : DrawerContent
+
+  if (isDesktop) {
+    return (
+      <DialogContent className={className} showCloseButton={showCloseButton} {...props}>
+        {children}
+      </DialogContent>
+    )
+  }
 
   return (
-    <ResponsiveDialogContent className={className} {...props}>
+    <DrawerContent className={className} {...props}>
       {children}
-    </ResponsiveDialogContent>
+    </DrawerContent>
   )
 }
 

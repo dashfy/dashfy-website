@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-import { ExternalLink } from '@/components/common/ExternalLink'
 import { ArrowLeftIcon, BookOpenIcon, PuzzleIcon } from '@/components/common/Icons'
 import { CompactStickyFooter } from '@/components/navigation/footer/CompactStickyFooter'
 import { Header } from '@/components/navigation/header/Header'
 import { Button } from '@/components/ui/button'
 import { paths } from '@/config/paths'
-import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Page not found',
@@ -47,10 +45,10 @@ const NotFound = () => {
               </Link>
             </Button>
             <Button size="lg" variant="ghost" asChild>
-              <ExternalLink href={siteConfig.links.docs}>
+              <Link href={paths.docs}>
                 <BookOpenIcon />
                 Read the docs
-              </ExternalLink>
+              </Link>
             </Button>
           </div>
         </div>

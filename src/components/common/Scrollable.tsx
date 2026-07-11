@@ -8,7 +8,7 @@ const DEFAULT_OVERLAY_SCROLLBARS_OPTIONS: PartialOptions = {
   },
 }
 
-export interface ScrollableProps extends Omit<
+interface ScrollableProps extends Omit<
   React.ComponentProps<typeof OverlayScrollbarsComponent>,
   'options'
 > {

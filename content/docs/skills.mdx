@@ -1,0 +1,119 @@
+---
+title: Skills
+description: Give your AI agent project-aware knowledge of Dashfy — scaffolding, extensions, widgets, and dashboard layout.
+---
+
+Skills give AI assistants like Cursor, Claude Code, and Codex project-aware context
+about Dashfy. When installed, your agent knows how to scaffold apps, find and install
+extensions, set up widgets and data sources, and create dashboards using the correct
+CLI, registry, and MCP APIs for your project.
+
+For example, you can ask your AI assistant to:
+
+- _"Add the GitHub extension and show my repo's pull requests."_
+- _"Scaffold a new dashboard app with the system monitor extension."_
+- _"Create a dashboard with CPU, memory, and disk widgets."_
+- _"Find an extension for my JSON API and set it up."_
+
+The skill reads your project (`dashfy.json`, `dashfy.config.yml`, installed
+`@dashfy/ext-*` packages) and provides the assistant with the detected paths,
+configured registries, and available widgets so it can generate correct code on the
+first try.
+
+## Install
+
+Add the Dashfy skill to your AI agent with the CLI:
+
+```npm
+npx dashfy@latest add skill
+```
+
+<Callout type="info" title="Using Cursor?">
+  The [Cursor plugin](/docs/cursor-plugin) bundles the skill together with the project rules and the
+  [MCP server](/docs/mcp) in a single installable package.
+</Callout>
+
+## What's included
+
+The skill provides your AI assistant with the following knowledge:
+
+### Project context
+
+The skill runs `dashfy info --json` to read your project configuration: detected
+files, `dashfy.json` paths, configured registries, and installed `@dashfy/ext-*`
+packages. This grounds every suggestion in your actual project.
+
+### CLI commands
+
+Full reference for every command — `init`, `add`, `remove`, `search`, `view`, `docs`,
+`info`, `doctor`, `registry`, and `mcp` — including flags and dry-run mode. See the
+[CLI reference](/docs/cli).
+
+### Registry and addresses
+
+How extensions are resolved from registries, how to classify an address (bare name,
+`@namespace/name`, `owner/repo/name`, URL, or local file), and how to author and host
+custom registries. See [Registry](/docs/registry).
+
+### Dashboard layout
+
+The widget grid rules — every widget needs `extension`, `widget`, `x`, `y`, `columns`,
+and `rows`; widgets stay inside the grid and must not overlap; only registered widgets
+may be referenced. See [Configuration](/docs/configuration).
+
+### MCP tools
+
+The tools exposed by the `dashfy mcp` server so agents can discover and install
+extensions programmatically. See the [MCP server](/docs/mcp).
+
+## How it works
+
+<Steps>
+
+### Project detection
+
+The skill activates when it finds a `dashfy.json` or `dashfy.config.yml` in your
+project.
+
+### Context injection
+
+It runs `dashfy info --json` and injects the result into the assistant's context, so
+suggestions reflect your detected files, registries, and installed extensions.
+
+### Pattern enforcement
+
+The assistant follows Dashfy conventions: it uses `dashfy add` / `dashfy remove`
+codemods instead of manual setup, keeps widgets within the dashboard grid, and
+classifies registry addresses correctly (bare names resolve to `@dashfy`).
+
+### Extension discovery
+
+Before generating code, the assistant uses `dashfy search`, `dashfy docs`, or the MCP
+tools to find extensions and read their setup documentation.
+
+### Verification
+
+After adding an extension, the assistant runs `dashfy doctor` to confirm the package,
+widget registration, server API, environment variables, and starter block are all in
+place.
+
+</Steps>
+
+## Using with other agents
+
+The skill is a standard agent skill (a `SKILL.md` with `name` and `description`), so
+it works beyond Cursor:
+
+- **Cursor** — install the [Cursor plugin](/docs/cursor-plugin), which bundles the
+  skill, project rules, and the MCP server.
+- **Claude Code, Codex, OpenCode, and others** — use the skill directly, and connect
+  the MCP tools with `dashfy mcp init` (see the [MCP server](/docs/mcp) reference for
+  the supported clients).
+
+## Learn more
+
+- [CLI](/docs/cli) — every command, flag, and example.
+- [MCP server](/docs/mcp) — tools for discovering and installing extensions.
+- [Registry](/docs/registry) — authoring and hosting extension registries.
+- [Cursor plugin](/docs/cursor-plugin) — the skill, rules, and MCP in one package.
+- [Configuration](/docs/configuration) — the dashboard configuration model.

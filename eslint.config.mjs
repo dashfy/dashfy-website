@@ -8,7 +8,14 @@ import unusedImports from 'eslint-plugin-unused-imports'
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', '**/src/components/ui/**']),
+  globalIgnores([
+    '.next/**',
+    '.source/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+    '**/src/components/ui/**',
+  ]),
   {
     plugins: {
       'simple-import-sort': simpleImportSort,

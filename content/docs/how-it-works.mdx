@@ -1,0 +1,65 @@
+---
+title: How it works
+description: Dashfy uses a server–client architecture to load, compose, and render dashboards in real time.
+---
+
+Dashfy uses a **server–client architecture** to load, compose, and render
+dashboards. Configuration flows into a server that connects to APIs, and data
+streams to a client that renders widgets and updates in real time.
+
+## Server
+
+The Dashfy server is the runtime that powers dashboards. It is responsible for:
+
+- loading dashboard configuration
+- connecting to APIs and data sources
+- managing real-time data updates
+- exposing data to clients via WebSockets
+
+## Client
+
+The Dashfy client renders dashboards using composable widgets and extensions. It
+connects to the server and:
+
+- receives real-time data updates
+- renders widgets and layouts
+- manages dashboard state and interactions
+
+## Extensions
+
+Dashfy is extensible through [extensions](/docs/extensions), which provide:
+
+- widgets (visual components)
+- data source integrations
+- custom logic and transformations
+
+This lets Dashfy connect to any API, service, or system without modifying the core.
+
+## Runtime flow
+
+<Steps>
+
+### Load configuration
+
+Dashfy loads the dashboard configuration (TypeScript, JSON, or YAML).
+
+### Connect to APIs
+
+The server connects to APIs and data sources through the registered extension
+clients.
+
+### Connect the client
+
+The client opens a WebSocket connection to the server.
+
+### Render and update
+
+Dashfy renders the dashboard and pushes updates to the client in real time as data
+changes.
+
+</Steps>
+
+<Callout type="info" title="Real-time by default">
+  Dashfy is built around WebSockets and subscriptions — there are no polling hacks or manual
+  refreshes. Dashboards update automatically as their underlying data changes.
+</Callout>

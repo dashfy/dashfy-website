@@ -13,7 +13,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dashfy.dev/extensions">Extensions</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://docs.dashfy.dev">Docs</a>
+  <a href="https://dashfy.dev/docs">Docs</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://dashfy.dev/discord">Discord</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -22,7 +22,7 @@
 
 ## Introduction
 
-This repository contains the source for the official Dashfy marketing site, live at [dashfy.dev](https://dashfy.dev). It is built with Next.js and shadcn/ui, and presents the product, its extensions, and the brand kit.
+This repository contains the source for the official Dashfy marketing site, live at [dashfy.dev](https://dashfy.dev). It is built with Next.js and shadcn/ui, and presents the features, its extensions, the brand kit, and the documentation (served at [dashfy.dev/docs](https://dashfy.dev/docs)).
 
 This is the website repository and is separate from the Dashfy framework, which lives in the monorepo at [github.com/dashfy/dashfy](https://github.com/dashfy/dashfy).
 
@@ -31,16 +31,21 @@ This is the website repository and is separate from the Dashfy framework, which 
 - [Next.js 16](https://nextjs.org) (App Router, Turbopack dev server)
 - [React 19](https://react.dev) and [TypeScript](https://typescriptlang.org)
 - [Tailwind CSS 4](https://tailwindcss.com) with [shadcn/ui](https://ui.shadcn.com) (Radix Nova)
+- [Fumadocs](https://fumadocs.dev) with MDX for the documentation system (`content/docs`, rendered at `/docs`)
 - [Vercel Analytics](https://vercel.com/docs/analytics), [Shiki](https://shiki.style) for code highlighting, [OverlayScrollbars](https://kingsora.github.io/OverlayScrollbars), and [next-themes](https://github.com/pacocoursey/next-themes)
 
 ## Project Structure
 
 ```
-src/app/          # Routes, metadata, OG images
-src/components/   # UI sections, navigation, providers
+content/docs/     # MDX documentation (fumadocs)
+source.config.ts  # fumadocs MDX config
+src/app/          # Routes (incl. docs + docs-raw .md routes), metadata, OG images
+src/components/   # UI sections, navigation, docs, providers
 src/config/       # site, paths, extensions, brand
 src/hooks/        # Client hooks
-src/lib/          # utils, analytics, jsonld, og, shiki
+src/lib/          # utils, analytics, jsonld, og, shiki, source, docsRaw
+src/styles/       # Global styles
+src/types/        # Type declarations
 scripts/          # llms.txt generator, clean script
 public/brand/     # Brand assets served statically
 ```
@@ -100,24 +105,18 @@ pnpm start
 | `generate:llms`     | Generate `public/llms.txt` from `scripts/generate-llms-txt.ts` |
 | `clean`             | Remove build artifacts                                         |
 
-## Adding Components
+## Documentation
 
-To add shadcn/ui components, run the following command:
+The documentation is authored as MDX files in `content/docs/` and rendered at [dashfy.dev/docs](https://dashfy.dev/docs) with [Fumadocs](https://fumadocs.dev).
 
-```bash
-npx shadcn@latest add button
-```
-
-Components are placed in `src/components/ui/` and can be imported using the `@/` alias:
-
-```tsx
-import { Button } from '@/components/ui/button'
-```
+- Every page is also available as raw markdown by appending `.md` (e.g. `/docs/cli.md`), handled by the `docs-raw` route — handy for AI agents.
+- Docs pages include a "Copy Page" action with "Open in ChatGPT / Claude / Cursor / Copilot".
+- `public/llms.txt` is generated from the docs and site config by `pnpm generate:llms`, which also runs automatically on `prebuild`.
 
 ## Related Repositories
 
 - [dashfy/dashfy](https://github.com/dashfy/dashfy) — the Dashfy framework monorepo, packages, and demo examples
-- [docs.dashfy.dev](https://docs.dashfy.dev) — product documentation
+- [dashfy.dev/docs](https://dashfy.dev/docs) — the documentation (authored in this repo under `content/docs/`)
 
 ## Contributing
 

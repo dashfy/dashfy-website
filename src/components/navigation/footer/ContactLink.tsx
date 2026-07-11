@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site'
 import { useCopy } from '@/hooks/useCopy'
 import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics'
 
-interface ContactLinkProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface ContactLinkProps extends React.ComponentProps<'button'> {
   label?: string
   copiedLabel?: string
 }

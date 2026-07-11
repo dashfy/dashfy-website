@@ -1,3 +1,6 @@
+import { withEnvStyles } from 'env.style'
+import { createMDX } from 'fumadocs-mdx/next'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -22,6 +25,25 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/docs.md',
+        destination: '/docs-raw',
+      },
+      {
+        source: '/docs/:slug*.md',
+        destination: '/docs-raw/:slug*',
+      },
+    ]
+  },
 }
 
-export default nextConfig
+const withMDX = createMDX()
+
+export default withEnvStyles(withMDX(nextConfig), {
+  color: {
+    development: '#4f46e5',
+    preview: '#e5484d',
+  },
+})

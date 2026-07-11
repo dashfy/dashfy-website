@@ -1,0 +1,21 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "---Get started---",
+    "index",
+    "installation",
+    "quick-start",
+    "---Guides---",
+    "configuration",
+    "how-it-works",
+    "extensions",
+    "themes",
+    "---Reference---",
+    "cli",
+    "registry",
+    "skills",
+    "mcp",
+    "cursor-plugin",
+    "[llms.txt](/llms.txt)"
+  ]
+}

@@ -1,0 +1,60 @@
+---
+title: Introduction
+description: Dashfy is an open-source framework for building dashboards using declarative configuration.
+---
+
+**Dashfy** is an open-source framework for building dashboards using declarative
+configuration. Instead of manually building dashboards in a UI, you define them as
+structured configuration. Dashfy connects to APIs and data sources, composes
+widgets, and renders real-time interfaces.
+
+Dashfy is designed to make dashboards developer-friendly, composable, extensible,
+and maintainable. It is published as a set of npm packages (for example
+`@dashfy/server`, `@dashfy/ui`, `@dashfy/themes`, and `@dashfy/ext-*`), and the
+[`dashfy CLI`](/docs/cli) scaffolds new apps and resolves extensions from a hosted
+registry.
+
+<Callout type="info" title="Live demo">
+  A live demo is available at [demo.dashfy.dev](https://demo.dashfy.dev).
+</Callout>
+
+## Why Dashfy
+
+Developers build dashboards to monitor systems, track metrics, visualize APIs, and
+power internal tools — but building and maintaining them is harder than it should
+be. Traditional dashboards are often:
+
+- tightly coupled to UI implementations
+- difficult to version and review
+- hard to extend and evolve
+- manually constructed and maintained
+
+Dashfy treats dashboards as **structured configuration** instead of handcrafted UI.
+You define dashboards declaratively, connect APIs and data sources, and Dashfy
+handles rendering, real-time updates, and composition. The result is dashboards
+that are easier to maintain, version, extend, and reproduce across environments.
+
+## How Dashfy is different
+
+Dashfy is designed around a simple principle: dashboards should be defined as code,
+not built manually in a UI.
+
+- **Declarative, not manual** — dashboards are defined using structured
+  configuration, making them easy to version, review, and maintain.
+- **Developer-first** — integrates naturally with version control, CI/CD, code
+  review, and infrastructure as code.
+- **API-native** — connects directly to APIs and data sources through extensions,
+  not tied to a specific backend or database.
+- **Extensible architecture** — extensions add widgets and data sources without
+  modifying the core.
+- **Real-time by default** — a server–client architecture built on WebSockets and
+  subscriptions, with no polling hacks or manual refresh.
+- **Composable and reproducible** — dashboards can be versioned, reused, shared,
+  and reproduced across environments.
+
+## Where to go next
+
+- [Installation](/docs/installation) — scaffold a new Dashfy project.
+- [Quick start](/docs/quick-start) — set up the server and client together.
+- [Configuration](/docs/configuration) — define dashboards in TypeScript, JSON, or YAML.
+- [CLI](/docs/cli) — scaffold apps and manage extensions.

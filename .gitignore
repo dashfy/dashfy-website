@@ -15,6 +15,12 @@
 /.next/
 /out/
 
+# fumadocs
+/.source/
+
+# env.style (generated tinted favicons)
+/public/__envstyle/
+
 # production
 /build
 

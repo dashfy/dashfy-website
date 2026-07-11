@@ -14,11 +14,11 @@ import { cn } from '@/lib/utils'
 
 export { metadata } from './metadata'
 
-const RootLayout = ({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode
-}>) => {
+}
+
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       className={cn('font-sans text-base antialiased', fontVariables)}

@@ -11,7 +11,7 @@ import { cn, generateReactKey } from '@/lib/utils'
 const SCREENSHOT_VARIANTS = [1, 2, 3, 4] as const
 const SLIDE_INTERVAL_MS = 6_000
 
-export const DashboardPreview = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+export const DashboardPreview = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const [dismissed, setDismissed] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)

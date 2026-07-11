@@ -2,7 +2,11 @@
 
 import { ProgressProvider as NextProgressProvider } from '@bprogress/next/app'
 
-export const ProgressProvider = ({ children }: React.PropsWithChildren) => {
+interface ProgressProviderProps {
+  children: React.ReactNode
+}
+
+export const ProgressProvider = ({ children }: ProgressProviderProps) => {
   return (
     <NextProgressProvider
       color="var(--foreground)"

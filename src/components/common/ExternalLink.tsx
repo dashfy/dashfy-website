@@ -1,16 +1,12 @@
-import type { LinkProps } from 'next/link'
-import Link from 'next/link'
-
-type ExternalLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & LinkProps
-
 export const ExternalLink = ({
   children,
   className,
   href,
   rel = 'noopener noreferrer',
+  target = '_blank',
   ...props
-}: ExternalLinkProps) => (
-  <Link className={className} href={href} prefetch={false} rel={rel} target="_blank" {...props}>
+}: React.ComponentProps<'a'>) => (
+  <a className={className} href={href} rel={rel} target={target} {...props}>
     {children}
-  </Link>
+  </a>
 )

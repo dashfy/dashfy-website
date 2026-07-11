@@ -1,6 +1,9 @@
+import Link from 'next/link'
+
 import { ExternalLink } from '@/components/common/ExternalLink'
 import { ArrowUpRightIcon, BookOpenIcon, GitHubIcon } from '@/components/common/Icons'
 import { Button } from '@/components/ui/button'
+import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
 import { ANALYTICS_EVENTS } from '@/lib/analytics'
 
@@ -28,14 +31,14 @@ export const CtaSection = () => {
             </ExternalLink>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <ExternalLink
+            <Link
               data-analytics-event={ANALYTICS_EVENTS.ctaDocsClick}
               data-analytics-location="cta_section"
-              href={siteConfig.links.docs}
+              href={paths.docs}
             >
               <BookOpenIcon />
               Read the docs
-            </ExternalLink>
+            </Link>
           </Button>
           <Button size="lg" variant="ghost" asChild>
             <ExternalLink
