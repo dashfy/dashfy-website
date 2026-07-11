@@ -9,6 +9,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@/components/common/Icons'
+import { JsonLd } from '@/components/common/JsonLd'
 import { DocsCopyPage } from '@/components/docs/DocsCopyPage'
 import { DocsToc } from '@/components/docs/DocsToc'
 import { mdxComponents } from '@/components/docs/mdx'
@@ -16,6 +17,7 @@ import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { getDocMarkdown } from '@/lib/docsRaw'
+import { getWebPageJsonLd } from '@/lib/jsonld'
 import { source } from '@/lib/source'
 
 export const dynamicParams = false
@@ -164,6 +166,14 @@ const DocsPage = async (props: DocsPageProps) => {
       <aside className="sticky top-14 hidden h-[calc(100svh-3.5rem)] w-56 shrink-0 overflow-y-auto py-10 xl:block">
         <DocsToc toc={toc} />
       </aside>
+
+      <JsonLd
+        data={getWebPageJsonLd({
+          path: page.url,
+          name: `${title} · ${siteConfig.name} Documentation`,
+          description: description ?? siteConfig.description,
+        })}
+      />
     </div>
   )
 }
