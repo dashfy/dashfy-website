@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { ExternalLink } from '@/components/common/ExternalLink'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 import { Callout } from './Callout'
@@ -28,10 +29,27 @@ const DocsLink = ({
   )
 
   if (isInternal) {
-    return <Link className={linkClassName} href={href} {...props} />
+    return (
+      <Link
+        className={linkClassName}
+        data-analytics-event={ANALYTICS_EVENTS.docsContentLink}
+        data-analytics-target={href}
+        href={href}
+        {...props}
+      />
+    )
   }
 
-  return <ExternalLink className={linkClassName} href={href} rel="noreferrer" {...props} />
+  return (
+    <ExternalLink
+      className={linkClassName}
+      data-analytics-event={ANALYTICS_EVENTS.docsContentLink}
+      data-analytics-target={href}
+      href={href}
+      rel="noreferrer"
+      {...props}
+    />
+  )
 }
 
 export const mdxComponents = {

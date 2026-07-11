@@ -14,6 +14,7 @@ import { DocsToc } from '@/components/docs/DocsToc'
 import { mdxComponents } from '@/components/docs/mdx'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { getDocMarkdown } from '@/lib/docsRaw'
 import { source } from '@/lib/source'
 
@@ -83,7 +84,12 @@ const DocsPage = async (props: DocsPageProps) => {
                 <div className="ml-auto flex gap-2">
                   {neighbours.previous && (
                     <Button className="shadow-none" size="icon-sm" variant="secondary" asChild>
-                      <Link href={neighbours.previous.url}>
+                      <Link
+                        data-analytics-direction="previous"
+                        data-analytics-event={ANALYTICS_EVENTS.docsPaginationClick}
+                        data-analytics-target={neighbours.previous.url}
+                        href={neighbours.previous.url}
+                      >
                         <ArrowLeftIcon />
                         <span className="sr-only">Previous</span>
                       </Link>
@@ -91,7 +97,12 @@ const DocsPage = async (props: DocsPageProps) => {
                   )}
                   {neighbours.next && (
                     <Button className="shadow-none" size="icon-sm" variant="secondary" asChild>
-                      <Link href={neighbours.next.url}>
+                      <Link
+                        data-analytics-direction="next"
+                        data-analytics-event={ANALYTICS_EVENTS.docsPaginationClick}
+                        data-analytics-target={neighbours.next.url}
+                        href={neighbours.next.url}
+                      >
                         <span className="sr-only">Next</span>
                         <ArrowRightIcon />
                       </Link>
@@ -115,6 +126,9 @@ const DocsPage = async (props: DocsPageProps) => {
             {neighbours.previous ? (
               <Link
                 className="group flex flex-col gap-1 text-sm transition-colors hover:text-foreground"
+                data-analytics-direction="previous"
+                data-analytics-event={ANALYTICS_EVENTS.docsPaginationClick}
+                data-analytics-target={neighbours.previous.url}
                 href={neighbours.previous.url}
               >
                 <span className="flex items-center gap-1 text-xs text-muted-foreground">
@@ -129,6 +143,9 @@ const DocsPage = async (props: DocsPageProps) => {
             {neighbours.next ? (
               <Link
                 className="group flex flex-col items-end gap-1 text-right text-sm transition-colors hover:text-foreground"
+                data-analytics-direction="next"
+                data-analytics-event={ANALYTICS_EVENTS.docsPaginationClick}
+                data-analytics-target={neighbours.next.url}
                 href={neighbours.next.url}
               >
                 <span className="flex items-center gap-1 text-xs text-muted-foreground">

@@ -22,6 +22,7 @@ import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from '@/compon
 import { Separator } from '@/components/ui/separator'
 import { siteConfig } from '@/config/site'
 import { useCopy } from '@/hooks/useCopy'
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics'
 import { generateReactKey } from '@/lib/utils'
 
 const buildPrompt = (url: string) =>
@@ -58,33 +59,42 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
   const menuItems = [
     {
       key: 'markdown',
+      event: ANALYTICS_EVENTS.docsViewMarkdown,
       href: url,
       icon: <MarkdownIcon />,
       label: 'View as Markdown',
     },
     {
       key: 'chatgpt',
+      event: ANALYTICS_EVENTS.docsOpenAi,
       href: buildPromptUrl('https://chatgpt.com', url),
       icon: <ChatGptIcon />,
       label: 'Open in ChatGPT',
+      tool: 'chatgpt',
     },
     {
       key: 'claude',
+      event: ANALYTICS_EVENTS.docsOpenAi,
       href: buildPromptUrl('https://claude.ai/new', url),
       icon: <ClaudeIcon />,
       label: 'Open in Claude',
+      tool: 'claude',
     },
     {
       key: 'copilot',
+      event: ANALYTICS_EVENTS.docsOpenAi,
       href: buildCopilotPromptUrl(url),
       icon: <CopilotIcon />,
       label: 'Open in Copilot',
+      tool: 'copilot',
     },
     {
       key: 'cursor',
+      event: ANALYTICS_EVENTS.docsOpenAi,
       href: buildCursorPromptUrl(url),
       icon: <CursorIcon />,
       label: 'Open in Cursor',
+      tool: 'cursor',
     },
   ]
 
@@ -107,7 +117,10 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
           className="shadow-none"
           size="sm"
           variant="secondary"
-          onClick={() => copy(markdown)}
+          onClick={() => {
+            copy(markdown)
+            trackEvent(ANALYTICS_EVENTS.docsCopyPage)
+          }}
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
           Copy Page
@@ -123,7 +136,11 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
                 key={generateReactKey('docs-copy-page-menu-item', item.key)}
                 asChild
               >
-                <ExternalLink href={item.href}>
+                <ExternalLink
+                  data-analytics-event={item.event}
+                  data-analytics-tool={item.tool}
+                  href={item.href}
+                >
                   {item.icon}
                   {item.label}
                 </ExternalLink>
@@ -152,7 +169,11 @@ export const DocsCopyPage = ({ markdown, url }: DocsCopyPageProps) => {
               variant="ghost"
               asChild
             >
-              <ExternalLink href={item.href}>
+              <ExternalLink
+                data-analytics-event={item.event}
+                data-analytics-tool={item.tool}
+                href={item.href}
+              >
                 {item.icon}
                 {item.label}
               </ExternalLink>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 export const LinkedCard = ({ className, ...props }: React.ComponentProps<typeof Link>) => (
@@ -8,6 +9,8 @@ export const LinkedCard = ({ className, ...props }: React.ComponentProps<typeof 
       'flex w-full flex-col rounded-xl border border-border bg-card p-6 text-card-foreground no-underline transition-colors hover:bg-muted/50',
       className,
     )}
+    data-analytics-event={ANALYTICS_EVENTS.docsContentLink}
+    data-analytics-target={props.href}
     {...props}
   />
 )

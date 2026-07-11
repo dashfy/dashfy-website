@@ -4,6 +4,7 @@ import type { Node, Root } from 'fumadocs-core/page-tree'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn, generateReactKey } from '@/lib/utils'
 
 interface DocsNavProps {
@@ -25,6 +26,8 @@ const NavLink = ({ children, href, active, onNavigate }: NavLinkProps) => {
         'block rounded-md px-3 py-1.5 text-[0.8rem] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
         active && 'bg-muted text-foreground',
       )}
+      data-analytics-event={ANALYTICS_EVENTS.docsNavClick}
+      data-analytics-target={href}
       href={href}
       onClick={onNavigate}
     >

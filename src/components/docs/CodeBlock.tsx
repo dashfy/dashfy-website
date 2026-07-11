@@ -4,6 +4,7 @@ import { useRef } from 'react'
 
 import { CheckIcon, CopyIcon } from '@/components/common/Icons'
 import { useCopy } from '@/hooks/useCopy'
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 
 import { useInCodeBlockTabs } from './CodeBlockTabs'
@@ -21,6 +22,7 @@ export const CodeBlock = ({ className, children, icon: _icon, ...props }: CodeBl
   const handleCopy = () => {
     const text = preRef.current?.textContent ?? ''
     copy(text)
+    trackEvent(ANALYTICS_EVENTS.docsCopyCode)
   }
 
   return (

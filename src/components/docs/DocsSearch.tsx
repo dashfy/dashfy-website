@@ -11,6 +11,7 @@ import {
   ResponsiveDialogTitle,
 } from '@/components/common/ResponsiveDialog'
 import { Kbd } from '@/components/ui/kbd'
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics'
 import { cn, generateReactKey } from '@/lib/utils'
 
 export const DocsSearch = () => {
@@ -34,6 +35,7 @@ export const DocsSearch = () => {
   const results = Array.isArray(query.data) ? query.data : []
 
   const handleSelect = (url: string) => {
+    trackEvent(ANALYTICS_EVENTS.docsSearchSelect, { target: url, query: search })
     setOpen(false)
     setSearch('')
     router.push(url)
@@ -48,7 +50,10 @@ export const DocsSearch = () => {
     <>
       <button
         className="flex w-full items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true)
+          trackEvent(ANALYTICS_EVENTS.docsSearchOpen)
+        }}
       >
         <SearchIcon className="size-4" />
         <span className="flex-1 text-left">Search docs…</span>

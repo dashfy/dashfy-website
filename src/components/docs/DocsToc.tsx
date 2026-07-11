@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 
+import { ANALYTICS_EVENTS } from '@/lib/analytics'
 import { cn, generateReactKey } from '@/lib/utils'
 
 interface TocItem {
@@ -63,6 +64,8 @@ export const DocsToc = ({ toc }: DocsTocProps) => {
             item.depth >= 4 && 'pl-6',
             item.url === `#${activeHeading}` && 'font-medium text-foreground',
           )}
+          data-analytics-event={ANALYTICS_EVENTS.docsTocClick}
+          data-analytics-target={item.url}
           href={item.url}
         >
           {item.title}
