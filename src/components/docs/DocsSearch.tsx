@@ -57,13 +57,21 @@ export const DocsSearch = () => {
       >
         <SearchIcon className="size-4" />
         <span className="flex-1 text-left">Search docs…</span>
-        <Kbd>⌘K</Kbd>
+        <Kbd className="hidden md:flex">⌘K</Kbd>
       </button>
 
       <ResponsiveDialog open={open} onOpenChange={handleClose}>
-        <ResponsiveDialogContent className="top-24 translate-y-0 gap-0 p-0" showCloseButton={false}>
+        <ResponsiveDialogContent
+          className="top-24 translate-y-0 gap-0 p-0 md:max-w-xl"
+          showCloseButton={false}
+        >
           <ResponsiveDialogTitle className="sr-only">Search documentation</ResponsiveDialogTitle>
-          <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+          <div
+            className={cn(
+              'flex items-center gap-2 border-b border-border px-4 py-3',
+              search.length > 0 ? 'border-b' : 'border-b md:border-b-0',
+            )}
+          >
             <SearchIcon className="size-4 text-muted-foreground" />
             <input
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
@@ -72,30 +80,41 @@ export const DocsSearch = () => {
               autoFocus
               onChange={(event) => setSearch(event.target.value)}
             />
-            <Kbd className="hidden md:flex">ESC</Kbd>
+            <button
+              aria-label="Close search"
+              className="group hidden md:flex"
+              type="button"
+              onClick={handleClose}
+            >
+              <Kbd className="cursor-pointer transition-colors group-hover:bg-accent group-hover:text-foreground">
+                ESC
+              </Kbd>
+            </button>
           </div>
 
-          <div className="max-h-[60vh] overflow-y-auto p-2">
-            {search.length > 0 && results.length === 0 && !query.isLoading ? (
-              <p className="px-3 py-6 text-center text-sm text-muted-foreground">
-                No results found.
-              </p>
-            ) : null}
+          {search.length > 0 ? (
+            <div className="max-h-[60vh] overflow-y-auto p-2">
+              {results.length === 0 && !query.isLoading ? (
+                <p className="px-3 py-6 text-center text-sm text-muted-foreground">
+                  No results found.
+                </p>
+              ) : null}
 
-            {results.map((result, index) => (
-              <button
-                key={generateReactKey('search', result.id, index)}
-                className={cn(
-                  'block w-full rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-muted',
-                  result.type !== 'page' && 'pl-6 text-muted-foreground',
-                )}
-                type="button"
-                onClick={() => handleSelect(result.url)}
-              >
-                {result.content}
-              </button>
-            ))}
-          </div>
+              {results.map((result, index) => (
+                <button
+                  key={generateReactKey('search', result.id, index)}
+                  className={cn(
+                    'block w-full rounded-md px-3 py-2 text-left text-sm transition-colors hover:bg-muted',
+                    result.type !== 'page' && 'pl-6 text-muted-foreground',
+                  )}
+                  type="button"
+                  onClick={() => handleSelect(result.url)}
+                >
+                  {result.content}
+                </button>
+              ))}
+            </div>
+          ) : null}
         </ResponsiveDialogContent>
       </ResponsiveDialog>
     </>
