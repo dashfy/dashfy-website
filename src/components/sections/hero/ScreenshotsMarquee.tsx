@@ -52,6 +52,7 @@ const ScreenshotCard = ({
     <button
       aria-label={`Open ${label} screenshot`}
       className="group/card w-[280px] shrink-0 cursor-pointer focus-visible:outline-hidden sm:w-[360px] md:w-[440px] lg:w-[520px]"
+      type="button"
       onClick={onClick}
     >
       <div className="relative aspect-16/10 overflow-hidden rounded border border-border bg-card shadow-xl transition-transform duration-300 ease-out group-hover/card:scale-[1.015] group-focus-visible/card:ring-2 group-focus-visible/card:ring-ring motion-reduce:transition-none motion-reduce:group-hover/card:scale-100">

@@ -50,6 +50,7 @@ export const DocsSearch = () => {
     <>
       <button
         className="flex w-full items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted"
+        type="button"
         onClick={() => {
           setOpen(true)
           trackEvent(ANALYTICS_EVENTS.docsSearchOpen)

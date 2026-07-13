@@ -27,6 +27,7 @@ export const ContactLink = ({
         copied ? `Copied ${siteConfig.email}` : `${label} — copy email address ${siteConfig.email}`
       }
       className={className}
+      type="button"
       onClick={handleCopy}
     >
       {copied ? copiedLabel : label}

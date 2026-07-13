@@ -28,6 +28,7 @@ export const ThemeSwitcher = () => {
               'rounded-full p-2 transition-colors',
               isActive ? 'bg-muted/50' : 'text-muted-foreground hover:text-foreground',
             )}
+            type="button"
             onClick={() => setTheme(option.value)}
           >
             <option.Icon className="h-4 w-4" aria-hidden />

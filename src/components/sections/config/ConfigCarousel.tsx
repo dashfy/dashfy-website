@@ -115,6 +115,7 @@ const StepTimeline = ({ steps, activeStep, isPaused = false, onSelect }: StepTim
                 <button
                   aria-label={`Go to step: ${step.title}`}
                   className="relative z-10 mt-2 cursor-pointer"
+                  type="button"
                   onClick={() => onSelect(index)}
                 >
                   <span
@@ -146,6 +147,7 @@ const StepTimeline = ({ steps, activeStep, isPaused = false, onSelect }: StepTim
                 className={`pb-6 text-left transition-opacity duration-300 ${
                   isActive ? 'opacity-100' : 'cursor-pointer opacity-60 hover:opacity-80'
                 } ${isLast ? 'pb-0' : ''}`}
+                type="button"
                 onClick={() => onSelect(index)}
               >
                 {isActive ? (
