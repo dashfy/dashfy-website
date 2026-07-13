@@ -41,7 +41,7 @@ Framework-specific setup guides:
 - [TanStack Start](https://dashfy.dev/docs/installation/tanstack): Scaffold a Dashfy dashboard with TanStack Start, or add Dashfy to an existing TanStack Start app.
 - [Vite](https://dashfy.dev/docs/installation/vite): Scaffold a Dashfy dashboard with Vite, or add Dashfy to an existing Vite app.
 
-## Getting started
+## CLI commands
 
 Scaffold a new project:
 

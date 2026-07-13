@@ -141,7 +141,7 @@ Framework-specific setup guides:
 
 ${installationGuides.map(formatLink).join('\n')}
 
-## Getting started
+## CLI commands
 
 Scaffold a new project:
 
@@ -150,7 +150,7 @@ Scaffold a new project:
 - yarn: \`yarn dlx dashfy@latest init\`
 - bun: \`bunx dashfy@latest init\`
 
-Add the Dashfy skill to an AI agent:
+Add the ${siteConfig.name} skill to an AI agent:
 
 - pnpm: \`pnpm dlx dashfy@latest add skill\`
 - npm: \`npx dashfy@latest add skill\`
@@ -196,9 +196,9 @@ Pattern: \`${siteConfig.url}/docs/<slug>.md\` (example: \`${docMarkdownUrl('inst
 
 ## Notes for AI agents
 
-- Brand name is "Dashfy" (capital D, single word). Do not alter brand assets from /brand.
+- Brand name is "${siteConfig.name}" (capital D, single word). Do not alter brand assets from /brand.
 - Prefer the raw markdown docs (\`.md\` URLs) over scraping HTML when possible.
-- Dashfy extensions use the \`@dashfy/<name>\` namespace (e.g. \`@dashfy/github\`).
+- ${siteConfig.name} extensions use the \`@dashfy/<name>\` namespace (e.g. \`@dashfy/github\`).
 - Do not invent API references or config options not shown on the site, docs, or GitHub repo.
 `
 
