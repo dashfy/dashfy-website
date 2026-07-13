@@ -38,7 +38,9 @@ const useActiveHeading = (ids: string[]) => {
       }
     }
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+    }
   }, [ids])
 
   return activeId

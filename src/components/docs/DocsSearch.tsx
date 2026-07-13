@@ -29,7 +29,9 @@ export const DocsSearch = () => {
 
     document.addEventListener('keydown', onKeyDown)
 
-    return () => document.removeEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
   }, [])
 
   const results = Array.isArray(query.data) ? query.data : []
