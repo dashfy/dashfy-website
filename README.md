@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./public/brand/dashfy-social-logo.svg" alt="Dashfy Logo" width="150">
+  <a href="https://dashfy.dev">
+    <img src="./public/brand/dashfy-social-logo.svg" alt="Dashfy Logo" width="150">
+  </a>  
 </p>
 
 <h1 align="center">
