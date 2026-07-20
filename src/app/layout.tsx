@@ -4,13 +4,13 @@ import { Analytics } from '@vercel/analytics/next'
 
 import { AnalyticsClickTracker } from '@/components/analytics/AnalyticsClickTracker'
 import { JsonLd } from '@/components/common/JsonLd'
-import { Providers } from '@/components/providers/Providers'
 import { SplashScreenWrapper } from '@/components/splashscreen/SplashScreenWrapper'
 import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
 import { fontVariables } from '@/lib/fonts'
 import { getSiteJsonLd } from '@/lib/jsonld'
 import { cn } from '@/lib/utils'
+import { Providers } from '@/providers/Providers'
 
 export { metadata } from './metadata'
 
