@@ -159,10 +159,10 @@ Add the ${siteConfig.name} skill to an AI agent:
 
 Add an extension (GitHub example):
 
-- pnpm: \`pnpm dlx dashfy@latest add @dashfy/github\`
-- npm: \`npx dashfy@latest add @dashfy/github\`
-- yarn: \`yarn dlx dashfy@latest add @dashfy/github\`
-- bun: \`bunx dashfy@latest add @dashfy/github\`
+- pnpm: \`pnpm dlx dashfy@latest add @getdashfy/github\`
+- npm: \`npx dashfy@latest add @getdashfy/github\`
+- yarn: \`yarn dlx dashfy@latest add @getdashfy/github\`
+- bun: \`bunx dashfy@latest add @getdashfy/github\`
 
 ## Extensions
 
@@ -198,7 +198,7 @@ Pattern: \`${siteConfig.url}/docs/<slug>.md\` (example: \`${docMarkdownUrl('inst
 
 - Brand name is "${siteConfig.name}" (capital D, single word). Do not alter brand assets from /brand.
 - Prefer the raw markdown docs (\`.md\` URLs) over scraping HTML when possible.
-- ${siteConfig.name} extensions use the \`@dashfy/<name>\` namespace (e.g. \`@dashfy/github\`).
+- ${siteConfig.name} extensions use the \`@getdashfy/<name>\` namespace (e.g. \`@getdashfy/github\`).
 - Do not invent API references or config options not shown on the site, docs, or GitHub repo.
 `
 

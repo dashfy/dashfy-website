@@ -20,7 +20,7 @@
 - [Configuration](https://dashfy.dev/docs/configuration): Define Dashfy dashboards declaratively using TypeScript, JSON, or YAML.
 - [How it works](https://dashfy.dev/docs/how-it-works): Dashfy uses a server–client architecture to load, compose, and render dashboards in real time.
 - [Extensions](https://dashfy.dev/docs/extensions): Extensions add widgets and data sources to Dashfy. Add, remove, and audit them with the CLI.
-- [Themes](https://dashfy.dev/docs/themes): Built-in themes, light/dark mode, and custom theming with @dashfy/themes.
+- [Themes](https://dashfy.dev/docs/themes): Built-in themes, light/dark mode, and custom theming with @getdashfy/themes.
 
 ## Reference
 
@@ -59,10 +59,10 @@ Add the Dashfy skill to an AI agent:
 
 Add an extension (GitHub example):
 
-- pnpm: `pnpm dlx dashfy@latest add @dashfy/github`
-- npm: `npx dashfy@latest add @dashfy/github`
-- yarn: `yarn dlx dashfy@latest add @dashfy/github`
-- bun: `bunx dashfy@latest add @dashfy/github`
+- pnpm: `pnpm dlx dashfy@latest add @getdashfy/github`
+- npm: `npx dashfy@latest add @getdashfy/github`
+- yarn: `yarn dlx dashfy@latest add @getdashfy/github`
+- bun: `bunx dashfy@latest add @getdashfy/github`
 
 ## Extensions
 
@@ -98,5 +98,5 @@ Pattern: `https://dashfy.dev/docs/<slug>.md` (example: `https://dashfy.dev/docs/
 
 - Brand name is "Dashfy" (capital D, single word). Do not alter brand assets from /brand.
 - Prefer the raw markdown docs (`.md` URLs) over scraping HTML when possible.
-- Dashfy extensions use the `@dashfy/<name>` namespace (e.g. `@dashfy/github`).
+- Dashfy extensions use the `@getdashfy/<name>` namespace (e.g. `@getdashfy/github`).
 - Do not invent API references or config options not shown on the site, docs, or GitHub repo.

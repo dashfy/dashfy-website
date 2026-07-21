@@ -4,7 +4,7 @@ description: Extensions add widgets and data sources to Dashfy. Add, remove, and
 ---
 
 Extensions are how Dashfy connects to your stack. Each extension is an
-`@dashfy/ext-*` npm package that provides **widgets** (visual components) and,
+`@getdashfy/ext-*` npm package that provides **widgets** (visual components) and,
 optionally, a **server API client** (data source) plus setup metadata.
 
 Extensions are resolved from a [registry](/docs/registry) at runtime over HTTP — the
@@ -17,7 +17,7 @@ See available extensions [here](https://dashfy.dev/extensions).
 ## Add an extension
 
 ```npm
-npx dashfy@latest add @dashfy/github
+npx dashfy@latest add @getdashfy/github
 ```
 
 `add` resolves the extension address from the registry, installs the npm package,
@@ -39,7 +39,7 @@ With no arguments, `add` fetches the catalog and prompts you to pick. Any
 ## Remove an extension
 
 ```npm
-npx dashfy@latest remove @dashfy/github
+npx dashfy@latest remove @getdashfy/github
 ```
 
 `remove` reverses what `add` set up: it removes the widget registration and

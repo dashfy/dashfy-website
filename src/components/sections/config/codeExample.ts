@@ -28,9 +28,9 @@ widgets:
     title: API Status
     url: https://api.example.com/health`
 
-export const SERVER_EXAMPLE = `import { createGitHubClient } from '@dashfy/ext-github/client'
-import { createSystemClient } from '@dashfy/ext-system/client'
-import { Dashfy } from '@dashfy/server'
+export const SERVER_EXAMPLE = `import { createGitHubClient } from '@getdashfy/ext-github/client'
+import { createSystemClient } from '@getdashfy/ext-system/client'
+import { Dashfy } from '@getdashfy/server'
 
 const dashfy = new Dashfy()
 
@@ -45,9 +45,9 @@ dashfy.registerApi('system', createSystemClient(), 'push')
 
 await dashfy.start()`
 
-export const APP_EXAMPLE = `import { PullRequests, RepoBadge } from '@dashfy/ext-github'
-import { CpuUsageLine, MemoryUsageGauge } from '@dashfy/ext-system'
-import { Dashfy, WidgetRegistry } from '@dashfy/ui'
+export const APP_EXAMPLE = `import { PullRequests, RepoBadge } from '@getdashfy/ext-github'
+import { CpuUsageLine, MemoryUsageGauge } from '@getdashfy/ext-system'
+import { Dashfy, WidgetRegistry } from '@getdashfy/ui'
 
 WidgetRegistry.addExtension('github', {
   PullRequests,
