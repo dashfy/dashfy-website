@@ -51,7 +51,7 @@ export interface Extension {
 
 export const EXTENSION_PREFIX = 'dashfy-'
 
-const byLabel = (a: Extension, b: Extension) =>
+const sortByLabel = (a: Extension, b: Extension) =>
   a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })
 
 export const EXTENSIONS_ROW_ONE: Extension[] = [
@@ -71,7 +71,7 @@ export const EXTENSIONS_ROW_ONE: Extension[] = [
   { id: 'ext-stripe', label: 'Stripe', logo: stripe.svg },
   { id: 'ext-system', label: 'System Monitoring', logo: CpuIcon, available: true },
   { id: 'ext-vercel', label: 'Vercel', logo: getThemedSvg(vercel) },
-].sort(byLabel)
+].sort(sortByLabel)
 
 export const EXTENSIONS_ROW_TWO: Extension[] = [
   { id: 'ext-cloudflare', label: 'Cloudflare', logo: cloudflare.svg },
@@ -91,9 +91,11 @@ export const EXTENSIONS_ROW_TWO: Extension[] = [
   { id: 'ext-resend', label: 'Resend', logo: getThemedSvg(resend) },
   { id: 'ext-supabase', label: 'Supabase', logo: supabase.svg },
   { id: 'ext-telegram', label: 'Telegram', logo: telegram.svg },
-].sort(byLabel)
+].sort(sortByLabel)
 
-export const EXTENSIONS: Extension[] = [...EXTENSIONS_ROW_ONE, ...EXTENSIONS_ROW_TWO].sort(byLabel)
+export const EXTENSIONS: Extension[] = [...EXTENSIONS_ROW_ONE, ...EXTENSIONS_ROW_TWO].sort(
+  sortByLabel,
+)
 
 export const getExtensionGitHubUrl = (id: string) =>
   `${siteConfig.links.github}/${EXTENSION_PREFIX}${id}`
