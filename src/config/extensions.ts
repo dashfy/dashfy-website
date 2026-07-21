@@ -49,6 +49,8 @@ export interface Extension {
   available?: boolean
 }
 
+export const EXTENSION_PREFIX = 'dashfy-'
+
 const byLabel = (a: Extension, b: Extension) =>
   a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })
 
@@ -93,4 +95,5 @@ export const EXTENSIONS_ROW_TWO: Extension[] = [
 
 export const EXTENSIONS: Extension[] = [...EXTENSIONS_ROW_ONE, ...EXTENSIONS_ROW_TWO].sort(byLabel)
 
-export const getExtensionGitHubUrl = (id: string) => `${siteConfig.links.github}-${id}`
+export const getExtensionGitHubUrl = (id: string) =>
+  `${siteConfig.links.github}/${EXTENSION_PREFIX}${id}`
