@@ -49,53 +49,50 @@ export interface Extension {
   available?: boolean
 }
 
-export const EXTENSION_PREFIX = 'dashfy-'
-
 const sortByLabel = (a: Extension, b: Extension) =>
   a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })
 
 export const EXTENSIONS_ROW_ONE: Extension[] = [
-  { id: 'ext-aws', label: 'AWS', logo: aws.svg },
-  { id: 'ext-claude-ai', label: 'Claude AI', logo: claudeAi.svg },
-  { id: 'ext-github', label: 'GitHub', logo: getThemedSvg(github), available: true },
-  { id: 'ext-grafana', label: 'Grafana', logo: grafana.svg },
-  { id: 'ext-json', label: 'JSON / REST', logo: json.svg, available: true },
-  { id: 'ext-market-live', label: 'Market Live', logo: TrendingUpIcon, available: true },
-  { id: 'ext-mongodb', label: 'MongoDB', logo: mongodb.svg },
-  { id: 'ext-nba', label: 'NBA', logo: nba.svg, available: true },
-  { id: 'ext-notion', label: 'Notion', logo: notion.svg },
-  { id: 'ext-postgresql', label: 'PostgreSQL', logo: postgresql.svg },
-  { id: 'ext-prometheus', label: 'Prometheus', logo: prometheus.svg },
-  { id: 'ext-sentry', label: 'Sentry', logo: sentry.svg },
-  { id: 'ext-slack', label: 'Slack', logo: slack.svg },
-  { id: 'ext-stripe', label: 'Stripe', logo: stripe.svg },
-  { id: 'ext-system', label: 'System Monitoring', logo: CpuIcon, available: true },
-  { id: 'ext-vercel', label: 'Vercel', logo: getThemedSvg(vercel) },
+  { id: 'dashfy-ext-aws', label: 'AWS', logo: aws.svg },
+  { id: 'dashfy-ext-claude-ai', label: 'Claude AI', logo: claudeAi.svg },
+  { id: 'dashfy-ext-github', label: 'GitHub', logo: getThemedSvg(github), available: true },
+  { id: 'dashfy-ext-grafana', label: 'Grafana', logo: grafana.svg },
+  { id: 'dashfy-ext-json', label: 'JSON / REST', logo: json.svg, available: true },
+  { id: 'dashfy-ext-market-live', label: 'Market Live', logo: TrendingUpIcon, available: true },
+  { id: 'dashfy-ext-mongodb', label: 'MongoDB', logo: mongodb.svg },
+  { id: 'dashfy-ext-nba', label: 'NBA', logo: nba.svg, available: true },
+  { id: 'dashfy-ext-notion', label: 'Notion', logo: notion.svg },
+  { id: 'dashfy-ext-postgresql', label: 'PostgreSQL', logo: postgresql.svg },
+  { id: 'dashfy-ext-prometheus', label: 'Prometheus', logo: prometheus.svg },
+  { id: 'dashfy-ext-sentry', label: 'Sentry', logo: sentry.svg },
+  { id: 'dashfy-ext-slack', label: 'Slack', logo: slack.svg },
+  { id: 'dashfy-ext-stripe', label: 'Stripe', logo: stripe.svg },
+  { id: 'dashfy-ext-system', label: 'System Monitoring', logo: CpuIcon, available: true },
+  { id: 'dashfy-ext-vercel', label: 'Vercel', logo: getThemedSvg(vercel) },
 ].sort(sortByLabel)
 
 export const EXTENSIONS_ROW_TWO: Extension[] = [
-  { id: 'ext-cloudflare', label: 'Cloudflare', logo: cloudflare.svg },
-  { id: 'ext-cursor', label: 'Cursor', logo: cursor.svg },
-  { id: 'ext-datadog', label: 'Datadog', logo: datadog.svg },
-  { id: 'ext-discord', label: 'Discord', logo: discord.svg },
-  { id: 'ext-docker', label: 'Docker', logo: docker.svg },
-  { id: 'ext-firebase', label: 'Firebase', logo: firebase.svg },
-  { id: 'ext-gemini', label: 'Gemini', logo: gemini.svg },
-  { id: 'ext-gitlab', label: 'GitLab', logo: gitlab.svg },
-  { id: 'ext-google-sheets', label: 'Google Sheets', logo: googleSheets.svg },
-  { id: 'ext-jira', label: 'Jira', logo: jira.svg },
-  { id: 'ext-kubernetes', label: 'Kubernetes', logo: kubernetes.svg },
-  { id: 'ext-open-claw', label: 'Open Claw', logo: openClaw.svg },
-  { id: 'ext-openai', label: 'OpenAI', logo: getThemedSvg(openAi) },
-  { id: 'ext-redis', label: 'Redis', logo: redis.svg },
-  { id: 'ext-resend', label: 'Resend', logo: getThemedSvg(resend) },
-  { id: 'ext-supabase', label: 'Supabase', logo: supabase.svg },
-  { id: 'ext-telegram', label: 'Telegram', logo: telegram.svg },
+  { id: 'dashfy-ext-cloudflare', label: 'Cloudflare', logo: cloudflare.svg },
+  { id: 'dashfy-ext-cursor', label: 'Cursor', logo: cursor.svg },
+  { id: 'dashfy-ext-datadog', label: 'Datadog', logo: datadog.svg },
+  { id: 'dashfy-ext-discord', label: 'Discord', logo: discord.svg },
+  { id: 'dashfy-ext-docker', label: 'Docker', logo: docker.svg },
+  { id: 'dashfy-ext-firebase', label: 'Firebase', logo: firebase.svg },
+  { id: 'dashfy-ext-gemini', label: 'Gemini', logo: gemini.svg },
+  { id: 'dashfy-ext-gitlab', label: 'GitLab', logo: gitlab.svg },
+  { id: 'dashfy-ext-google-sheets', label: 'Google Sheets', logo: googleSheets.svg },
+  { id: 'dashfy-ext-jira', label: 'Jira', logo: jira.svg },
+  { id: 'dashfy-ext-kubernetes', label: 'Kubernetes', logo: kubernetes.svg },
+  { id: 'dashfy-ext-open-claw', label: 'Open Claw', logo: openClaw.svg },
+  { id: 'dashfy-ext-openai', label: 'OpenAI', logo: getThemedSvg(openAi) },
+  { id: 'dashfy-ext-redis', label: 'Redis', logo: redis.svg },
+  { id: 'dashfy-ext-resend', label: 'Resend', logo: getThemedSvg(resend) },
+  { id: 'dashfy-ext-supabase', label: 'Supabase', logo: supabase.svg },
+  { id: 'dashfy-ext-telegram', label: 'Telegram', logo: telegram.svg },
 ].sort(sortByLabel)
 
 export const EXTENSIONS: Extension[] = [...EXTENSIONS_ROW_ONE, ...EXTENSIONS_ROW_TWO].sort(
   sortByLabel,
 )
 
-export const getExtensionGitHubUrl = (id: string) =>
-  `${siteConfig.links.github}/${EXTENSION_PREFIX}${id}`
+export const getExtensionGitHubUrl = (id: string) => `${siteConfig.links.github}/${id}`
