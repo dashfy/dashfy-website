@@ -1,0 +1,27 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard", ":semanticCommits"],
+  "labels": ["dependencies", "renovate"],
+  "assignees": ["brenopolanski"],
+  "ignorePaths": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.next/**"],
+  "rebaseWhen": "never",
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "devDependencies (non-major)"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "major-update", "renovate"]
+    },
+    {
+      "matchPackageNames": ["pnpm"],
+      "rangeStrategy": "bump"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security", "renovate"],
+    "assignees": ["brenopolanski"]
+  }
+}
