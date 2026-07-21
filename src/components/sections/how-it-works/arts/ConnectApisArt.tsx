@@ -84,7 +84,7 @@ export const ConnectApisArt = () => (
       <text style={{ fill: 'currentColor' }} x="60" y="127">
         {'} from '}
         {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <tspan style={{ fill: 'currentColor', opacity: 0.7 }}>'@dashfy/ext-github'</tspan>
+        <tspan style={{ fill: 'currentColor', opacity: 0.7 }}>'@getdashfy/ext-github'</tspan>
       </text>
       <text fontWeight="600" style={{ fill: 'currentColor' }} x="60" y="163">
         WidgetRegistry.addExtension(

@@ -13,9 +13,9 @@ Create a Dashfy server, load a dashboard configuration, and register the API
 clients your widgets need:
 
 ```ts
-import { createJsonClient } from '@dashfy/ext-json/client'
-import { createGitHubClient } from '@dashfy/ext-github/client'
-import { Dashfy } from '@dashfy/server'
+import { createJsonClient } from '@getdashfy/ext-json/client'
+import { createGitHubClient } from '@getdashfy/ext-github/client'
+import { Dashfy } from '@getdashfy/server'
 
 // Create server instance
 const dashfy = new Dashfy()
@@ -24,7 +24,7 @@ const dashfy = new Dashfy()
 await dashfy.configureFromFile('./dashfy.config.yml')
 
 // or from a TypeScript object:
-// import type { DashfyConfig } from '@dashfy/types'
+// import type { DashfyConfig } from '@getdashfy/types'
 // const dashfyConfig: DashfyConfig = {...}
 // dashfy.configure(dashfyConfig)
 
@@ -50,7 +50,7 @@ On the client, register each extension's widgets with the `WidgetRegistry`, then
 render the `<Dashfy />` component:
 
 ```tsx
-import { CustomJson, JsonKeys, JsonStatus } from '@dashfy/ext-json'
+import { CustomJson, JsonKeys, JsonStatus } from '@getdashfy/ext-json'
 import {
   Branches,
   CommitActivityLine,
@@ -61,8 +61,8 @@ import {
   RepoBadge,
   Status,
   UserBadge,
-} from '@dashfy/ext-github'
-import { Dashfy, WidgetRegistry } from '@dashfy/ui'
+} from '@getdashfy/ext-github'
+import { Dashfy, WidgetRegistry } from '@getdashfy/ui'
 
 // Register GitHub extension widgets
 WidgetRegistry.addExtension('github', {

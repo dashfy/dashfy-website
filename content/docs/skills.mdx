@@ -16,7 +16,7 @@ For example, you can ask your AI assistant to:
 - _"Find an extension for my JSON API and set it up."_
 
 The skill reads your project (`dashfy.json`, `dashfy.config.yml`, installed
-`@dashfy/ext-*` packages) and provides the assistant with the detected paths,
+`@getdashfy/ext-*` packages) and provides the assistant with the detected paths,
 configured registries, and available widgets so it can generate correct code on the
 first try.
 
@@ -40,7 +40,7 @@ The skill provides your AI assistant with the following knowledge:
 ### Project context
 
 The skill runs `dashfy info --json` to read your project configuration: detected
-files, `dashfy.json` paths, configured registries, and installed `@dashfy/ext-*`
+files, `dashfy.json` paths, configured registries, and installed `@getdashfy/ext-*`
 packages. This grounds every suggestion in your actual project.
 
 ### CLI commands
@@ -84,7 +84,7 @@ suggestions reflect your detected files, registries, and installed extensions.
 
 The assistant follows Dashfy conventions: it uses `dashfy add` / `dashfy remove`
 codemods instead of manual setup, keeps widgets within the dashboard grid, and
-classifies registry addresses correctly (bare names resolve to `@dashfy`).
+classifies registry addresses correctly (bare names resolve to `@getdashfy`).
 
 ### Extension discovery
 

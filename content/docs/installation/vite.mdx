@@ -76,7 +76,7 @@ Dashfy server runs on [http://localhost:5001](http://localhost:5001).
 Add the Dashfy runtime packages:
 
 ```package-install
-@dashfy/server @dashfy/ui
+@getdashfy/server @getdashfy/ui
 ```
 
 And the dev tooling used to run the server:
@@ -91,7 +91,7 @@ Add a `dashfy.server.ts` file at the project root. It loads your dashboard
 configuration and starts the Dashfy backend:
 
 ```ts title="dashfy.server.ts"
-import { Dashfy } from '@dashfy/server'
+import { Dashfy } from '@getdashfy/server'
 
 const dashfy = new Dashfy()
 
@@ -127,7 +127,7 @@ dashboards:
 Render `<Dashfy />` in your app. In `src/App.tsx`:
 
 ```tsx title="src/App.tsx"
-import { Dashfy } from '@dashfy/ui'
+import { Dashfy } from '@getdashfy/ui'
 
 export const App = () => {
   return <Dashfy />
@@ -137,9 +137,9 @@ export const App = () => {
 Import the styles and load the themes in `src/main.tsx`:
 
 ```tsx title="src/main.tsx"
-import '@dashfy/ui/styles.css'
+import '@getdashfy/ui/styles.css'
 
-import { ThemeRegistry } from '@dashfy/ui'
+import { ThemeRegistry } from '@getdashfy/ui'
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 
@@ -224,7 +224,7 @@ registry. The CLI installs the package and sets it up in `src/App.tsx`,
 `dashfy.server.ts`, `dashfy.config.yml`, and `.env`:
 
 ```npm
-npx dashfy@latest add @dashfy/github
+npx dashfy@latest add @getdashfy/github
 ```
 
 See [Extensions](/docs/extensions) and the [CLI reference](/docs/cli) for details.

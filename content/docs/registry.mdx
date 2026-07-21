@@ -4,7 +4,7 @@ description: How Dashfy resolves extensions from registries, and how to author a
 ---
 
 Extensions are resolved from a **registry** at runtime over HTTP — the same model as
-[shadcn/ui](https://ui.shadcn.com/docs/registry). The default registry is the `@dashfy` namespace, served from
+[shadcn/ui](https://ui.shadcn.com/docs/registry). The default registry is the `@getdashfy` namespace, served from
 `https://registry.dashfy.dev/r`. A Dashfy registry item describes an npm package plus
 setup metadata, so "applying" an extension installs the package and runs codemods,
 rather than copying source files.
@@ -52,7 +52,7 @@ placeholders that resolve from your `.env`:
 
 ## `dashfy registry add [registries...]`
 
-Adds custom registries to your `dashfy.json` (merged over the built-in `@dashfy`).
+Adds custom registries to your `dashfy.json` (merged over the built-in `@getdashfy`).
 Accepts a bare namespace resolved from the discovery index, or an explicit
 `namespace=url` pair.
 
@@ -72,7 +72,7 @@ npx dashfy@latest registry add @acme=https://acme.com/r/{name}.json
 
 Removes custom registries from your `dashfy.json` — the inverse of `registry add`.
 Removing a namespace that is not configured is a safe no-op, and the built-in
-`@dashfy` namespace can never be removed.
+`@getdashfy` namespace can never be removed.
 
 ```npm
 npx dashfy@latest registry remove @acme
