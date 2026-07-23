@@ -1,0 +1,51 @@
+---
+title: Deployment
+description: Deploy a Dashfy app to production. Railway is the recommended one-click host.
+---
+
+A Dashfy app is a long-running server that serves the built client and streams data
+to it over WebSockets. Deploy it to any host that can run a persistent Node process.
+
+## Requirements
+
+Dashfy needs a runtime environment that supports:
+
+- a **persistent Node process** — the server stays running to hold WebSocket
+  connections (static and serverless-only hosts are not enough)
+- **WebSockets** — real-time updates stream over a Socket.IO connection
+- **environment variables** — for API tokens your extensions need (for example
+  `GITHUB_TOKEN`)
+
+In production the server serves the built client and handles the WebSocket
+connection on a single `PORT`, so no separate frontend deployment is required.
+
+## Recommended: Railway
+
+[Railway](https://railway.app) is the recommended host — it runs the persistent
+server, supports WebSockets, and deploys in one click.
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/dashfy)
+
+The template deploys the [`dashfy-demo`](https://github.com/dashfy/dashfy-demo)
+project, which is preconfigured for Railway via `railway.toml`. See the
+[demo repository](https://github.com/dashfy/dashfy-demo) for the full build and
+start configuration.
+
+## Editing configuration
+
+<Callout type="warning" title="Ejecting is required to change config">
+  Railway template deployments run directly from the upstream repository, so you do not get an
+  editable copy on deploy. To persistently change `dashfy.config.yml` (or any source), **Eject** the
+  service in Railway — or fork [`dashfy-demo`](https://github.com/dashfy/dashfy-demo) and deploy
+  from your fork. Edits made only on the running container's filesystem are lost on the next deploy.
+</Callout>
+
+## Other hosts
+
+Dashfy runs anywhere you can keep a Node process alive with WebSocket support — for
+example [Fly.io](https://fly.io), [Render](https://render.com), a [Docker container](https://docs.docker.com/get-started/), or your own VPS.
+
+## Live reference
+
+The official demo runs this exact setup at
+[demo.dashfy.dev](https://demo.dashfy.dev).

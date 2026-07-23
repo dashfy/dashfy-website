@@ -19,6 +19,7 @@
 
 - [Configuration](https://dashfy.dev/docs/configuration): Define Dashfy dashboards declaratively using TypeScript, JSON, or YAML.
 - [How it works](https://dashfy.dev/docs/how-it-works): Dashfy uses a server–client architecture to load, compose, and render dashboards in real time.
+- [Deployment](https://dashfy.dev/docs/deployment): Deploy a Dashfy app to production. Railway is the recommended one-click host.
 - [Extensions](https://dashfy.dev/docs/extensions): Extensions add widgets and data sources to Dashfy. Add, remove, and audit them with the CLI.
 - [Themes](https://dashfy.dev/docs/themes): Built-in themes, light/dark mode, and custom theming with @getdashfy/themes.
 
