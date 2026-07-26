@@ -10,7 +10,7 @@ widgets:
     y: 0
     columns: 1
     rows: 1
-    repository: facebook/react
+    repository: react/react
   - extension: github
     widget: PullRequests
     x: 1
