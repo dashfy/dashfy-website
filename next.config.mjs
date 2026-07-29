@@ -35,6 +35,17 @@ const nextConfig = {
         source: '/docs/:slug*.md',
         destination: '/docs-raw/:slug*',
       },
+      // The JSON Schemas are authored in the dashfy repo and deployed with the
+      // registry, but their $id is on this origin. Serve them from here so the
+      // canonical URLs resolve without keeping a second copy in sync.
+      {
+        source: '/schema.json',
+        destination: 'https://registry.dashfy.dev/schema.json',
+      },
+      {
+        source: '/schema/:file',
+        destination: 'https://registry.dashfy.dev/schema/:file',
+      },
     ]
   },
 }
