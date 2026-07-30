@@ -22,11 +22,14 @@ first try.
 
 ## Install
 
-Add the Dashfy skill to your AI agent with the CLI:
+Add the Dashfy skill to your AI agent with the [`skills`](https://skills.sh) CLI:
 
 ```npm
-npx dashfy@latest add skill
+npx skills add dashfy/dashfy
 ```
+
+This detects the agents installed in your project and writes the skill into each one's
+directory. Learn more about agent skills at [skills.sh](https://skills.sh).
 
 <Callout type="info" title="Using Cursor?">
   The [Cursor plugin](/docs/cursor-plugin) bundles the skill together with the project rules and the
@@ -102,13 +105,19 @@ place.
 ## Using with other agents
 
 The skill is a standard agent skill (a `SKILL.md` with `name` and `description`), so
-it works beyond Cursor:
+the same install works across Claude Code, Codex, Copilot, Cline, Zed, and the other
+agents the `skills` CLI supports. Target specific ones with `--agent`:
 
-- **Cursor** — install the [Cursor plugin](/docs/cursor-plugin), which bundles the
-  skill, project rules, and the MCP server.
-- **Claude Code, Codex, OpenCode, and others** — use the skill directly, and connect
-  the MCP tools with `dashfy mcp init` (see the [MCP server](/docs/mcp) reference for
-  the supported clients).
+```npm
+npx skills add dashfy/dashfy --agent claude-code
+```
+
+Two Dashfy-specific notes:
+
+- **Cursor** — the [Cursor plugin](/docs/cursor-plugin) is the richer option, bundling
+  the skill together with the project rules and the MCP server.
+- **MCP tools** — the skill tells your agent which CLI commands to run, but the
+  [MCP server](/docs/mcp) is configured separately with `dashfy mcp init`.
 
 ## Learn more
 

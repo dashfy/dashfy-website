@@ -49,10 +49,10 @@ const INSTALL_TABS: readonly InstallTab[] = [
     label: 'Skill',
     description: `Add the ${siteConfig.name} skill to your AI agent.`,
     commands: {
-      pnpm: 'pnpm dlx dashfy@latest add skill',
-      npm: 'npx dashfy@latest add skill',
-      yarn: 'yarn dlx dashfy@latest add skill',
-      bun: 'bunx dashfy@latest add skill',
+      pnpm: 'pnpm dlx skills add dashfy/dashfy',
+      npm: 'npx skills add dashfy/dashfy',
+      yarn: 'yarn dlx skills add dashfy/dashfy',
+      bun: 'bunx skills add dashfy/dashfy',
     },
   },
 ] as const

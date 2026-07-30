@@ -150,12 +150,12 @@ Scaffold a new project:
 - yarn: \`yarn dlx dashfy@latest init\`
 - bun: \`bunx dashfy@latest init\`
 
-Add the ${siteConfig.name} skill to an AI agent:
+Add the ${siteConfig.name} skill to an AI agent (via the skills CLI, not the ${siteConfig.name} CLI):
 
-- pnpm: \`pnpm dlx dashfy@latest add skill\`
-- npm: \`npx dashfy@latest add skill\`
-- yarn: \`yarn dlx dashfy@latest add skill\`
-- bun: \`bunx dashfy@latest add skill\`
+- pnpm: \`pnpm dlx skills add dashfy/dashfy\`
+- npm: \`npx skills add dashfy/dashfy\`
+- yarn: \`yarn dlx skills add dashfy/dashfy\`
+- bun: \`bunx skills add dashfy/dashfy\`
 
 Add an extension (GitHub example):
 
