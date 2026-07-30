@@ -88,13 +88,36 @@ location with `DASHFY_REGISTRIES_URL` for offline work or testing.
 ## `dashfy registry build [packages]`
 
 Builds the hosted registry artifacts (`<name>.json` per extension + `index.json`)
-from the `dashfy` metadata field of each `ext-*` package.
+from the `dashfy` metadata field of each extension.
 
-| Flag                  | Description                                         |
-| --------------------- | --------------------------------------------------- |
-| `[packages]`          | Directory with the `ext-*` packages (`./packages`). |
-| `-o, --output <path>` | Destination directory (`apps/registry/public/r`).   |
-| `-c, --cwd <cwd>`     | Working directory.                                  |
+With `--from-npm` it reads the latest manifest each listed package has published.
+This is how the files served at `registry.dashfy.dev` are produced: extensions live
+in their own repositories, so npm — not any single checkout — is the source of truth
+for what the catalog serves.
+
+```npm
+npx dashfy@latest registry build --from-npm apps/registry/extensions.json
+```
+
+The list file is `{ "packages": ["@scope/ext-name", ...] }`. A package that cannot be
+fetched or has no `dashfy` field fails the build instead of being skipped, so a
+transient error cannot publish a catalog that is missing extensions. Override the npm
+origin with `DASHFY_NPM_REGISTRY_URL` to build against a mirror or a local directory
+of manifests.
+
+Without `--from-npm`, the command reads local `ext-*` package directories instead.
+Use this to preview an extension's registry item before publishing it:
+
+```npm
+npx dashfy@latest registry build ./packages
+```
+
+| Flag                    | Description                                         |
+| ----------------------- | --------------------------------------------------- |
+| `[packages]`            | Directory with the `ext-*` packages (`./packages`). |
+| `-n, --from-npm <path>` | JSON file listing published packages to build from. |
+| `-o, --output <path>`   | Destination directory (`apps/registry/public/r`).   |
+| `-c, --cwd <cwd>`       | Working directory.                                  |
 
 ## `dashfy registry validate [dir]`
 
