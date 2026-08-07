@@ -40,10 +40,10 @@ grid. Remaining fields are widget-specific props.
 
 ## TypeScript
 
-```ts
+```ts lineNumbers title="dashfy.config.ts"
 import type { DashfyConfig } from '@getdashfy/types'
 
-const dashfyConfig: DashfyConfig = {
+export const dashfyConfig: DashfyConfig = {
   dashboards: [
     {
       title: 'GitHub Dashboard',
@@ -94,7 +94,7 @@ const dashfyConfig: DashfyConfig = {
 
 ## JSON
 
-```json
+```json lineNumbers title="dashfy.config.json"
 {
   "dashboards": [
     {
@@ -146,7 +146,7 @@ const dashfyConfig: DashfyConfig = {
 
 ## YAML
 
-```yml
+```yml lineNumbers title="dashfy.config.yml"
 title: GitHub Dashboard
 columns: 3
 rows: 2
@@ -185,7 +185,7 @@ widgets:
 Load a file (JSON or YAML) on the server with `configureFromFile`, or pass a
 TypeScript object to `configure`:
 
-```ts
+```ts lineNumbers title="dashfy.server.ts"
 await dashfy.configureFromFile('./dashfy.config.yml')
 // or
 dashfy.configure(dashfyConfig)
