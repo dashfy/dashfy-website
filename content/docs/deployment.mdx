@@ -19,6 +19,48 @@ Dashfy needs a runtime environment that supports:
 In production the server serves the built client and handles the WebSocket
 connection on a single `PORT`, so no separate frontend deployment is required.
 
+## Production build
+
+Projects scaffolded from any template are already set up for this — `pnpm build`
+followed by `pnpm start` serves the dashboard and the WebSocket on one port. If you added
+Dashfy to an existing app, two things need to line up.
+
+The client must build into a directory the server serves as static files, which defaults
+to `build/`:
+
+```ts lineNumbers title="vite.config.ts"
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    outDir: 'build',
+    emptyOutDir: true,
+  },
+})
+```
+
+Frameworks that emit the client into a nested directory don't need a post-build move —
+point the server at that directory with `staticDir` instead, which is resolved against
+`baseDir` (requires `@getdashfy/server` 0.2.0 or later):
+
+```yaml title="dashfy.config.yml"
+staticDir: build/client
+```
+
+The templates split along those two lines: Astro sets `outDir: './build'`, while React
+Router and TanStack Start keep their native output — `build/client` and `dist/client` —
+and set `staticDir` to match.
+
+And the client must connect to the same origin in production, rather than the
+`localhost:5001` default it uses in development:
+
+```tsx lineNumbers title="src/App.tsx"
+export const App = () => {
+  const serverUrl = import.meta.env.PROD ? window.location.origin : undefined
+
+  return <Dashfy serverUrl={serverUrl} />
+}
+```
+
 ## Recommended: Railway
 
 [Railway](https://railway.app) is the recommended host — it runs the persistent
@@ -40,12 +82,64 @@ start configuration.
   from your fork. Edits made only on the running container's filesystem are lost on the next deploy.
 </Callout>
 
+## Docker
+
+Every template includes a `Dockerfile` that builds the client and runs the server in a
+single container. From your project directory:
+
+```bash
+docker build -t my-dashfy-app .
+docker run --rm -p 5001:5001 my-dashfy-app
+```
+
+The dashboard is then available at http://localhost:5001.
+
+### Environment variables
+
+Extension tokens are only read by the server at runtime, so nothing secret is baked into
+the image. Pass them when you run the container:
+
+```bash
+docker run --rm -p 5001:5001 -e GITHUB_TOKEN=ghp_xxx my-dashfy-app
+```
+
+The server also honors `PORT` and binds `0.0.0.0`, which is what lets a platform assign
+its own port:
+
+```bash
+docker run --rm -p 8080:8080 -e PORT=8080 my-dashfy-app
+```
+
+### Changing dashboards without rebuilding
+
+Mount your config over the copy inside the image. The server watches the file, so edits
+apply without restarting the container:
+
+```bash
+docker run --rm -p 5001:5001 \
+  -v "$(pwd)/dashfy.config.yml:/app/dashfy.config.yml:ro" \
+  my-dashfy-app
+```
+
+### Reproducible builds
+
+Templates ship without a lockfile, so the included `Dockerfile` runs a plain
+`pnpm install`. Commit `pnpm-lock.yaml` after your first install, then change the install
+steps to `pnpm install --frozen-lockfile` so every rebuild resolves the same versions.
+
+<Callout type="info" title="System widgets measure the container">
+  Widgets from the system extension report the container's CPU, memory, and processes rather than
+  the Docker host's. Monitoring the host itself requires granting the container extra access, such
+  as `--pid=host` and a mounted `/proc`.
+</Callout>
+
 ## Other hosts
 
 Dashfy runs anywhere you can keep a Node process alive with WebSocket support — for
-example [Fly.io](https://fly.io), [Render](https://render.com), a [Docker container](https://docs.docker.com/get-started/), or your own VPS.
+example [Fly.io](https://fly.io), [Render](https://render.com), or your own VPS. The
+[Docker](#docker) image works on any host that can run containers.
 
 ## Live reference
 
-The official demo runs this exact setup at
+The official demo runs the single-port production build described above at
 [demo.dashfy.dev](https://demo.dashfy.dev).

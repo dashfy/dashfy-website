@@ -44,6 +44,24 @@
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
+
+  /* Line numbers, opted into per block with the ```ts lineNumbers meta flag.
+     Grid rows drop the newline text nodes between Shiki's line spans. */
+  .dashfy-docs-code[data-line-numbers] code {
+    display: grid;
+    counter-reset: line;
+  }
+
+  .dashfy-docs-code[data-line-numbers] .line::before {
+    content: counter(line);
+    counter-increment: line;
+    display: inline-block;
+    width: 1.75rem;
+    margin-right: 1.25rem;
+    text-align: right;
+    color: var(--muted-foreground);
+    user-select: none;
+  }
 }
 
 /* Docs <Steps> numbered markers */
