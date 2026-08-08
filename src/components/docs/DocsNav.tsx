@@ -73,22 +73,28 @@ export const DocsNav = ({ tree, onNavigate }: DocsNavProps) => {
       )
     }
 
+    // A folder collapses to a single entry linking its index page, which lists the
+    // nested pages itself. Folders without an index page keep their label so their
+    // children stay reachable.
     if (node.type === 'folder') {
+      const key = generateReactKey('docs-folder', String(node.name), index)
+
+      if (node.index) {
+        return (
+          <NavLink
+            key={key}
+            active={isNavActive(node.index.url, pathname)}
+            href={node.index.url}
+            onNavigate={onNavigate}
+          >
+            {node.index.name}
+          </NavLink>
+        )
+      }
+
       return (
-        <div
-          key={generateReactKey('docs-folder', String(node.name), index)}
-          className="flex flex-col gap-0.5"
-        >
+        <div key={key} className="flex flex-col gap-0.5">
           <SectionLabel>{node.name}</SectionLabel>
-          {node.index && (
-            <NavLink
-              active={isNavActive(node.index.url, pathname)}
-              href={node.index.url}
-              onNavigate={onNavigate}
-            >
-              {node.index.name}
-            </NavLink>
-          )}
           {node.children.map((child, childIndex) => renderNode(child, childIndex))}
         </div>
       )
