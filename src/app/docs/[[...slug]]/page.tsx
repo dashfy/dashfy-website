@@ -16,7 +16,7 @@ import { mdxComponents } from '@/components/docs/mdx'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { ANALYTICS_EVENTS } from '@/lib/analytics'
-import { getDocMarkdown } from '@/lib/docsRaw'
+import { getProcessedMarkdown } from '@/lib/getLLMText'
 import { getWebPageJsonLd } from '@/lib/jsonld'
 import { source } from '@/lib/source'
 
@@ -69,7 +69,7 @@ const DocsPage = async (props: DocsPageProps) => {
 
   const { body: MDX, toc, title, description } = page.data
   const neighbours = findNeighbour(source.pageTree, page.url)
-  const markdown = await getDocMarkdown(page)
+  const markdown = await getProcessedMarkdown(page)
   const markdownUrl = `${siteConfig.url}${page.url}.md`
 
   return (
