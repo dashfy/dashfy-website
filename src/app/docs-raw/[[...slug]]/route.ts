@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { NextResponse } from 'next/server'
 
-import { getDocMarkdown } from '@/lib/docsRaw'
+import { getLLMText } from '@/lib/getLLMText'
 import { source } from '@/lib/source'
 
 export const dynamic = 'force-static'
@@ -20,7 +20,7 @@ export const GET = async (
     notFound()
   }
 
-  const markdown = await getDocMarkdown(page)
+  const markdown = await getLLMText(page)
 
   return new NextResponse(markdown, {
     headers: {

@@ -3,5 +3,6 @@ export const paths = {
   docs: '/docs',
   extensions: '/extensions',
   home: '/',
+  llmsFullTxt: '/llms-full.txt',
   llmsTxt: '/llms.txt',
 }

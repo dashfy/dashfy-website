@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": {
     "name": "Breno Polanski",
-    "email": "breno.polanski@gmail.com",
+    "email": "breno@dashfy.com",
     "url": "https://github.com/brenopolanski"
   },
   "portless": {
@@ -25,11 +25,9 @@
     "dev:next": "next dev --turbopack",
     "format": "pnpm prettier --write",
     "format:check": "pnpm prettier --check",
-    "generate:llms": "node scripts/generate-llms-txt.ts",
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "lint:fix": "eslint . --fix",
-    "prebuild": "pnpm generate:llms",
     "prepare": "husky",
     "prettier": "prettier \"**/*.{js,mjs,ts,tsx,css,json,md}\"",
     "postinstall": "fumadocs-mdx",
@@ -43,8 +41,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "env.style": "^1.0.1",
-    "fumadocs-core": "16.0.5",
-    "fumadocs-mdx": "13.0.2",
+    "fumadocs-core": "16.14.2",
+    "fumadocs-mdx": "13.0.8",
     "lucide-react": "^1.16.0",
     "next": "16.1.7",
     "next-themes": "^0.4.6",

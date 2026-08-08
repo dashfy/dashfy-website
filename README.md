@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://dashfy.dev">
     <img src="./public/brand/dashfy-social-logo.svg" alt="Dashfy Logo" width="150">
-  </a>  
+  </a>
 </p>
 
 <h1 align="center">
@@ -45,10 +45,10 @@ src/app/          # Routes (incl. docs + docs-raw .md routes), metadata, OG imag
 src/components/   # UI sections, navigation, docs, providers
 src/config/       # site, paths, extensions, brand
 src/hooks/        # Client hooks
-src/lib/          # utils, analytics, jsonld, og, shiki, source, docsRaw
+src/lib/          # utils, analytics, jsonld, og, shiki, source, LLM text helpers
 src/styles/       # Global styles
 src/types/        # Type declarations
-scripts/          # llms.txt generator, clean script
+scripts/          # clean script
 public/brand/     # Brand assets served statically
 ```
 
@@ -91,29 +91,27 @@ pnpm build
 pnpm start
 ```
 
-> `pnpm build` runs the `generate:llms` prebuild hook to regenerate `public/llms.txt`.
-
 ## Scripts
 
-| Script              | Description                                                    |
-| ------------------- | -------------------------------------------------------------- |
-| `dev` / `dev:next`  | Start the development server                                   |
-| `build` / `start`   | Build and run the production server                            |
-| `lint` / `lint:fix` | Run ESLint (optionally with autofix)                           |
-| `format`            | Format files with Prettier                                     |
-| `format:check`      | Check formatting without writing                               |
-| `typecheck`         | Type-check the project with `tsc`                              |
-| `check:fix`         | Run format, lint fix, and typecheck in sequence                |
-| `generate:llms`     | Generate `public/llms.txt` from `scripts/generate-llms-txt.ts` |
-| `clean`             | Remove build artifacts                                         |
+| Script              | Description                                     |
+| ------------------- | ----------------------------------------------- |
+| `dev` / `dev:next`  | Start the development server                    |
+| `build` / `start`   | Build and run the production server             |
+| `lint` / `lint:fix` | Run ESLint (optionally with autofix)            |
+| `format`            | Format files with Prettier                      |
+| `format:check`      | Check formatting without writing                |
+| `typecheck`         | Type-check the project with `tsc`               |
+| `check:fix`         | Run format, lint fix, and typecheck in sequence |
+| `clean`             | Remove build artifacts                          |
 
 ## Documentation
 
 The documentation is authored as MDX files in `content/docs/` and rendered at [dashfy.dev/docs](https://dashfy.dev/docs) with [Fumadocs](https://fumadocs.dev).
 
-- Every page is also available as raw markdown by appending `.md` (e.g. `/docs/cli.md`), handled by the `docs-raw` route — handy for AI agents.
+- Every page is also available as markdown by appending `.md` (e.g. `/docs/cli.md`), handled by the `docs-raw` route — handy for AI agents.
 - Docs pages include a "Copy Page" action with "Open in ChatGPT / Claude / Cursor / Copilot".
-- `public/llms.txt` is generated from the docs and site config by `pnpm generate:llms`, which also runs automatically on `prebuild`.
+- `/llms.txt` is a statically generated route that indexes the docs page tree and adds Dashfy-specific sections (`src/lib/llmsIndex.ts`).
+- `/llms-full.txt` serves every docs page concatenated into a single file.
 
 ## Related Repositories
 
