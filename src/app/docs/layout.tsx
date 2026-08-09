@@ -1,3 +1,4 @@
+import { DocsAskAi } from '@/components/docs/DocsAskAi'
 import { DocsMobileNav } from '@/components/docs/DocsMobileNav'
 import { DocsSidebar } from '@/components/docs/DocsSidebar'
 import { CompactStickyFooter } from '@/components/navigation/footer/CompactStickyFooter'
@@ -21,6 +22,7 @@ const DocsLayout = ({ children }: DocsLayoutProps) => {
           <main className="min-w-0 flex-1 pb-20">{children}</main>
         </div>
       </div>
+      <DocsAskAi />
       <CompactStickyFooter />
     </div>
   )

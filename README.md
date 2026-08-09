@@ -76,7 +76,15 @@ cd dashfy-website
 pnpm install
 ```
 
-4. Start the development server:
+4. Optional — enable Ask AI:
+
+```bash
+cp .env.example .env.local
+```
+
+Add an `OPENAI_API_KEY` to `.env.local`. Without it the docs chat returns 503 and everything else works as normal.
+
+5. Start the development server:
 
 ```bash
 pnpm dev
@@ -113,6 +121,17 @@ The documentation is authored as MDX files in `content/docs/` and rendered at [d
 - Docs pages include a "Copy Page" action with "Open in ChatGPT / Claude / Cursor / Copilot".
 - `/llms.txt` is a statically generated route that indexes the docs page tree and adds Dashfy-specific sections (`src/lib/llmsIndex.ts`).
 - `/llms-full.txt` serves every docs page concatenated into a single file.
+
+### Ask AI
+
+Docs pages have an "Ask AI" button that answers questions from the documentation only. `/api/chat` streams from OpenAI with the entire corpus in the system prompt — the same text `/llms-full.txt` serves, shared through `src/lib/llmsFull.ts` — so there is no separate search index to keep in sync.
+
+| Variable                   | Required | Description                                              |
+| -------------------------- | -------- | -------------------------------------------------------- |
+| `OPENAI_API_KEY`           | Yes      | Enables the route. When absent, `/api/chat` returns 503. |
+| `OPENAI_MODEL`             | No       | Model id. Defaults to `gpt-4o-mini`.                     |
+| `UPSTASH_REDIS_REST_URL`   | No       | With the token, switches rate limiting to Upstash Redis. |
+| `UPSTASH_REDIS_REST_TOKEN` | No       | Pairs with the URL. Set both, or neither.                |
 
 ## Related Repositories
 
