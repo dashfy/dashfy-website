@@ -76,7 +76,15 @@ cd dashfy-website
 pnpm install
 ```
 
-4. Start the development server:
+4. Optional — enable Ask AI:
+
+```bash
+cp .env.example .env.local
+```
+
+Add an `OPENAI_API_KEY` to `.env.local`. Without it the docs chat returns 503 and everything else works as normal.
+
+5. Start the development server:
 
 ```bash
 pnpm dev
@@ -113,6 +121,21 @@ The documentation is authored as MDX files in `content/docs/` and rendered at [d
 - Docs pages include a "Copy Page" action with "Open in ChatGPT / Claude / Cursor / Copilot".
 - `/llms.txt` is a statically generated route that indexes the docs page tree and adds Dashfy-specific sections (`src/lib/llmsIndex.ts`).
 - `/llms-full.txt` serves every docs page concatenated into a single file.
+
+### Ask AI
+
+Docs pages have an "Ask AI" button that answers questions from the documentation only. `/api/chat` streams from OpenAI with the entire corpus in the system prompt — the same text `/llms-full.txt` serves, shared through `src/lib/llmsFull.ts` — so there is no separate search index to keep in sync.
+
+| Variable         | Required | Description                                              |
+| ---------------- | -------- | -------------------------------------------------------- |
+| `OPENAI_API_KEY` | Yes      | Enables the route. When absent, `/api/chat` returns 503. |
+| `OPENAI_MODEL`   | No       | Model id. Defaults to `gpt-4o-mini`.                     |
+
+Cost notes:
+
+- The corpus is about 76K characters (roughly 19K tokens) and is sent with every question, so input tokens dominate the bill. It is placed first in the prompt and is byte-identical across requests, which lets OpenAI's automatic prompt caching discount the repeated prefix.
+- Conversation history is capped to the last 10 messages so long threads do not compound.
+- `src/lib/rateLimit.ts` throttles by IP per server instance. That is a speed bump, not a guarantee — set a hard spend cap in the OpenAI dashboard as well.
 
 ## Related Repositories
 

@@ -16,6 +16,8 @@ export const ANALYTICS_EVENTS = {
   docsCopyCode: 'docs_copy_code',
   docsSearchOpen: 'docs_search_open',
   docsSearchSelect: 'docs_search_select',
+  docsAskAiOpen: 'docs_ask_ai_open',
+  docsAskAiSubmit: 'docs_ask_ai_submit',
   docsNavClick: 'docs_nav_click',
   docsTocClick: 'docs_toc_click',
   docsPaginationClick: 'docs_pagination_click',
