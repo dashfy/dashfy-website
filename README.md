@@ -133,13 +133,6 @@ Docs pages have an "Ask AI" button that answers questions from the documentation
 | `UPSTASH_REDIS_REST_URL`   | No       | With the token, switches rate limiting to Upstash Redis. |
 | `UPSTASH_REDIS_REST_TOKEN` | No       | Pairs with the URL. Set both, or neither.                |
 
-Cost notes:
-
-- The corpus is about 76K characters (roughly 19K tokens) and is sent with every question, so input tokens dominate the bill. It is placed first in the prompt and is byte-identical across requests, which lets OpenAI's automatic prompt caching discount the repeated prefix.
-- Conversation history is capped to the last 10 messages so long threads do not compound.
-- `src/lib/rateLimit.ts` throttles by IP at 8 requests per minute. With the Upstash variables set it counts in Redis, so the limit holds across every serverless instance; without them it falls back to `src/lib/rateLimitMemory.ts`, which counts per instance and is a speed bump rather than a guarantee. Either way, set a hard spend cap in the OpenAI dashboard.
-- Rate limiting degrades rather than failing: a slow Redis lets the request through after one second, and an unreachable one falls back to the in-memory limiter. Upstash's free tier covers 500K commands per month against roughly 2 to 4 commands per question, so a docs site should not leave it. Credentials come from the [Upstash Vercel integration](https://vercel.com/marketplace/upstash) or the Upstash console; no Vercel firewall rule is involved.
-
 ## Related Repositories
 
 - [dashfy/dashfy](https://github.com/dashfy/dashfy) — the Dashfy framework monorepo, packages, and demo examples
