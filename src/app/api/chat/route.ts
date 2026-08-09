@@ -1,4 +1,5 @@
 import { openai } from '@ai-sdk/openai'
+import { ipAddress } from '@vercel/functions'
 import type { UIMessage } from 'ai'
 import {
   convertToModelMessages,
@@ -10,6 +11,7 @@ import {
 import { siteConfig } from '@/config/site'
 import { getLlmsFullText } from '@/lib/llmsFull'
 import { rateLimit } from '@/lib/rateLimit'
+import { blankToUndefined } from '@/lib/utils'
 
 export const maxDuration = 30
 
@@ -29,22 +31,22 @@ interface ChatRequestBody {
   messages?: UIMessage[]
 }
 
-/** A blank env var or header carries no more meaning than a missing one. */
-const blankToUndefined = (value: string | null | undefined) => {
-  const trimmed = value?.trim()
-
-  return trimmed !== undefined && trimmed.length > 0 ? trimmed : undefined
-}
-
+/**
+ * `ipAddress` reads a header only Vercel's proxy sets, so keep a fallback for
+ * everywhere else. Both are blank-checked: an empty header would otherwise become
+ * one shared bucket for every visitor.
+ */
 const getClientId = (request: Request) =>
-  blankToUndefined(request.headers.get('x-forwarded-for')?.split(',')[0]) ?? 'unknown'
+  blankToUndefined(ipAddress(request)) ??
+  blankToUndefined(request.headers.get('x-forwarded-for')?.split(',')[0]) ??
+  'unknown'
 
 export const POST = async (request: Request) => {
   if (!process.env.OPENAI_API_KEY) {
     return new Response('Ask AI is not configured on this deployment.', { status: 503 })
   }
 
-  const { allowed, retryAfterSeconds } = rateLimit(getClientId(request))
+  const { allowed, retryAfterSeconds } = await rateLimit(getClientId(request))
 
   if (!allowed) {
     return new Response('Too many questions in a short time. Please wait a moment.', {
