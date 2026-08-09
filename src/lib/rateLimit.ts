@@ -1,12 +1,8 @@
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 
-import {
-  MAX_REQUESTS,
-  memoryRateLimit,
-  type RateLimitResult,
-  WINDOW_MS,
-} from '@/lib/rateLimitMemory'
+import type { RateLimitResult } from '@/lib/rateLimitMemory'
+import { MAX_REQUESTS, memoryRateLimit, WINDOW_MS } from '@/lib/rateLimitMemory'
 
 /** Past this, the request is allowed through rather than waiting on Redis. */
 const REDIS_TIMEOUT_MS = 1_000
