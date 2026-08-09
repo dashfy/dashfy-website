@@ -101,7 +101,8 @@ pnpm start
 | `format`            | Format files with Prettier                      |
 | `format:check`      | Check formatting without writing                |
 | `typecheck`         | Type-check the project with `tsc`               |
-| `check:fix`         | Run format, lint fix, and typecheck in sequence |
+| `lint:links`        | Validate internal doc links, cards, and anchors |
+| `check:fix`         | Run format, lint fix, typecheck, and link check |
 | `clean`             | Remove build artifacts                          |
 
 ## Documentation

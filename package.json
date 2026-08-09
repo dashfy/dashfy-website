@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "next build",
-    "check:fix": "pnpm format && pnpm lint:fix && pnpm typecheck",
+    "check:fix": "pnpm format && pnpm lint:fix && pnpm typecheck && pnpm lint:links",
     "clean": "/bin/bash scripts/clean.sh",
     "dev": "portless",
     "dev:next": "next dev --turbopack",
@@ -28,6 +28,7 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "lint:fix": "eslint . --fix",
+    "lint:links": "fumadocs-mdx && tsx scripts/lint-links.ts",
     "prepare": "husky",
     "prettier": "prettier \"**/*.{js,mjs,ts,tsx,css,json,md}\"",
     "postinstall": "fumadocs-mdx",
@@ -74,11 +75,13 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
+    "next-validate-link": "^1.6.7",
     "portless": "^0.13.0",
     "postcss": "^8",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.2.1",
+    "tsx": "^4.23.11",
     "typescript": "^5.9.3",
     "unified": "^11.0.5"
   }
