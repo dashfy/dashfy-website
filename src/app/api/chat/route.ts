@@ -1,10 +1,10 @@
 import { openai } from '@ai-sdk/openai'
+import type { UIMessage } from 'ai'
 import {
   convertToModelMessages,
   createUIMessageStreamResponse,
   streamText,
   toUIMessageStream,
-  type UIMessage,
 } from 'ai'
 
 import { siteConfig } from '@/config/site'
