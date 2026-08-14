@@ -29,9 +29,10 @@
     "lint-staged": "lint-staged",
     "lint:fix": "eslint . --fix",
     "lint:links": "fumadocs-mdx && tsx scripts/lint-links.ts",
+    "postinstall": "fumadocs-mdx",
+    "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "prettier": "prettier \"**/*.{js,mjs,ts,tsx,css,json,md}\"",
-    "postinstall": "fumadocs-mdx",
     "start": "portless --script start:next",
     "start:next": "next start",
     "typecheck": "tsc --noEmit"
