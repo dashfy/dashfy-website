@@ -14,7 +14,7 @@ import { type FileObject, printErrors, scanURLs, validateFiles } from 'next-vali
 // `lint:links` script regenerates `.source` first so new pages are always seen.
 register('fumadocs-mdx/node/loader', import.meta.url)
 
-const { source } = await import('../src/lib/source.ts')
+const { source } = await import('../src/lib/source')
 
 const APP_DIR = 'src/app'
 const DOCS_DIR = 'content/docs'
