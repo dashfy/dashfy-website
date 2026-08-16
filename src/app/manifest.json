@@ -1,6 +1,7 @@
 {
   "name": "Dashfy",
   "short_name": "Dashfy",
+  "description": "Dashboards for developers - Define dashboards as code. Connect APIs. Render real-time interfaces.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
