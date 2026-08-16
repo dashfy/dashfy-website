@@ -54,7 +54,8 @@ const withMDX = createMDX()
 
 export default withEnvStyles(withMDX(nextConfig), {
   color: {
-    development: '#4f46e5',
-    preview: '#e5484d',
+    development: '#3b82f6',
+    preview: '#f59e0b',
+    staging: '#6b7280',
   },
 })
