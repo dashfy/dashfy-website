@@ -28,6 +28,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       <head>
         <meta content={siteConfig.title} name="apple-mobile-web-app-title" />
         <link href={paths.llmsTxt} rel="llms-txt" />
+        <link href={paths.llmsFullTxt} rel="llms-full-txt" />
       </head>
       <body>
         <Providers>
