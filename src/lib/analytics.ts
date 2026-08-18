@@ -1,5 +1,7 @@
 import { track } from '@vercel/analytics'
 
+import { isClient } from './utils'
+
 export const ANALYTICS_EVENTS = {
   ctaDemoClick: 'cta_demo_click',
   ctaDocsClick: 'cta_docs_click',
@@ -34,7 +36,7 @@ export const trackEvent = (name: string, data?: AnalyticsData) => {
     return
   }
 
-  const page = typeof window !== 'undefined' ? window.location.pathname : undefined
+  const page = isClient ? window.location.pathname : undefined
 
   track(name, { page, ...data })
 }
