@@ -1,5 +1,6 @@
 'use client'
 
+import type { ThemeProviderProps } from 'next-themes'
 import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes'
 import { useEffect } from 'react'
 
@@ -50,10 +51,7 @@ const ThemeHotkey = () => {
   return null
 }
 
-export const ThemeProvider = ({
-  children,
-  ...props
-}: React.ComponentProps<typeof NextThemesProvider>) => {
+export const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
   return (
     <NextThemesProvider
       attribute="class"
