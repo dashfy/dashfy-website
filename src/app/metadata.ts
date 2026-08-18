@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: 'default',
   },
+  applicationName: siteConfig.name,
+  keywords: [...siteConfig.keywords],
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,

@@ -17,4 +17,15 @@ export const siteConfig = {
     sponsor: '/sponsor',
     x: 'https://x.com/dashfydev',
   },
+  keywords: [
+    'dashfy',
+    'dashboards',
+    'dashboard-as-code',
+    'developer tools',
+    'api',
+    'real-time',
+    'extensions',
+    'widgets',
+    'charts',
+  ],
 } as const
