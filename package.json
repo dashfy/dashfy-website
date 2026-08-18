@@ -71,7 +71,6 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.1",
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/mdx": "^2.0.13",
     "@types/node": "^25.5.0",
@@ -86,7 +85,6 @@
     "lint-staged": "^15.2.11",
     "next-validate-link": "^1.6.7",
     "portless": "^0.13.0",
-    "postcss": "^8",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.2.1",
