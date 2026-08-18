@@ -1,11 +1,11 @@
-const appName = 'Dashfy'
+const siteName = 'Dashfy'
 const tagline = 'Dashboards for developers'
 const description = 'Define dashboards as code. Connect APIs. Render real-time interfaces.'
 
 export const siteConfig = {
-  name: appName,
+  name: siteName,
   tagline,
-  title: `${appName} - ${tagline}`,
+  title: `${siteName} - ${tagline}`,
   description,
   url: 'https://dashfy.dev',
   email: 'contact@dashfy.dev',
