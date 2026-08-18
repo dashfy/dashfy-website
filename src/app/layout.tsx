@@ -6,7 +6,6 @@ import { AnalyticsClickTracker } from '@/components/analytics/AnalyticsClickTrac
 import { JsonLd } from '@/components/common/JsonLd'
 import { SplashScreenWrapper } from '@/components/splashscreen/SplashScreenWrapper'
 import { paths } from '@/config/paths'
-import { siteConfig } from '@/config/site'
 import { fontVariables } from '@/lib/fonts'
 import { getSiteJsonLd } from '@/lib/jsonld'
 import { cn } from '@/lib/utils'
@@ -26,7 +25,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       suppressHydrationWarning
     >
       <head>
-        <meta content={siteConfig.title} name="apple-mobile-web-app-title" />
         <link href={paths.llmsTxt} rel="llms-txt" />
         <link href={paths.llmsFullTxt} rel="llms-full-txt" />
       </head>

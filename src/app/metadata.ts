@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  appleWebApp: {
+    title: siteConfig.name,
+    capable: true,
+    statusBarStyle: 'default',
+  },
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,
