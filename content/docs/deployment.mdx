@@ -1,6 +1,6 @@
 ---
 title: Deployment
-description: Deploy a Dashfy app to production. Railway is the recommended one-click host.
+description: Deploy a Dashfy app to production. Railway and Render both support one-click deploy.
 ---
 
 A Dashfy app is a long-running server that serves the built client and streams data
@@ -61,25 +61,42 @@ export const App = () => {
 }
 ```
 
-## Recommended: Railway
+## One-click hosts
 
-[Railway](https://railway.app) is the recommended host — it runs the persistent
-server, supports WebSockets, and deploys in one click.
+[Railway](https://railway.app) and [Render](https://render.com) both run a persistent
+Node process with WebSockets. The official demo is preconfigured for either host —
+`pnpm build` then `pnpm start`, with a health check at `/health`.
+
+### Railway
+
+Railway is the recommended host — it deploys the
+[`dashfy-demo`](https://github.com/dashfy/dashfy-demo) project in one click via
+`railway.toml`.
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/dashfy)
 
-The template deploys the [`dashfy-demo`](https://github.com/dashfy/dashfy-demo)
-project, which is preconfigured for Railway via `railway.toml`. See the
-[demo repository](https://github.com/dashfy/dashfy-demo) for the full build and
+See the [demo repository](https://github.com/dashfy/dashfy-demo) for the full build and
 start configuration.
+
+### Render
+
+Render also deploys [`dashfy-demo`](https://github.com/dashfy/dashfy-demo) in one click
+via `render.yaml`. Enter a `GITHUB_TOKEN` when prompted if you use the GitHub extension.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/dashfy/dashfy-demo)
+
+You can also create a **Web Service** in the Render dashboard, connect the repo, and use
+the same build and start commands. A Blueprint is only needed if you want Render to
+apply `render.yaml` automatically.
 
 ## Editing configuration
 
-<Callout type="warning" title="Ejecting is required to change config">
-  Railway template deployments run directly from the upstream repository, so you do not get an
-  editable copy on deploy. To persistently change `dashfy.config.yml` (or any source), **Eject** the
-  service in Railway — or fork [`dashfy-demo`](https://github.com/dashfy/dashfy-demo) and deploy
-  from your fork. Edits made only on the running container's filesystem are lost on the next deploy.
+<Callout type="warning" title="Fork or eject to change config">
+  One-click deployments run from the upstream [`dashfy-demo`](https://github.com/dashfy/dashfy-demo)
+  repository, so you do not get an editable copy on deploy. To persistently change
+  `dashfy.config.yml` (or any source), **Eject** the service in Railway, or fork the demo and
+  deploy from your fork on Railway or Render. Edits made only on the running container's
+  filesystem are lost on the next deploy.
 </Callout>
 
 ## Docker
@@ -136,8 +153,8 @@ steps to `pnpm install --frozen-lockfile` so every rebuild resolves the same ver
 ## Other hosts
 
 Dashfy runs anywhere you can keep a Node process alive with WebSocket support — for
-example [Fly.io](https://fly.io), [Render](https://render.com), or your own VPS. The
-[Docker](#docker) image works on any host that can run containers.
+example [Fly.io](https://fly.io) or your own VPS. The [Docker](#docker) image works on
+any host that can run containers.
 
 ## Live reference
 
