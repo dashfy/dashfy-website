@@ -5,6 +5,7 @@
   "assignees": ["brenopolanski"],
   "ignorePaths": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/.next/**"],
   "rebaseWhen": "never",
+  "rangeStrategy": "bump",
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
