@@ -38,7 +38,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^4.0.36",
+    "@ai-sdk/openai": "^4.0.53",
     "@ai-sdk/react": "^4.0.61",
     "@bprogress/next": "^3.2.12",
     "@upstash/ratelimit": "^2.0.8",
