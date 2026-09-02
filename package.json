@@ -42,7 +42,7 @@
     "@ai-sdk/react": "^4.0.61",
     "@bprogress/next": "^3.2.12",
     "@upstash/ratelimit": "^2.0.8",
-    "@upstash/redis": "^1.38.2",
+    "@upstash/redis": "^1.38.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/functions": "^3.9.1",
     "ai": "^7.0.58",
