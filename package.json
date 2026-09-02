@@ -47,7 +47,7 @@
     "@vercel/functions": "^3.9.1",
     "ai": "^7.0.58",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
+    "cn": "^0.2.4",
     "env.style": "^1.0.1",
     "fumadocs-core": "16.14.2",
     "fumadocs-mdx": "13.0.8",
@@ -63,7 +63,6 @@
     "shadcn": "^4.7.0",
     "shiki": "^4.2.0",
     "streamdown": "^2.5.0",
-    "tailwind-merge": "^3.6.0",
     "thesvg": "^3.0.10",
     "vaul": "^1.1.2"
   },
