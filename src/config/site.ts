@@ -1,12 +1,11 @@
 const siteName = 'Dashfy'
-const tagline = 'Dashboards for developers'
-const description = 'Define dashboards as code. Connect APIs. Render real-time interfaces.'
+const siteTagline = 'Dashboards for developers'
 
 export const siteConfig = {
   name: siteName,
-  tagline,
-  title: `${siteName} - ${tagline}`,
-  description,
+  tagline: siteTagline,
+  title: `${siteName} - ${siteTagline}`,
+  description: 'Define dashboards as code. Connect APIs. Render real-time interfaces.',
   url: 'https://dashfy.dev',
   email: 'contact@dashfy.dev',
   links: {
@@ -18,7 +17,7 @@ export const siteConfig = {
     x: 'https://x.com/dashfydev',
   },
   keywords: [
-    'dashfy',
+    siteName,
     'dashboards',
     'dashboard-as-code',
     'developer tools',
