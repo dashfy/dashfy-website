@@ -12,6 +12,7 @@ export const siteConfig = {
     demo: 'https://demo.dashfy.dev',
     discord: '/discord',
     github: 'https://github.com/dashfy',
+    linkedin: 'https://linkedin.com/company/dashfy',
     roadmap: '/roadmap',
     sponsor: '/sponsor',
     x: 'https://x.com/dashfydev',

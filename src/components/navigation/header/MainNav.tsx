@@ -120,7 +120,10 @@ export const MainNav = ({ open = false, onToggle, onClose }: MainNavProps) => {
                   onClick={onClose}
                 >
                   <span className="sr-only">{item.name}</span>
-                  <item.icon className="size-5" aria-hidden />
+                  <item.icon
+                    className={cn('size-5', item.name === 'LinkedIn' && 'size-4.5')}
+                    aria-hidden
+                  />
                 </ExternalLink>
               ))}
             </div>

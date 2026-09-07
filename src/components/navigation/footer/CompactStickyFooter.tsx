@@ -96,7 +96,10 @@ export const CompactStickyFooter = ({ disableHideOnScroll = false }: CompactStic
                   referrerPolicy="no-referrer"
                 >
                   <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-4 w-4" aria-hidden />
+                  <item.icon
+                    className={cn('size-4', item.name === 'LinkedIn' && 'size-3.5')}
+                    aria-hidden
+                  />
                 </ExternalLink>
               ))}
             </div>

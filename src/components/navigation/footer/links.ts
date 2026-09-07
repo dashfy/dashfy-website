@@ -1,6 +1,6 @@
 import type { LucideProps } from 'lucide-react'
 
-import { DiscordIcon, GitHubIcon, XTwitterIcon } from '@/components/common/Icons'
+import { DiscordIcon, GitHubIcon, LinkedInIcon, XTwitterIcon } from '@/components/common/Icons'
 import { paths } from '@/config/paths'
 import { siteConfig } from '@/config/site'
 
@@ -21,6 +21,7 @@ export const SOCIAL_LINKS: readonly SocialLink[] = [
   { name: 'Twitter', href: siteConfig.links.x, icon: XTwitterIcon },
   { name: 'GitHub', href: siteConfig.links.github, icon: GitHubIcon },
   { name: 'Discord', href: siteConfig.links.discord, icon: DiscordIcon },
+  { name: 'LinkedIn', href: siteConfig.links.linkedin, icon: LinkedInIcon },
 ] as const
 
 export const QUICK_LINKS: readonly QuickLink[] = [
