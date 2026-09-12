@@ -57,7 +57,7 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       overlayscrollbars:
-        specifier: ^2.14.0
+        specifier: ^2.16.0
         version: 2.16.0
       overlayscrollbars-react:
         specifier: ^0.5.6
